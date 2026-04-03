@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="PeptideLab – Research-Grade Peptide für wissenschaftliche Exzellenz. Höchste Reinheit, schneller Versand, diskrete Verpackung. BPC-157, TB-500, Ipamorelin und mehr." />
+  <meta name="keywords" content="Peptide kaufen, Research Peptide, BPC-157, TB-500, Ipamorelin, CJC-1295, GHRP, Epithalon, Selank, Forschungspeptide" />
+  <meta property="og:title" content="PeptideLab – Research Peptide Shop" />
+  <meta property="og:description" content="Research-Grade Peptide für wissenschaftliche Exzellenz. Höchste Qualität, laborgeprüft." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_DE" />
+  <title>PeptideLab – Research Peptide Shop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<!-- ── Background effects ───────────────────────────── -->
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+<div class="orb orb-3" aria-hidden="true"></div>
+
+<!-- ── Age Verification Modal ───────────────────────── -->
+<div id="age-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="age-modal-title">
+  <div class="modal">
+    <div class="modal-icon">🔬</div>
+    <h2 class="modal-title" id="age-modal-title">Altersprüfung erforderlich</h2>
+    <p class="modal-text">
+      PeptideLab verkauft ausschließlich Forschungschemikalien für den wissenschaftlichen Gebrauch.
+      Alle Produkte sind nur für Laborforschung bestimmt und nicht für den menschlichen Konsum.
+      Bitte bestätigen Sie, dass Sie mindestens 18 Jahre alt sind und diese Produkte nur für Forschungszwecke erwerben.
+    </p>
+    <div class="modal-actions">
+      <button id="age-confirm-btn" class="btn btn-primary btn-lg">
+        <i class="fa-solid fa-check-circle"></i> Ja, ich bin 18+ &amp; Forscher
+      </button>
+      <button id="age-decline-btn" class="btn btn-ghost btn-lg">Ablehnen</button>
+    </div>
+    <p class="modal-disclaimer">Mit dem Klick auf "Ja" bestätigen Sie, volljährig zu sein und die Produkte ausschließlich für wissenschaftliche Zwecke zu verwenden.</p>
+  </div>
+</div>
+
+<!-- ── Navigation ───────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PeptideLab Startseite">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="12" cy="4" r="2.5" fill="white"/>
+          <circle cx="4" cy="18" r="2.5" fill="white"/>
+          <circle cx="20" cy="18" r="2.5" fill="white"/>
+          <line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/>
+          <line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/>
+          <line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+    </a>
+
+    <div class="nav-links" role="list">
+      <a href="index.html" class="nav-link" role="listitem">Startseite</a>
+      <a href="shop.html" class="nav-link" role="listitem">Shop</a>
+      <a href="about.html" class="nav-link" role="listitem">Über uns</a>
+      <a href="contact.html" class="nav-link" role="listitem">Kontakt</a>
+    </div>
+
+    <div class="nav-actions">
+      <button class="cart-btn" aria-label="Warenkorb öffnen">
+        <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+        Warenkorb
+        <span class="cart-count" aria-label="Artikel im Warenkorb">0</span>
+      </button>
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Mobile Menu ──────────────────────────────────── -->
+<div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+  <a href="index.html" class="nav-link">Startseite</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">Über uns</a>
+  <a href="contact.html" class="nav-link">Kontakt</a>
+</div>
+
+<!-- ── Disclaimer Banner ─────────────────────────────── -->
+<div class="disclaimer-banner" role="alert">
+  <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+  Alle Produkte sind ausschließlich für Forschungszwecke bestimmt. Nicht für den menschlichen Konsum geeignet.
+</div>
+
+<main>
+
+  <!-- ── HERO ─────────────────────────────────────────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-content">
+      <div class="hero-badge" aria-label="Neu eingetroffen">
+        Neu eingetroffen
+      </div>
+
+      <h1 class="hero-title" id="hero-title">
+        Die Zukunft der<br>
+        <span class="gradient-text">Peptid-Forschung</span>
+      </h1>
+
+      <p class="hero-desc">
+        Research-Grade Peptide für wissenschaftliche Exzellenz.
+        Laborgeprüfte Reinheit, schnelle Lieferung und umfassende Forschungsdokumentation —
+        für die anspruchsvollsten Wissenschaftler.
+      </p>
+
+      <div class="hero-actions">
+        <a href="shop.html" class="btn btn-primary btn-lg">
+          <i class="fa-solid fa-flask" aria-hidden="true"></i> Jetzt einkaufen
+        </a>
+        <a href="about.html" class="btn btn-secondary btn-lg">
+          Mehr erfahren <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <div class="hero-stats" aria-label="Statistiken">
+        <div class="hero-stat">
+          <span class="hero-stat-value" data-target="500" data-suffix="+">500+</span>
+          <span class="hero-stat-label">Produkte</span>
+        </div>
+        <div class="hero-stats-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value" data-target="99.5" data-suffix="%" data-decimals="1">99.5%</span>
+          <span class="hero-stat-label">Reinheit</span>
+        </div>
+        <div class="hero-stats-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value" data-target="10000" data-suffix="+">10.000+</span>
+          <span class="hero-stat-label">Kunden</span>
+        </div>
+        <div class="hero-stats-divider" aria-hidden="true"></div>
+        <div class="hero-stat">
+          <span class="hero-stat-value" data-suffix="h" data-target="24">24h</span>
+          <span class="hero-stat-label">Versand</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <div class="hero-card-stack">
+        <!-- Background cards for stack depth -->
+        <div class="hero-card-back hero-card-back-2"></div>
+        <div class="hero-card-back hero-card-back-1"></div>
+
+        <!-- Floating badges -->
+        <div class="hero-float-badge badge-top">
+          <i class="fa-solid fa-star" style="color:#f59e0b"></i> +127 Bewertungen
+        </div>
+        <div class="hero-float-badge badge-bottom">
+          <i class="fa-solid fa-check-circle"></i> ✓ Auf Lager
+        </div>
+
+        <!-- Main hero card -->
+        <article class="hero-card">
+          <div class="hero-card-bg" style="background:linear-gradient(135deg,#0a1628 0%,#0c2545 50%,#0a3060 100%)">
+            <span style="position:relative;z-index:1">🧬</span>
+          </div>
+          <div class="hero-card-body">
+            <div class="hero-card-category">Heilung &amp; Regeneration</div>
+            <div class="hero-card-name">BPC-157 – 5mg</div>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+              <span style="color:#f59e0b">★★★★★</span>
+              <span style="font-size:0.85rem;color:var(--color-text-muted)">4.9 (234 Bewertungen)</span>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between">
+              <div>
+                <div class="hero-card-price">€49,99</div>
+                <div style="font-size:0.8rem;color:var(--color-text-dim);text-decoration:line-through">€69,99</div>
+              </div>
+              <span style="background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.3);border-radius:99px;padding:3px 10px;font-size:0.75rem;font-weight:700">Bestseller</span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS COUNTER SECTION ─────────────────────────── -->
+  <section class="section" aria-labelledby="stats-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-chart-line" aria-hidden="true"></i> Unsere Zahlen</span>
+        <h2 class="section-title" id="stats-title">Vertrauen durch <span class="gradient-text">Qualität</span></h2>
+        <p class="section-subtitle">Seit Jahren die erste Wahl für Forscher und wissenschaftliche Institutionen in Europa.</p>
+      </div>
+      <div class="stats-grid stagger">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-cyan"><i class="fa-solid fa-vial" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="12" data-suffix="+">0+</div>
+          <div class="stat-label">Einzigartige Peptide</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple"><i class="fa-solid fa-users" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="10000" data-suffix="+">0+</div>
+          <div class="stat-label">Zufriedene Forscher</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-cyan"><i class="fa-solid fa-award" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="99" data-suffix=".5%" data-decimals="0">0%</div>
+          <div class="stat-label">Durchschnittliche Reinheit</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple"><i class="fa-solid fa-shipping-fast" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="24" data-suffix="h">0h</div>
+          <div class="stat-label">Express-Lieferung</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURED PRODUCTS ─────────────────────────────── -->
+  <section class="section section-alt" aria-labelledby="featured-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-star" aria-hidden="true"></i> Bestseller</span>
+        <h2 class="section-title" id="featured-title">Unsere <span class="gradient-text">Top-Produkte</span></h2>
+        <p class="section-subtitle">Die meistgekauften Research-Peptide unseres Sortiments – von Forschern für Forscher empfohlen.</p>
+      </div>
+
+      <div id="featured-products-grid" class="products-grid stagger" aria-label="Empfohlene Produkte">
+        <!-- Populated by JS -->
+      </div>
+
+      <div style="text-align:center;margin-top:3rem" class="fade-up">
+        <a href="shop.html" class="btn btn-outline btn-lg">
+          <i class="fa-solid fa-grid-2" aria-hidden="true"></i> Alle Produkte ansehen
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CATEGORIES ────────────────────────────────────── -->
+  <section class="section" aria-labelledby="categories-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-layer-group" aria-hidden="true"></i> Kategorien</span>
+        <h2 class="section-title" id="categories-title">Nach <span class="gradient-text">Forschungsbereich</span> filtern</h2>
+        <p class="section-subtitle">Finden Sie die Peptide, die zu Ihrem Forschungsschwerpunkt passen.</p>
+      </div>
+      <div class="categories-grid stagger">
+        <a href="shop.html?category=healing" class="category-card" aria-label="Heilung & Regeneration – 2 Produkte">
+          <span class="category-icon" aria-hidden="true">🩹</span>
+          <div class="category-name">Heilung &amp; Regeneration</div>
+          <div class="category-count">2 Produkte</div>
+        </a>
+        <a href="shop.html?category=growth" class="category-card" aria-label="Wachstum & GH-Achse – 5 Produkte">
+          <span class="category-icon" aria-hidden="true">📈</span>
+          <div class="category-name">Wachstum &amp; GH-Achse</div>
+          <div class="category-count">5 Produkte</div>
+        </a>
+        <a href="shop.html?category=fat-loss" class="category-card" aria-label="Fettabbau & Stoffwechsel – 1 Produkt">
+          <span class="category-icon" aria-hidden="true">🔥</span>
+          <div class="category-name">Fettabbau &amp; Stoffwechsel</div>
+          <div class="category-count">1 Produkt</div>
+        </a>
+        <a href="shop.html?category=cognitive" class="category-card" aria-label="Kognition & Neuropeptide – 1 Produkt">
+          <span class="category-icon" aria-hidden="true">🧠</span>
+          <div class="category-name">Kognition &amp; Neuropeptide</div>
+          <div class="category-count">1 Produkt</div>
+        </a>
+        <a href="shop.html?category=anti-aging" class="category-card" aria-label="Anti-Aging & Longevity – 1 Produkt">
+          <span class="category-icon" aria-hidden="true">✨</span>
+          <div class="category-name">Anti-Aging &amp; Longevity</div>
+          <div class="category-count">1 Produkt</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FEATURES ──────────────────────────────────────── -->
+  <section class="section section-alt" aria-labelledby="features-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Vorteile</span>
+        <h2 class="section-title" id="features-title">Warum <span class="gradient-text">PeptideLab</span>?</h2>
+        <p class="section-subtitle">Wir setzen auf Wissenschaft, Transparenz und Service auf höchstem Niveau.</p>
+      </div>
+      <div class="features-grid stagger">
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-microscope" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Laborgeprüfte Qualität</h3>
+          <p class="feature-desc">Alle Peptide werden mittels HPLC-Analyse auf Reinheit und Identität geprüft. Jede Charge erhält ein Echtheitszertifikat (CoA).</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Schneller Versand</h3>
+          <p class="feature-desc">Bestellungen, die bis 14 Uhr eingehen, werden noch am gleichen Tag versendet. Expresslieferung innerhalb von 24–48 Stunden in Deutschland.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-lock" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Sichere Zahlung</h3>
+          <p class="feature-desc">SSL-verschlüsselte Zahlungen über alle gängigen Methoden. Ihre Daten sind bei uns sicher und DSGVO-konform geschützt.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-headset" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Fachkundiger Support</h3>
+          <p class="feature-desc">Unser wissenschaftlich ausgebildetes Team steht für Fragen zu Produkten, Protokollen und Lagerung zur Verfügung – per E-Mail und Chat.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-box-archive" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Diskrete Verpackung</h3>
+          <p class="feature-desc">Alle Bestellungen werden in neutraler, diskreter Verpackung ohne Hinweise auf den Inhalt versendet. Ihre Privatsphäre hat höchste Priorität.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon"><i class="fa-solid fa-rotate-left" aria-hidden="true"></i></div>
+          <h3 class="feature-title">Rückgabe &amp; Garantie</h3>
+          <p class="feature-desc">30-tägige Zufriedenheitsgarantie. Bei Qualitätsproblemen erstatten wir den Kaufpreis vollständig oder senden ein Ersatzprodukt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TESTIMONIALS ──────────────────────────────────── -->
+  <section class="section" aria-labelledby="testimonials-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-comment-dots" aria-hidden="true"></i> Kundenstimmen</span>
+        <h2 class="section-title" id="testimonials-title">Was unsere <span class="gradient-text">Forscher sagen</span></h2>
+      </div>
+      <div class="testimonials-grid stagger">
+        <article class="testimonial-card">
+          <div class="testimonial-quote" aria-hidden="true">"</div>
+          <p class="testimonial-text">PeptideLab liefert konstant hochreine Peptide mit vollständiger Dokumentation. Die HPLC-Zertifikate sind präzise und entsprechen unseren Laborstandards. Für unsere Forschungsprojekte die erste Wahl.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">DR</div>
+            <div>
+              <div class="testimonial-name">Dr. Rainer K.</div>
+              <div class="testimonial-role">Biochemiker, Universitätslabor</div>
+              <div class="testimonial-stars" aria-label="5 von 5 Sternen"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-quote" aria-hidden="true">"</div>
+          <p class="testimonial-text">Die Lieferzeit ist beeindruckend – bestellt am Montag, Dienstag im Labor. Die Kühlkette wird perfekt eingehalten und die Verpackung ist diskret und professionell. Sehr empfehlenswert!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">SM</div>
+            <div>
+              <div class="testimonial-name">Sabine M.</div>
+              <div class="testimonial-role">Forschungsassistentin, Pharmainstitut</div>
+              <div class="testimonial-stars" aria-label="5 von 5 Sternen"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+            </div>
+          </div>
+        </article>
+        <article class="testimonial-card">
+          <div class="testimonial-quote" aria-hidden="true">"</div>
+          <p class="testimonial-text">Exzellenter Kundenservice! Als wir Fragen zu den Protokollen hatten, antwortete das Team mit detaillierten, wissenschaftlich fundierten Informationen. Das Vertrauen in PeptideLab ist absolut berechtigt.</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar" aria-hidden="true">PH</div>
+            <div>
+              <div class="testimonial-name">Prof. Heinrich A.</div>
+              <div class="testimonial-role">Leiter Peptid-Forschungsgruppe</div>
+              <div class="testimonial-stars" aria-label="5 von 5 Sternen"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── NEWSLETTER ────────────────────────────────────── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="newsletter-section fade-up">
+        <span class="section-label"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Newsletter</span>
+        <h2 class="section-title" style="margin-top:1rem">Bleiben Sie auf dem neuesten <span class="gradient-text">Forschungsstand</span></h2>
+        <p class="section-subtitle" style="margin:0 auto">Erhalten Sie exklusive Angebote, neue Produkt-Ankündigungen und wissenschaftliche Updates direkt in Ihr Postfach.</p>
+        <form class="newsletter-form" aria-label="Newsletter-Anmeldung" onsubmit="event.preventDefault();window.showToast('Vielen Dank! Sie wurden erfolgreich angemeldet.','success')">
+          <label for="newsletter-email" class="sr-only">E-Mail-Adresse</label>
+          <input type="email" id="newsletter-email" class="newsletter-input" placeholder="Ihre E-Mail-Adresse" required aria-label="E-Mail-Adresse für Newsletter" />
+          <button type="submit" class="btn btn-primary">
+            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Anmelden
+          </button>
+        </form>
+        <p style="margin-top:1rem;font-size:0.8125rem;color:var(--color-text-dim)">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i> DSGVO-konform. Kein Spam. Jederzeit abmeldbar.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:1rem" aria-label="PeptideLab">
+          <div class="logo-icon" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="4" r="2.5" fill="white"/>
+              <circle cx="4" cy="18" r="2.5" fill="white"/>
+              <circle cx="20" cy="18" r="2.5" fill="white"/>
+              <line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/>
+              <line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/>
+              <line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+        </a>
+        <p class="footer-desc">Research-Grade Peptide für wissenschaftliche Exzellenz. Laborgeprüft, HPLC-zertifiziert und mit vollständiger Dokumentation für Ihre Forschung.</p>
+        <div class="footer-social" aria-label="Social Media Links">
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-twitter" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="ResearchGate"><i class="fa-brands fa-researchgate" aria-hidden="true"></i></a>
+          <a href="#" class="social-link" aria-label="Instagram"><i class="fa-brands fa-instagram" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <!-- Products -->
+      <div>
+        <h3 class="footer-col-title">Produkte</h3>
+        <nav class="footer-links" aria-label="Produktlinks">
+          <a href="shop.html?category=healing" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Heilung &amp; Regeneration</a>
+          <a href="shop.html?category=growth" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Wachstum &amp; GH-Achse</a>
+          <a href="shop.html?category=fat-loss" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Fettabbau</a>
+          <a href="shop.html?category=cognitive" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Kognition</a>
+          <a href="shop.html?category=anti-aging" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Anti-Aging</a>
+          <a href="shop.html?category=research" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Forschungspeptide</a>
+        </nav>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <h3 class="footer-col-title">Unternehmen</h3>
+        <nav class="footer-links" aria-label="Unternehmenslinks">
+          <a href="about.html" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Über PeptideLab</a>
+          <a href="about.html#team" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Unser Team</a>
+          <a href="about.html#quality" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Qualitätssicherung</a>
+          <a href="contact.html" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Kontakt</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Karriere</a>
+        </nav>
+      </div>
+
+      <!-- Legal -->
+      <div>
+        <h3 class="footer-col-title">Rechtliches</h3>
+        <nav class="footer-links" aria-label="Rechtliche Links">
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Datenschutzerklärung</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Impressum</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> AGB</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Widerrufsrecht</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Forschungs-Disclaimer</a>
+        </nav>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; 2026 PeptideLab. Alle Rechte vorbehalten. Nur für Forschungszwecke.
+      </p>
+      <div class="footer-badges">
+        <span class="footer-badge"><i class="fa-solid fa-lock" aria-hidden="true"></i> SSL Gesichert</span>
+        <span class="footer-badge"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> DSGVO-konform</span>
+        <span class="footer-badge"><i class="fa-solid fa-flask" aria-hidden="true"></i> Nur Forschung</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── CART DRAWER ────────────────────────────────────── -->
+<div id="cart-overlay" class="cart-overlay" role="presentation"></div>
+<aside id="cart-drawer" class="cart-drawer" role="complementary" aria-label="Warenkorb">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">
+      <i class="fa-solid fa-cart-shopping" aria-hidden="true"></i>
+      Warenkorb
+      <span class="cart-count" aria-label="Artikel">0</span>
+    </div>
+    <button id="cart-close-btn" class="cart-close-btn" aria-label="Warenkorb schließen">
+      <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div id="cart-drawer-body" class="cart-drawer-body">
+    <!-- Rendered by JS -->
+  </div>
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal">
+      <span>Zwischensumme</span>
+      <span id="cart-subtotal-val">€0.00</span>
+    </div>
+    <div class="cart-subtotal">
+      <span>Versand</span>
+      <span id="cart-shipping-val">€4.99</span>
+    </div>
+    <div class="cart-total">
+      <span>Gesamt</span>
+      <span class="cart-total-value" id="cart-total-val">€0.00</span>
+    </div>
+    <a href="cart.html" class="cart-checkout-btn">
+      <i class="fa-solid fa-credit-card" aria-hidden="true"></i> Zur Kasse
+    </a>
+    <button class="cart-continue-btn" onclick="Cart.close()">
+      Weiter einkaufen
+    </button>
+  </div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Warenkorb – PeptideLab. Ihre ausgewählten Research-Peptide sicher bestellen." />
+  <title>Warenkorb – PeptideLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+
+<!-- ── Age Verification Modal ───────────────────────── -->
+<div id="age-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="age-modal-title">
+  <div class="modal">
+    <div class="modal-icon">🔬</div>
+    <h2 class="modal-title" id="age-modal-title">Altersprüfung erforderlich</h2>
+    <p class="modal-text">Bitte bestätigen Sie, dass Sie mindestens 18 Jahre alt sind und die Produkte ausschließlich für Forschungszwecke erwerben.</p>
+    <div class="modal-actions">
+      <button id="age-confirm-btn" class="btn btn-primary btn-lg"><i class="fa-solid fa-check-circle"></i> Ja, ich bin 18+ &amp; Forscher</button>
+      <button id="age-decline-btn" class="btn btn-ghost btn-lg">Ablehnen</button>
+    </div>
+    <p class="modal-disclaimer">Mit dem Klick bestätigen Sie Ihre Volljährigkeit und den Forschungszweck.</p>
+  </div>
+</div>
+
+<!-- ── Navigation ───────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PeptideLab Startseite">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/>
+          <line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+    </a>
+    <div class="nav-links" role="list">
+      <a href="index.html" class="nav-link" role="listitem">Startseite</a>
+      <a href="shop.html" class="nav-link" role="listitem">Shop</a>
+      <a href="about.html" class="nav-link" role="listitem">Über uns</a>
+      <a href="contact.html" class="nav-link" role="listitem">Kontakt</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" aria-label="Warenkorb öffnen">
+        <i class="fa-solid fa-cart-shopping"></i> Warenkorb
+        <span class="cart-count">0</span>
+      </button>
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+  <a href="index.html" class="nav-link">Startseite</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">Über uns</a>
+  <a href="contact.html" class="nav-link">Kontakt</a>
+</div>
+
+<div class="disclaimer-banner" role="alert">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  Alle Produkte sind ausschließlich für Forschungszwecke bestimmt. Nicht für den menschlichen Konsum geeignet.
+</div>
+
+<main>
+  <div class="page-offset">
+
+    <!-- Page Hero -->
+    <header class="page-hero" style="padding:3rem 0 2rem">
+      <div class="container">
+        <span class="section-label fade-up"><i class="fa-solid fa-cart-shopping"></i> Bestellung</span>
+        <h1 class="page-hero-title fade-up"><span class="gradient-text">Warenkorb</span></h1>
+        <nav class="breadcrumb fade-up" style="justify-content:center" aria-label="Seitennavigation">
+          <a href="index.html">Startseite</a>
+          <span class="breadcrumb-sep"><i class="fa-solid fa-chevron-right"></i></span>
+          <span class="breadcrumb-current">Warenkorb</span>
+        </nav>
+      </div>
+    </header>
+
+    <section class="section" aria-labelledby="cart-page-title">
+      <div class="container">
+        <h2 class="sr-only" id="cart-page-title">Warenkorb Übersicht</h2>
+
+        <div class="cart-page-layout">
+
+          <!-- LEFT: Cart items -->
+          <div class="cart-page-items-col">
+            <div class="cart-page-title">
+              <i class="fa-solid fa-box-open" aria-hidden="true"></i>
+              Ihre Produkte
+            </div>
+
+            <div id="cart-items-list" aria-live="polite" aria-label="Warenkorbpositionen">
+              <!-- Rendered by JS -->
+              <div style="text-align:center;padding:4rem 0;color:var(--color-text-muted)">
+                <i class="fa-solid fa-circle-notch fa-spin" style="font-size:2rem"></i>
+                <p style="margin-top:1rem">Wird geladen...</p>
+              </div>
+            </div>
+
+            <!-- Back to shop -->
+            <div style="margin-top:1.5rem">
+              <a href="shop.html" class="btn btn-ghost">
+                <i class="fa-solid fa-arrow-left"></i> Weiter einkaufen
+              </a>
+            </div>
+
+            <!-- Research disclaimer -->
+            <div class="product-disclaimer fade-up" style="margin-top:2rem">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+              <span>
+                <strong>Wichtiger Hinweis:</strong> Alle bestellten Produkte sind ausschließlich für Forschungszwecke bestimmt. Mit Abschluss der Bestellung bestätigen Sie, dass Sie die Produkte nur für wissenschaftliche Laborzwecke verwenden.
+              </span>
+            </div>
+          </div>
+
+          <!-- RIGHT: Order summary -->
+          <div id="cart-summary-section" class="fade-up" aria-label="Bestellübersicht">
+            <aside class="order-summary" aria-label="Bestellzusammenfassung">
+              <h2 class="order-summary-title">Bestellübersicht</h2>
+
+              <div class="order-line">
+                <span class="order-line-label">Zwischensumme</span>
+                <span class="order-line-value" id="page-subtotal">€0.00</span>
+              </div>
+              <div class="order-line">
+                <span class="order-line-label">
+                  Versand
+                  <span style="display:block;font-size:0.8rem;color:var(--color-text-dim)">Kostenlos ab €100</span>
+                </span>
+                <span class="order-line-value order-line-shipping-free" id="page-shipping">€4.99</span>
+              </div>
+
+              <hr class="order-divider" />
+
+              <div class="order-line order-total">
+                <span>Gesamtbetrag</span>
+                <span class="order-total-value" id="page-total">€0.00</span>
+              </div>
+
+              <!-- Promo code -->
+              <form class="promo-code-form" aria-label="Gutscheincode eingeben" onsubmit="event.preventDefault();window.showToast('Gutscheincode ungültig oder bereits verwendet.','error')">
+                <input
+                  type="text"
+                  class="promo-input"
+                  placeholder="Gutscheincode"
+                  aria-label="Gutscheincode"
+                />
+                <button type="submit" class="btn btn-secondary btn-sm" aria-label="Gutschein einlösen">
+                  Einlösen
+                </button>
+              </form>
+
+              <!-- Checkout button -->
+              <button class="checkout-btn" onclick="window.showToast('Checkout-System in Entwicklung. Bitte kontaktieren Sie uns.','info')" aria-label="Zur Kasse gehen">
+                <i class="fa-solid fa-lock" aria-hidden="true"></i>
+                Sicher zur Kasse
+              </button>
+
+              <!-- Payment methods -->
+              <div style="margin-top:1.25rem;text-align:center">
+                <p style="font-size:0.8125rem;color:var(--color-text-dim);margin-bottom:0.75rem">Akzeptierte Zahlungsmethoden</p>
+                <div style="display:flex;justify-content:center;gap:0.75rem;flex-wrap:wrap">
+                  <span class="footer-badge"><i class="fa-brands fa-cc-visa"></i> Visa</span>
+                  <span class="footer-badge"><i class="fa-brands fa-cc-mastercard"></i> Mastercard</span>
+                  <span class="footer-badge"><i class="fa-brands fa-paypal"></i> PayPal</span>
+                  <span class="footer-badge"><i class="fa-solid fa-building-columns"></i> Überweisung</span>
+                </div>
+              </div>
+
+              <!-- Trust indicators -->
+              <div style="margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid var(--color-border)">
+                <div style="display:flex;flex-direction:column;gap:0.625rem">
+                  <div class="trust-badge">
+                    <i class="fa-solid fa-lock"></i>
+                    <span style="font-size:0.8125rem">SSL-verschlüsselte Zahlung</span>
+                  </div>
+                  <div class="trust-badge">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span style="font-size:0.8125rem">30 Tage Rückgaberecht</span>
+                  </div>
+                  <div class="trust-badge">
+                    <i class="fa-solid fa-truck-fast"></i>
+                    <span style="font-size:0.8125rem">Versand innerhalb 24h</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:1rem">
+          <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/><line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/></svg></div>
+          <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+        </a>
+        <p class="footer-desc">Research-Grade Peptide. Laborgeprüft, HPLC-zertifiziert.</p>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Produkte</h3>
+        <nav class="footer-links">
+          <a href="shop.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Alle Peptide</a>
+          <a href="shop.html?category=healing" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Heilung</a>
+          <a href="shop.html?category=growth" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Wachstum</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Unternehmen</h3>
+        <nav class="footer-links">
+          <a href="about.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Über uns</a>
+          <a href="contact.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Kontakt</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Rechtliches</h3>
+        <nav class="footer-links">
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Datenschutz</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Impressum</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> AGB</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 PeptideLab. Nur für Forschungszwecke.</p>
+      <div class="footer-badges">
+        <span class="footer-badge"><i class="fa-solid fa-lock"></i> SSL</span>
+        <span class="footer-badge"><i class="fa-solid fa-shield-halved"></i> DSGVO</span>
+        <span class="footer-badge"><i class="fa-solid fa-flask"></i> Forschung</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── CART DRAWER ────────────────────────────────────── -->
+<div id="cart-overlay" class="cart-overlay" role="presentation"></div>
+<aside id="cart-drawer" class="cart-drawer" role="complementary" aria-label="Warenkorb">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">
+      <i class="fa-solid fa-cart-shopping"></i> Warenkorb
+      <span class="cart-count">0</span>
+    </div>
+    <button id="cart-close-btn" class="cart-close-btn" aria-label="Warenkorb schließen">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div id="cart-drawer-body" class="cart-drawer-body"></div>
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal"><span>Zwischensumme</span><span id="cart-subtotal-val">€0.00</span></div>
+    <div class="cart-subtotal"><span>Versand</span><span id="cart-shipping-val">€4.99</span></div>
+    <div class="cart-total">
+      <span>Gesamt</span>
+      <span class="cart-total-value" id="cart-total-val">€0.00</span>
+    </div>
+    <a href="cart.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
+    <button class="cart-continue-btn" onclick="Cart.close()">Weiter einkaufen</button>
+  </div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

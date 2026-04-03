@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Über PeptideLab – Unser Team, unsere Mission und unser Engagement für Research-Grade Qualität. Laborgeprüfte Peptide seit 2018." />
+  <title>Über uns – PeptideLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+
+<!-- ── Age Verification Modal ───────────────────────── -->
+<div id="age-modal" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="age-modal-title">
+  <div class="modal">
+    <div class="modal-icon">🔬</div>
+    <h2 class="modal-title" id="age-modal-title">Altersprüfung erforderlich</h2>
+    <p class="modal-text">Bitte bestätigen Sie, dass Sie mindestens 18 Jahre alt sind und die Produkte ausschließlich für Forschungszwecke erwerben.</p>
+    <div class="modal-actions">
+      <button id="age-confirm-btn" class="btn btn-primary btn-lg"><i class="fa-solid fa-check-circle"></i> Ja, ich bin 18+ &amp; Forscher</button>
+      <button id="age-decline-btn" class="btn btn-ghost btn-lg">Ablehnen</button>
+    </div>
+    <p class="modal-disclaimer">Mit dem Klick bestätigen Sie Ihre Volljährigkeit und den Forschungszweck.</p>
+  </div>
+</div>
+
+<!-- ── Navigation ───────────────────────────────────── -->
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PeptideLab Startseite">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/>
+          <line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/>
+        </svg>
+      </div>
+      <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+    </a>
+    <div class="nav-links" role="list">
+      <a href="index.html" class="nav-link" role="listitem">Startseite</a>
+      <a href="shop.html" class="nav-link" role="listitem">Shop</a>
+      <a href="about.html" class="nav-link" role="listitem">Über uns</a>
+      <a href="contact.html" class="nav-link" role="listitem">Kontakt</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" aria-label="Warenkorb öffnen">
+        <i class="fa-solid fa-cart-shopping"></i> Warenkorb
+        <span class="cart-count">0</span>
+      </button>
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+  <a href="index.html" class="nav-link">Startseite</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">Über uns</a>
+  <a href="contact.html" class="nav-link">Kontakt</a>
+</div>
+
+<div class="disclaimer-banner" role="alert">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  Alle Produkte sind ausschließlich für Forschungszwecke bestimmt. Nicht für den menschlichen Konsum geeignet.
+</div>
+
+<main>
+
+  <!-- ── PAGE HERO ─────────────────────────────────────── -->
+  <header class="page-hero page-offset" aria-labelledby="about-hero-title">
+    <div class="container">
+      <span class="section-label fade-up"><i class="fa-solid fa-building-columns"></i> Unternehmen</span>
+      <h1 class="page-hero-title fade-up" id="about-hero-title">Über <span class="gradient-text">PeptideLab</span></h1>
+      <p class="page-hero-subtitle fade-up">
+        Seit 2018 sind wir die erste Adresse für Research-Grade Peptide in Deutschland.
+        Wissenschaft, Qualität und Transparenz sind das Fundament unseres Handelns.
+      </p>
+    </div>
+  </header>
+
+  <!-- ── OUR STORY ──────────────────────────────────────── -->
+  <section class="section" aria-labelledby="story-title">
+    <div class="container">
+      <div class="about-story">
+        <div class="fade-up">
+          <span class="section-label"><i class="fa-solid fa-book-open"></i> Unsere Geschichte</span>
+          <h2 class="section-title" id="story-title" style="margin-top:1rem">Von der Idee zur <span class="gradient-text">wissenschaftlichen Plattform</span></h2>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1.5rem">
+            PeptideLab wurde 2018 von einem Team aus Biochemikern, Pharmakologen und Forschern gegründet,
+            die frustriert waren über die mangelhafte Qualität und unzuverlässige Dokumentation der damals
+            verfügbaren Research-Peptide in Europa.
+          </p>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:1.5rem">
+            Unsere Gründer erkannten den Bedarf an einem Anbieter, der nicht nur Peptide verkauft,
+            sondern echte wissenschaftliche Partner für Forscher und Institutionen ist. Mit rigorosen
+            Qualitätsstandards, vollständiger Dokumentation und direktem Wissenschaftler-Support
+            haben wir uns zum führenden Research-Peptide-Anbieter in der DACH-Region entwickelt.
+          </p>
+          <p style="color:var(--color-text-muted);line-height:1.8;margin-bottom:2rem">
+            Heute beliefern wir über 500 Forschungslabors, Universitäten und private Forscher –
+            mit einem kompromisslosen Fokus auf Reinheit, Stabilität und wissenschaftliche Integrität.
+          </p>
+          <a href="shop.html" class="btn btn-primary">
+            <i class="fa-solid fa-flask"></i> Sortiment entdecken
+          </a>
+        </div>
+        <div class="about-story-visual fade-in" aria-hidden="true">
+          <span style="position:relative;z-index:1;font-size:7rem">🔬</span>
+          <div style="position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;gap:1rem">
+            <div style="background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:0.75rem 1.25rem;text-align:center;white-space:nowrap">
+              <div style="font-size:1.25rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">2018</div>
+              <div style="font-size:0.75rem;color:var(--color-text-muted)">Gegründet</div>
+            </div>
+            <div style="background:var(--color-surface-2);border:1px solid var(--color-border);border-radius:var(--radius-md);padding:0.75rem 1.25rem;text-align:center;white-space:nowrap">
+              <div style="font-size:1.25rem;font-weight:800;background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">500+</div>
+              <div style="font-size:0.75rem;color:var(--color-text-muted)">Laborkunden</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MISSION / VALUES ───────────────────────────────── -->
+  <section class="section section-alt" aria-labelledby="values-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-star"></i> Mission &amp; Werte</span>
+        <h2 class="section-title" id="values-title">Was uns <span class="gradient-text">antreibt</span></h2>
+        <p class="section-subtitle">Unsere vier Grundprinzipien leiten jede Entscheidung, die wir treffen.</p>
+      </div>
+      <div class="values-grid stagger">
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">🏆</div>
+          <h3 class="value-title">Qualität</h3>
+          <p class="value-desc">Wir akzeptieren keine Kompromisse bei der Reinheit unserer Peptide. Jede Charge wird unabhängig durch HPLC-Analyse und Massenspektrometrie verifiziert, bevor sie unser Labor verlässt.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">🔍</div>
+          <h3 class="value-title">Transparenz</h3>
+          <p class="value-desc">Vollständige Offenlegung aller Testergebnisse, Reinheitswerte und Synthesebedingungen. Jeder Kunde erhält ein detailliertes Echtheitszertifikat (CoA) mit der Bestellung.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">💡</div>
+          <h3 class="value-title">Innovation</h3>
+          <p class="value-desc">Wir erweitern unser Sortiment kontinuierlich, basierend auf den aktuellen Forschungstrends. Unser wissenschaftliches Beirat bewertet regelmäßig neue Peptide für aufkommende Forschungsgebiete.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon" aria-hidden="true">🤝</div>
+          <h3 class="value-title">Vertrauen</h3>
+          <p class="value-desc">Über 500 Forschungseinrichtungen vertrauen uns ihre kritischen Laborbedarfe an. Dieses Vertrauen erarbeiten wir täglich durch Zuverlässigkeit, Diskretion und wissenschaftliche Exzellenz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TEAM ───────────────────────────────────────────── -->
+  <section class="section" id="team" aria-labelledby="team-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-users"></i> Unser Team</span>
+        <h2 class="section-title" id="team-title">Die <span class="gradient-text">Wissenschaftler</span> hinter PeptideLab</h2>
+        <p class="section-subtitle">Unser interdisziplinäres Team vereint Expertise in Biochemie, Pharmakologie und Laboranalytik.</p>
+      </div>
+      <div class="team-grid stagger">
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">👨‍🔬</div>
+          <h3 class="team-name">Dr. Alexander Weber</h3>
+          <p class="team-role">Gründer &amp; Chief Scientific Officer</p>
+          <p class="team-bio">Promovierter Biochemiker mit 15 Jahren Erfahrung in der Peptidsynthese. Ehemaliger Forscher an der Universität Heidelberg, spezialisiert auf die GH-Achse und regenerative Peptide.</p>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">👩‍💼</div>
+          <h3 class="team-name">Dr. Julia Hoffmann</h3>
+          <p class="team-role">Leiterin Qualitätssicherung</p>
+          <p class="team-bio">Pharmazeutin mit Spezialisierung auf analytische Chemie. Entwickelte unser proprietäres HPLC-Testprotokoll, das höhere Standards als EU-GMP-Anforderungen erfüllt.</p>
+        </article>
+        <article class="team-card">
+          <div class="team-avatar" aria-hidden="true">👨‍🏫</div>
+          <h3 class="team-name">Prof. Thomas Müller</h3>
+          <p class="team-role">Wissenschaftlicher Beirat</p>
+          <p class="team-bio">Professor für Pharmakologie an der LMU München. Berät PeptideLab bei der Auswahl neuer Forschungspeptide und der wissenschaftlichen Dokumentation aller Produkte.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── QUALITY / CERTIFICATIONS ─────────────────────── -->
+  <section class="section section-alt" id="quality" aria-labelledby="quality-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <span class="section-label"><i class="fa-solid fa-certificate"></i> Qualitätsstandards</span>
+        <h2 class="section-title" id="quality-title">Unsere <span class="gradient-text">Prüfstandards</span></h2>
+        <p class="section-subtitle">Jedes Peptid durchläuft einen strengen mehrstufigen Qualifikationsprozess, bevor es in unser Sortiment aufgenommen wird.</p>
+      </div>
+      <div class="cert-grid stagger">
+        <div class="cert-card">
+          <div class="cert-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div>
+          <h3 class="cert-title">ISO-Laborstandards</h3>
+          <p class="cert-desc">Alle Analysen werden in ISO 17025-akkreditierten Prüflabors durchgeführt. Unsere Qualitätsmanagementsysteme entsprechen den höchsten internationalen Normen.</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i class="fa-solid fa-chart-line" aria-hidden="true"></i></div>
+          <h3 class="cert-title">HPLC-Reinheitsanalyse</h3>
+          <p class="cert-desc">Hochleistungsflüssigkeitschromatographie (HPLC) verifiziert die Reinheit jeder Charge. Unser Standard: ≥98% Reinheit – wir liefern oft 99,5% und mehr.</p>
+        </div>
+        <div class="cert-card">
+          <div class="cert-icon"><i class="fa-solid fa-file-certificate" aria-hidden="true"></i></div>
+          <h3 class="cert-title">Echtheitszertifikate (CoA)</h3>
+          <p class="cert-desc">Jedes Produkt wird mit einem vollständigen Certificate of Analysis geliefert, das Reinheit, Identität, Sequenzbestätigung und alle analytischen Daten enthält.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── STATS ──────────────────────────────────────────── -->
+  <section class="section" aria-labelledby="about-stats-title">
+    <div class="container">
+      <div class="section-header fade-up">
+        <h2 class="section-title" id="about-stats-title">PeptideLab <span class="gradient-text">in Zahlen</span></h2>
+      </div>
+      <div class="stats-grid stagger">
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-cyan"><i class="fa-solid fa-calendar" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="6" data-suffix="+ Jahre">0</div>
+          <div class="stat-label">Erfahrung in der Forschung</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple"><i class="fa-solid fa-flask" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="500" data-suffix="+">0+</div>
+          <div class="stat-label">Belieferte Labors</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-cyan"><i class="fa-solid fa-vial" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="50000" data-suffix="+">0+</div>
+          <div class="stat-label">Bearbeitete Bestellungen</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon stat-icon-purple"><i class="fa-solid fa-star" aria-hidden="true"></i></div>
+          <div class="stat-value" data-target="4.9" data-suffix="/5" data-decimals="1">0/5</div>
+          <div class="stat-label">Durchschnittliche Bewertung</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ────────────────────────────────────────── -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="display:inline-flex;margin-bottom:1rem">
+          <div class="logo-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/><line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/></svg></div>
+          <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+        </a>
+        <p class="footer-desc">Research-Grade Peptide. Laborgeprüft, HPLC-zertifiziert.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+          <a href="#" class="social-link" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Produkte</h3>
+        <nav class="footer-links">
+          <a href="shop.html?category=healing" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Heilung</a>
+          <a href="shop.html?category=growth" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Wachstum</a>
+          <a href="shop.html?category=fat-loss" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Fettabbau</a>
+          <a href="shop.html?category=cognitive" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Kognition</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Unternehmen</h3>
+        <nav class="footer-links">
+          <a href="about.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Über uns</a>
+          <a href="about.html#team" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Team</a>
+          <a href="about.html#quality" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Qualität</a>
+          <a href="contact.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Kontakt</a>
+        </nav>
+      </div>
+      <div>
+        <h3 class="footer-col-title">Rechtliches</h3>
+        <nav class="footer-links">
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Datenschutz</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Impressum</a>
+          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> AGB</a>
+        </nav>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 PeptideLab. Nur für Forschungszwecke.</p>
+      <div class="footer-badges">
+        <span class="footer-badge"><i class="fa-solid fa-lock"></i> SSL</span>
+        <span class="footer-badge"><i class="fa-solid fa-shield-halved"></i> DSGVO</span>
+        <span class="footer-badge"><i class="fa-solid fa-flask"></i> Forschung</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── CART DRAWER ────────────────────────────────────── -->
+<div id="cart-overlay" class="cart-overlay" role="presentation"></div>
+<aside id="cart-drawer" class="cart-drawer" role="complementary" aria-label="Warenkorb">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title">
+      <i class="fa-solid fa-cart-shopping"></i> Warenkorb
+      <span class="cart-count">0</span>
+    </div>
+    <button id="cart-close-btn" class="cart-close-btn" aria-label="Warenkorb schließen">
+      <i class="fa-solid fa-xmark"></i>
+    </button>
+  </div>
+  <div id="cart-drawer-body" class="cart-drawer-body"></div>
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal"><span>Zwischensumme</span><span id="cart-subtotal-val">€0.00</span></div>
+    <div class="cart-subtotal"><span>Versand</span><span id="cart-shipping-val">€4.99</span></div>
+    <div class="cart-total">
+      <span>Gesamt</span>
+      <span class="cart-total-value" id="cart-total-val">€0.00</span>
+    </div>
+    <a href="cart.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
+    <button class="cart-continue-btn" onclick="Cart.close()">Weiter einkaufen</button>
+  </div>
+</aside>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
