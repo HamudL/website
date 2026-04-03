@@ -33,6 +33,8 @@
   var currentProducts = [];
   var deleteTargetId  = null;
   var currentSection  = 'dashboard';
+  var allOrders       = [];
+  var allPromos       = [];
 
   /* ══════════════════════════════════════════
      INIT
@@ -104,7 +106,9 @@
     initModals();
     initProductSearch();
     initSystemButtons();
-    initAddProductForm();
+    initOrdersSection();
+    initPromosSection();
+    updatePendingOrdersBadge();
 
     navigateTo('dashboard');
   }
@@ -177,14 +181,16 @@
     if (target) target.classList.add('active');
 
     // Update topbar title
-    var titles = { dashboard: 'Dashboard', products: 'Alle Produkte', 'add-product': 'Produkt hinzufügen' };
+    var titles = { dashboard: 'Dashboard', products: 'Alle Produkte', 'add-product': 'Produkt hinzufügen', orders: 'Bestellungen', promos: 'Rabattcodes' };
     var titleEl = document.getElementById('admin-page-title');
     if (titleEl) titleEl.textContent = titles[section] || section;
 
     // Render
-    if (section === 'dashboard') renderDashboard();
-    if (section === 'products') renderProductsTable(currentProducts);
+    if (section === 'dashboard')   renderDashboard();
+    if (section === 'products')    renderProductsTable(currentProducts);
     if (section === 'add-product') renderAddProductForm();
+    if (section === 'orders')      renderOrdersTable();
+    if (section === 'promos')      renderPromosTable();
   }
 
   /* ══════════════════════════════════════════
@@ -379,6 +385,7 @@
     var form = document.getElementById('add-product-form');
     if (!form) return;
     form.innerHTML = buildProductFormHtml(null);
+    initImageUploadField();
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
@@ -406,12 +413,25 @@
 
     if (title) title.textContent = 'Bearbeiten: ' + product.name;
     if (form)  form.innerHTML = buildProductFormHtml(product);
+    initImageUploadField();
 
     overlay.style.display = 'flex';
     document.body.style.overflow = 'hidden';
   }
 
   function initModals() {
+    // Order modal close
+    ['close-order-modal', 'close-order-modal-2'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', closeOrderModal);
+    });
+    var orderOverlay = document.getElementById('order-modal-overlay');
+    if (orderOverlay) {
+      orderOverlay.addEventListener('click', function (e) {
+        if (e.target === orderOverlay) closeOrderModal();
+      });
+    }
+
     // Edit modal close
     ['close-edit-modal', 'cancel-edit-modal'].forEach(function (id) {
       var el = document.getElementById(id);
@@ -549,6 +569,24 @@
       aformGroup('Gradient CSS', 'gradient', p.gradient, 'text', 'linear-gradient(135deg, #0a1628 0%, #0a3060 100%)') +
       aformGroup('Glühfarbe (rgba)', 'glowColor', p.glowColor, 'text', 'rgba(0, 100, 255, 0.2)') +
 
+      '<div class="aform-group aform-full">' +
+        '<label class="aform-label">Produktbild</label>' +
+        '<input type="hidden" name="imageUrl" value="' + escAttr(p.imageUrl || '') + '" id="aform-image-url" />' +
+        '<div class="aform-image-upload">' +
+          '<div id="aform-image-preview-wrap" class="aform-image-preview-wrap">' +
+            (p.imageUrl
+              ? '<img src="' + escAttr(p.imageUrl || '') + '" class="aform-image-preview" alt="Produktbild" />'
+              : '<div class="aform-image-empty"><i class="fa-solid fa-image"></i><span>Kein Bild</span></div>') +
+          '</div>' +
+          '<div class="aform-image-actions">' +
+            '<label class="abtn aform-image-label"><i class="fa-solid fa-upload"></i> Hochladen' +
+              '<input type="file" id="aform-image-file" accept="image/*" style="display:none" />' +
+            '</label>' +
+            '<button type="button" class="abtn abtn-danger abtn-sm" id="aform-remove-image-btn"' + (p.imageUrl ? '' : ' style="display:none"') + '>Entfernen</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+
       '<div class="aform-group">' +
         '<label class="aform-label">Auf Lager</label>' +
         '<div class="aform-group-inline">' +
@@ -633,6 +671,7 @@
     data.longDescription = (fd.get('longDescription') || '').trim();
     data.researchInfo   = (fd.get('researchInfo') || '').trim();
     data.dosageInfo     = (fd.get('dosageInfo') || '').trim();
+    data.imageUrl       = (fd.get('imageUrl') || '').trim() || null;
 
     // Badge
     var badgeCombo = fd.get('badge_combo') || '';
@@ -668,6 +707,47 @@
         '"' + product.name + '" ist jetzt ' + (product.inStock ? 'auf Lager' : 'nicht vorrätig') + '.',
         product.inStock ? 'success' : 'info'
       );
+    },
+    viewOrder: function (id) {
+      openOrderModal(id);
+    },
+    deleteOrder: function (id) {
+      if (!confirm('Bestellung ' + id + ' wirklich löschen?')) return;
+      fetch('/api/orders/' + encodeURIComponent(id), {
+        method: 'DELETE',
+        headers: { 'X-Admin-Token': ADMIN_PASSWORD },
+      }).catch(function () {}).finally(function () {
+        allOrders = allOrders.filter(function (o) { return o.id !== id; });
+        renderOrderRows(allOrders);
+        renderOrderStats(allOrders);
+        updatePendingOrdersBadge();
+        showAdminToast('Bestellung gelöscht.', 'info');
+      });
+    },
+    togglePromo: function (code) {
+      var promo = allPromos.find(function (p) { return p.code === code; });
+      if (!promo) return;
+      var newActive = !promo.active;
+      fetch('/api/promos/' + encodeURIComponent(code), {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+        body: JSON.stringify({ active: newActive }),
+      }).catch(function () {}).finally(function () {
+        promo.active = newActive;
+        renderPromoRows(allPromos);
+        showAdminToast('Code "' + code + '" ' + (newActive ? 'aktiviert' : 'deaktiviert') + '.', 'success');
+      });
+    },
+    deletePromo: function (code) {
+      if (!confirm('Code "' + code + '" wirklich löschen?')) return;
+      fetch('/api/promos/' + encodeURIComponent(code), {
+        method: 'DELETE',
+        headers: { 'X-Admin-Token': ADMIN_PASSWORD },
+      }).catch(function () {}).finally(function () {
+        allPromos = allPromos.filter(function (p) { return p.code !== code; });
+        renderPromoRows(allPromos);
+        showAdminToast('Code "' + code + '" gelöscht.', 'info');
+      });
     },
   };
 
@@ -718,6 +798,400 @@
   function badgeHtml(badge, type) {
     if (!badge) return '<span class="prod-badge none">–</span>';
     return '<span class="prod-badge ' + (type || '') + '">' + escHtml(badge) + '</span>';
+  }
+
+  /* ══════════════════════════════════════════
+     IMAGE UPLOAD
+  ══════════════════════════════════════════ */
+  function initImageUploadField() {
+    var fileInput   = document.getElementById('aform-image-file');
+    var previewWrap = document.getElementById('aform-image-preview-wrap');
+    var urlInput    = document.getElementById('aform-image-url');
+    var removeBtn   = document.getElementById('aform-remove-image-btn');
+
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        var file = fileInput.files[0];
+        if (!file) return;
+        if (previewWrap) previewWrap.innerHTML = '<div class="aform-image-empty"><i class="fa-solid fa-spinner fa-spin"></i><span>Lädt hoch…</span></div>';
+
+        var fd = new FormData();
+        fd.append('image', file);
+
+        fetch('/api/upload/product', {
+          method: 'POST',
+          headers: { 'X-Admin-Token': ADMIN_PASSWORD },
+          body: fd,
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.url) {
+              if (urlInput) urlInput.value = data.url;
+              if (previewWrap) previewWrap.innerHTML = '<img src="' + escAttr(data.url) + '" class="aform-image-preview" alt="Produktbild" />';
+              if (removeBtn) removeBtn.style.display = '';
+              showAdminToast('Bild hochgeladen!', 'success');
+            } else {
+              if (previewWrap) previewWrap.innerHTML = '<div class="aform-image-empty"><i class="fa-solid fa-triangle-exclamation"></i><span>' + escHtml(data.error || 'Fehler') + '</span></div>';
+              showAdminToast(data.error || 'Upload fehlgeschlagen.', 'error');
+            }
+          })
+          .catch(function () {
+            if (previewWrap) previewWrap.innerHTML = '<div class="aform-image-empty"><i class="fa-solid fa-image"></i><span>Kein Bild</span></div>';
+            showAdminToast('Upload fehlgeschlagen. Ist der Server erreichbar?', 'error');
+          });
+      });
+    }
+
+    if (removeBtn) {
+      removeBtn.addEventListener('click', function () {
+        if (urlInput) urlInput.value = '';
+        if (previewWrap) previewWrap.innerHTML = '<div class="aform-image-empty"><i class="fa-solid fa-image"></i><span>Kein Bild</span></div>';
+        removeBtn.style.display = 'none';
+      });
+    }
+  }
+
+  /* ══════════════════════════════════════════
+     ORDERS
+  ══════════════════════════════════════════ */
+  function loadOrdersData(callback) {
+    fetch('/api/orders', { headers: { 'X-Admin-Token': ADMIN_PASSWORD } })
+      .then(function (res) { if (!res.ok) throw new Error(); return res.json(); })
+      .then(function (data) { callback(data.orders || []); })
+      .catch(function () {
+        try {
+          var stored = localStorage.getItem('peptidelab_orders');
+          callback(stored ? JSON.parse(stored) : []);
+        } catch (e) { callback([]); }
+      });
+  }
+
+  function updatePendingOrdersBadge() {
+    loadOrdersData(function (orders) {
+      var pending = orders.filter(function (o) { return o.status === 'Ausstehend'; }).length;
+      var badge = document.getElementById('nav-orders-badge');
+      if (!badge) return;
+      if (pending > 0) { badge.textContent = pending; badge.style.display = ''; }
+      else { badge.style.display = 'none'; }
+    });
+  }
+
+  function initOrdersSection() {
+    var searchInput  = document.getElementById('orders-search');
+    var statusFilter = document.getElementById('orders-status-filter');
+    var refreshBtn   = document.getElementById('orders-refresh-btn');
+
+    if (searchInput)  searchInput.addEventListener('input', applyOrderFilters);
+    if (statusFilter) statusFilter.addEventListener('change', applyOrderFilters);
+    if (refreshBtn) {
+      refreshBtn.addEventListener('click', function () {
+        renderOrdersTable();
+        updatePendingOrdersBadge();
+      });
+    }
+  }
+
+  function applyOrderFilters() {
+    var query  = ((document.getElementById('orders-search') || {}).value || '').toLowerCase();
+    var status = (document.getElementById('orders-status-filter') || {}).value || '';
+
+    var filtered = allOrders.filter(function (o) {
+      var c = o.customer || {};
+      var name = c.name || ((c.firstName || '') + ' ' + (c.lastName || '')).trim();
+      var matchSearch = !query ||
+        (o.id || '').toLowerCase().includes(query) ||
+        name.toLowerCase().includes(query) ||
+        (c.email || '').toLowerCase().includes(query);
+      var matchStatus = !status || o.status === status;
+      return matchSearch && matchStatus;
+    });
+
+    renderOrderRows(filtered);
+  }
+
+  function renderOrdersTable() {
+    loadOrdersData(function (orders) {
+      allOrders = orders;
+      renderOrderStats(orders);
+      renderOrderRows(orders);
+    });
+  }
+
+  function renderOrderStats(orders) {
+    var el = document.getElementById('order-stats-grid');
+    if (!el) return;
+    var total     = orders.length;
+    var pending   = orders.filter(function (o) { return o.status === 'Ausstehend'; }).length;
+    var shipped   = orders.filter(function (o) { return o.status === 'Versendet' || o.status === 'Geliefert'; }).length;
+    var cancelled = orders.filter(function (o) { return o.status === 'Storniert'; }).length;
+    el.innerHTML = [
+      statCard('fa-receipt',  '#00d4ff', 'rgba(0,212,255,0.1)',   total,     'Bestellungen gesamt'),
+      statCard('fa-clock',    '#f59e0b', 'rgba(245,158,11,0.1)',  pending,   'Ausstehend'),
+      statCard('fa-truck',    '#10b981', 'rgba(16,185,129,0.1)',  shipped,   'Versendet / Geliefert'),
+      statCard('fa-ban',      '#ef4444', 'rgba(239,68,68,0.1)',   cancelled, 'Storniert'),
+    ].join('');
+  }
+
+  function renderOrderRows(orders) {
+    var tbody      = document.getElementById('orders-tbody');
+    var countLabel = document.getElementById('orders-count-label');
+    if (!tbody) return;
+
+    if (orders.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fa-solid fa-receipt" style="font-size:32px;display:block;margin-bottom:12px;opacity:0.3"></i>Keine Bestellungen gefunden.</td></tr>';
+      if (countLabel) countLabel.textContent = '0 Bestellungen';
+      return;
+    }
+
+    tbody.innerHTML = orders.map(function (o) {
+      var c = o.customer || {};
+      var name = c.name || ((c.firstName || '') + ' ' + (c.lastName || '')).trim() || '–';
+      var itemCount = Array.isArray(o.items) ? o.items.reduce(function (s, i) { return s + (i.qty || i.quantity || 1); }, 0) : 0;
+      var payLabels = { bankueberweisung: 'Banküberweisung', krypto: 'Krypto' };
+      var dateStr = o.createdAt ? new Date(o.createdAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '–';
+      return '<tr>' +
+        '<td style="font-weight:700;color:var(--accent);font-family:monospace">' + escHtml(o.id) + '</td>' +
+        '<td style="color:var(--text-secondary)">' + dateStr + '</td>' +
+        '<td style="font-weight:600">' + escHtml(name) + '</td>' +
+        '<td style="color:var(--text-secondary)">' + escHtml(c.email || '–') + '</td>' +
+        '<td style="color:var(--text-muted)">' + itemCount + ' Artikel</td>' +
+        '<td style="color:var(--text-secondary)">' + escHtml(payLabels[o.payment] || o.payment || '–') + '</td>' +
+        '<td style="font-weight:700">€' + (parseFloat(o.total) || 0).toFixed(2) + '</td>' +
+        '<td>' + orderStatusBadge(o.status) + '</td>' +
+        '<td><div class="admin-actions">' +
+          '<button class="abtn abtn-sm abtn-icon" onclick="AdminActions.viewOrder(\'' + escAttr(o.id) + '\')" title="Details"><i class="fa-solid fa-eye"></i></button>' +
+          '<button class="abtn abtn-sm abtn-icon abtn-danger" onclick="AdminActions.deleteOrder(\'' + escAttr(o.id) + '\')" title="Löschen"><i class="fa-solid fa-trash"></i></button>' +
+        '</div></td>' +
+        '</tr>';
+    }).join('');
+
+    if (countLabel) countLabel.textContent = orders.length + ' Bestellung' + (orders.length === 1 ? '' : 'en');
+  }
+
+  function orderStatusBadge(status) {
+    var map = { 'Ausstehend': 'ausstehend', 'Bezahlt': 'bezahlt', 'In Bearbeitung': 'bearbeitung', 'Versendet': 'versendet', 'Geliefert': 'geliefert', 'Storniert': 'storniert' };
+    return '<span class="order-status status-' + (map[status] || '') + '">' + escHtml(status || '–') + '</span>';
+  }
+
+  function openOrderModal(orderId) {
+    var order = allOrders.find(function (o) { return o.id === orderId; });
+    if (!order) return;
+
+    var overlay = document.getElementById('order-modal-overlay');
+    var title   = document.getElementById('order-modal-title');
+    var body    = document.getElementById('order-modal-body');
+    if (title) title.textContent = 'Bestellung ' + order.id;
+
+    var c       = order.customer || {};
+    var ship    = order.shipping || {};
+    var items   = Array.isArray(order.items) ? order.items : [];
+    var dateStr = order.createdAt ? new Date(order.createdAt).toLocaleString('de-DE') : '–';
+    var customerName = c.name || ((c.firstName || '') + ' ' + (c.lastName || '')).trim() || '–';
+
+    var itemsHtml = items.map(function (item) {
+      var qty   = item.qty || item.quantity || 1;
+      var price = parseFloat(item.price || 0);
+      return '<tr>' +
+        '<td>' + escHtml(item.name || item.productName || '–') + '</td>' +
+        '<td style="text-align:center">' + qty + '</td>' +
+        '<td style="text-align:right">€' + price.toFixed(2) + '</td>' +
+        '<td style="text-align:right;font-weight:700">€' + (qty * price).toFixed(2) + '</td>' +
+        '</tr>';
+    }).join('');
+
+    var statusOptions = ['Ausstehend', 'Bezahlt', 'In Bearbeitung', 'Versendet', 'Geliefert', 'Storniert'].map(function (s) {
+      return '<option value="' + escAttr(s) + '"' + (s === order.status ? ' selected' : '') + '>' + s + '</option>';
+    }).join('');
+
+    body.innerHTML =
+      '<div class="order-detail-grid">' +
+        '<div class="order-detail-block"><h4>Bestelldatum</h4><p>' + dateStr + '</p></div>' +
+        '<div class="order-detail-block"><h4>Zahlungsart</h4><p>' + escHtml(order.payment === 'bankueberweisung' ? 'Banküberweisung' : (order.payment || '–')) + '</p></div>' +
+        '<div class="order-detail-block"><h4>Kunde</h4><p><strong>' + escHtml(customerName) + '</strong></p><p>' + escHtml(c.email || '–') + '</p><p>' + escHtml(c.phone || '') + '</p></div>' +
+        '<div class="order-detail-block"><h4>Lieferadresse</h4><p>' + escHtml(ship.street || ship.address || '–') + '</p><p>' + escHtml(((ship.zip || '') + ' ' + (ship.city || '')).trim()) + '</p><p>' + escHtml(ship.country || '') + '</p></div>' +
+      '</div>' +
+      (order.promo ? '<div style="margin:12px 0;padding:10px 14px;background:rgba(16,185,129,0.08);border-radius:8px;font-size:13px">Rabattcode: <strong>' + escHtml(order.promo) + '</strong></div>' : '') +
+      '<table class="order-items-table">' +
+        '<thead><tr><th>Produkt</th><th style="text-align:center">Menge</th><th style="text-align:right">Einzelpreis</th><th style="text-align:right">Gesamt</th></tr></thead>' +
+        '<tbody>' + itemsHtml + '</tbody>' +
+      '</table>' +
+      '<div class="order-totals">' +
+        '<div class="order-total-line"><span>Zwischensumme</span><span>€' + (parseFloat(order.subtotal) || 0).toFixed(2) + '</span></div>' +
+        (order.discount ? '<div class="order-total-line" style="color:#10b981"><span>Rabatt</span><span>-€' + (parseFloat(order.discount) || 0).toFixed(2) + '</span></div>' : '') +
+        '<div class="order-total-line"><span>Versand</span><span>' + (order.shippingCost ? '€' + parseFloat(order.shippingCost).toFixed(2) : 'Kostenlos') + '</span></div>' +
+        '<div class="order-total-line grand"><span>Gesamt</span><span>€' + (parseFloat(order.total) || 0).toFixed(2) + '</span></div>' +
+      '</div>' +
+      '<div style="margin-top:20px">' +
+        '<label class="aform-label" style="display:block;margin-bottom:8px">Status ändern</label>' +
+        '<div class="status-changer">' +
+          '<select id="order-status-select" class="admin-select" style="flex:1">' + statusOptions + '</select>' +
+          '<button class="abtn abtn-primary" id="save-order-status-btn"><i class="fa-solid fa-floppy-disk"></i> Speichern</button>' +
+        '</div>' +
+      '</div>';
+
+    // bind status save (setTimeout ensures DOM is ready)
+    setTimeout(function () {
+      var btn = document.getElementById('save-order-status-btn');
+      if (btn) btn.addEventListener('click', function () {
+        var sel = document.getElementById('order-status-select');
+        if (sel) updateOrderStatus(orderId, sel.value);
+      });
+    }, 0);
+
+    overlay.style.display = 'flex';
+  }
+
+  function closeOrderModal() {
+    var overlay = document.getElementById('order-modal-overlay');
+    if (overlay) overlay.style.display = 'none';
+  }
+
+  function updateOrderStatus(orderId, newStatus) {
+    fetch('/api/orders/' + encodeURIComponent(orderId) + '/status', {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+      body: JSON.stringify({ status: newStatus }),
+    })
+      .catch(function () {})
+      .finally(function () {
+        var order = allOrders.find(function (o) { return o.id === orderId; });
+        if (order) order.status = newStatus;
+        closeOrderModal();
+        renderOrderRows(allOrders);
+        renderOrderStats(allOrders);
+        updatePendingOrdersBadge();
+        showAdminToast('Status auf "' + newStatus + '" aktualisiert.', 'success');
+      });
+  }
+
+  /* ══════════════════════════════════════════
+     PROMOS
+  ══════════════════════════════════════════ */
+  function loadPromosData(callback) {
+    fetch('/api/promos', { headers: { 'X-Admin-Token': ADMIN_PASSWORD } })
+      .then(function (res) { if (!res.ok) throw new Error(); return res.json(); })
+      .then(function (data) { callback(data.promos || []); })
+      .catch(function () {
+        try {
+          var stored = localStorage.getItem('peptidelab_promos');
+          callback(stored ? JSON.parse(stored) : []);
+        } catch (e) { callback([]); }
+      });
+  }
+
+  function initPromosSection() {
+    var addBtn = document.getElementById('open-add-promo-btn');
+    if (addBtn) addBtn.addEventListener('click', function () {
+      var form = document.getElementById('add-promo-form');
+      if (form) form.reset();
+      document.getElementById('promo-modal-overlay').style.display = 'flex';
+    });
+
+    ['close-promo-modal', 'cancel-promo-modal'].forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) el.addEventListener('click', function () {
+        document.getElementById('promo-modal-overlay').style.display = 'none';
+      });
+    });
+
+    var promoOverlay = document.getElementById('promo-modal-overlay');
+    if (promoOverlay) {
+      promoOverlay.addEventListener('click', function (e) {
+        if (e.target === promoOverlay) promoOverlay.style.display = 'none';
+      });
+    }
+
+    var saveBtn = document.getElementById('save-promo-btn');
+    if (saveBtn) saveBtn.addEventListener('click', saveNewPromo);
+  }
+
+  function saveNewPromo() {
+    var form = document.getElementById('add-promo-form');
+    if (!form) return;
+    var fd = new FormData(form);
+    var code = (fd.get('code') || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+    if (!code) { showAdminToast('Bitte Code eingeben.', 'error'); return; }
+
+    var payload = {
+      code:        code,
+      type:        fd.get('type') || 'percent',
+      value:       parseFloat(fd.get('value')) || 0,
+      description: (fd.get('description') || '').trim(),
+      usageLimit:  fd.get('usageLimit') ? parseInt(fd.get('usageLimit'), 10) : null,
+      active:      form.querySelector('[name="active"]') ? form.querySelector('[name="active"]').checked : true,
+    };
+
+    fetch('/api/promos', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.error) { showAdminToast(data.error, 'error'); return; }
+        document.getElementById('promo-modal-overlay').style.display = 'none';
+        showAdminToast('Rabattcode "' + code + '" erstellt!', 'success');
+        renderPromosTable();
+      })
+      .catch(function () {
+        // localStorage fallback
+        try {
+          var stored = localStorage.getItem('peptidelab_promos');
+          var promos = stored ? JSON.parse(stored) : [];
+          if (promos.find(function (p) { return p.code === code; })) {
+            showAdminToast('Code existiert bereits.', 'error'); return;
+          }
+          payload.usageCount = 0;
+          payload.createdAt  = new Date().toISOString();
+          promos.push(payload);
+          localStorage.setItem('peptidelab_promos', JSON.stringify(promos));
+          document.getElementById('promo-modal-overlay').style.display = 'none';
+          showAdminToast('Rabattcode "' + code + '" erstellt!', 'success');
+          renderPromosTable();
+        } catch (e) { showAdminToast('Fehler beim Erstellen.', 'error'); }
+      });
+  }
+
+  function renderPromosTable() {
+    loadPromosData(function (promos) {
+      allPromos = promos;
+      renderPromoRows(promos);
+    });
+  }
+
+  function renderPromoRows(promos) {
+    var tbody      = document.getElementById('promos-tbody');
+    var countLabel = document.getElementById('promos-count-label');
+    if (!tbody) return;
+
+    if (promos.length === 0) {
+      tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;padding:40px;color:var(--text-muted)"><i class="fa-solid fa-tag" style="font-size:32px;display:block;margin-bottom:12px;opacity:0.3"></i>Noch keine Rabattcodes.</td></tr>';
+      if (countLabel) countLabel.textContent = '0 Codes';
+      return;
+    }
+
+    tbody.innerHTML = promos.map(function (p) {
+      var valueStr  = p.type === 'percent' ? p.value + '%' : '€' + parseFloat(p.value).toFixed(2);
+      var typeStr   = p.type === 'percent' ? 'Prozent' : 'Festbetrag';
+      var limitStr  = p.usageLimit ? String(p.usageLimit) : '∞';
+      var createdStr = p.createdAt ? new Date(p.createdAt).toLocaleDateString('de-DE') : '–';
+      return '<tr>' +
+        '<td style="font-weight:700;font-family:monospace;color:var(--accent)">' + escHtml(p.code) + '</td>' +
+        '<td style="color:var(--text-secondary)">' + typeStr + '</td>' +
+        '<td style="font-weight:700">' + escHtml(valueStr) + '</td>' +
+        '<td style="color:var(--text-muted)">' + escHtml(p.description || '–') + '</td>' +
+        '<td style="text-align:center">' + (p.usageCount || 0) + '</td>' +
+        '<td style="text-align:center">' + limitStr + '</td>' +
+        '<td><span class="promo-status-badge ' + (p.active ? 'promo-active' : 'promo-inactive') + '">' + (p.active ? 'Aktiv' : 'Inaktiv') + '</span></td>' +
+        '<td style="color:var(--text-muted)">' + createdStr + '</td>' +
+        '<td><div class="admin-actions">' +
+          '<button class="abtn abtn-sm abtn-icon" onclick="AdminActions.togglePromo(\'' + escAttr(p.code) + '\')" title="' + (p.active ? 'Deaktivieren' : 'Aktivieren') + '" style="color:' + (p.active ? '#ef4444' : '#10b981') + '"><i class="fa-solid ' + (p.active ? 'fa-pause' : 'fa-play') + '"></i></button>' +
+          '<button class="abtn abtn-sm abtn-icon abtn-danger" onclick="AdminActions.deletePromo(\'' + escAttr(p.code) + '\')" title="Löschen"><i class="fa-solid fa-trash"></i></button>' +
+        '</div></td>' +
+        '</tr>';
+    }).join('');
+
+    if (countLabel) countLabel.textContent = promos.length + ' Code' + (promos.length === 1 ? '' : 's');
   }
 
 })();

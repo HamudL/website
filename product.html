@@ -113,9 +113,9 @@
             <h1 id="product-name" class="product-detail-name">Produktname</h1>
             <p id="product-subtitle" class="product-detail-subtitle">Summenformel</p>
 
-            <!-- Rating & stock -->
-            <div id="product-rating" class="product-detail-rating" aria-label="Produktbewertung">
-              <!-- Rendered by JS -->
+            <!-- Availability badge (no fake ratings) -->
+            <div id="product-rating" class="product-detail-rating" aria-label="Verfügbarkeit">
+              <!-- Rendered by JS: shows stock status & purity badge only -->
             </div>
 
             <!-- Price -->
@@ -240,9 +240,9 @@
       <div>
         <h3 class="footer-col-title">Rechtliches</h3>
         <nav class="footer-links">
-          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Datenschutz</a>
-          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Impressum</a>
-          <a href="#" class="footer-link"><i class="fa-solid fa-chevron-right"></i> AGB</a>
+          <a href="datenschutz.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Datenschutz</a>
+          <a href="impressum.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> Impressum</a>
+          <a href="agb.html" class="footer-link"><i class="fa-solid fa-chevron-right"></i> AGB</a>
         </nav>
       </div>
     </div>
@@ -277,7 +277,7 @@
       <span>Gesamt</span>
       <span class="cart-total-value" id="cart-total-val">€0.00</span>
     </div>
-    <a href="cart.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
+    <a href="checkout.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
     <button class="cart-continue-btn" onclick="Cart.close()">Weiter einkaufen</button>
   </div>
 </aside>

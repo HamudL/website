@@ -429,21 +429,25 @@ function renderProducts(products, container) {
     var origPriceHtml = p.originalPrice
       ? '<span class="product-price-original">€' + p.originalPrice.toFixed(2) + '</span>'
       : '';
-    var stars = starsHtml(p.rating);
+    var imageHtml = p.imageUrl
+      ? '<img src="' + p.imageUrl + '" alt="' + p.name + '" style="width:100%;height:100%;object-fit:cover;border-radius:inherit;">'
+      : '<span style="position:relative;z-index:1">' + p.emoji + '</span>';
+    var stockBadgeHtml = p.inStock
+      ? '<span style="font-size:11px;color:#10b981;font-weight:600;display:flex;align-items:center;gap:4px"><span style="width:6px;height:6px;border-radius:50%;background:#10b981;display:inline-block"></span>Auf Lager</span>'
+      : '<span style="font-size:11px;color:#ef4444;font-weight:600">Nicht vorrätig</span>';
 
     html += '<article class="product-card fade-up" role="article" onclick="window.location.href=\'product.html?id=' + p.id + '\'">' +
       '<div class="product-card-visual" style="background:' + p.gradient + '">' +
         badgeHtml +
-        '<span style="position:relative;z-index:1">' + p.emoji + '</span>' +
+        imageHtml +
       '</div>' +
       '<div class="product-card-body">' +
         '<div class="product-category">' + p.categoryLabel + '</div>' +
         '<h3 class="product-name">' + p.name + '</h3>' +
         '<p class="product-desc">' + p.description + '</p>' +
         '<div class="product-rating">' +
-          '<span class="stars" aria-label="Bewertung: ' + p.rating + ' von 5">' + stars + '</span>' +
-          '<span class="rating-value">' + p.rating + '</span>' +
-          '<span class="rating-count">(' + p.reviews + ' Bewertungen)</span>' +
+          '<span style="font-size:11px;color:var(--color-text-muted)">' + (p.purity ? '≥' + p.purity + ' Reinheit' : 'Research Grade') + '</span>' +
+          stockBadgeHtml +
         '</div>' +
         '<div class="product-card-footer">' +
           '<div class="product-price-group">' +
@@ -557,14 +561,15 @@ function initProductPage() {
   var subtitleEl = document.getElementById('product-subtitle');
   if (subtitleEl) subtitleEl.textContent = product.molecular;
 
-  // Rating
+  // Availability (no fake ratings)
   var ratingEl = document.getElementById('product-rating');
   if (ratingEl) {
+    var stockStatus = product.inStock
+      ? '<span class="stock-badge in-stock"><span class="stock-dot"></span> Auf Lager</span>'
+      : '<span class="stock-badge out-of-stock"><span class="stock-dot"></span> Nicht vorrätig</span>';
     ratingEl.innerHTML =
-      '<span class="stars" aria-label="Bewertung: ' + product.rating + ' von 5">' + starsHtml(product.rating) + '</span>' +
-      '<span class="rating-value">' + product.rating + '</span>' +
-      '<span class="rating-count">(' + product.reviews + ' Bewertungen)</span>' +
-      '<span class="stock-badge in-stock"><span class="stock-dot"></span> Auf Lager</span>';
+      '<span style="font-size:13px;color:var(--color-text-secondary)">Reinheit: <strong style="color:#10b981">≥' + (product.purity || '99%') + '</strong></span>' +
+      stockStatus;
   }
 
   // Price

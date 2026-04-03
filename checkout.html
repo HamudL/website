@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Kasse – PeptideLab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <link rel="stylesheet" href="css/main.css" />
+</head>
+<body>
+<div class="hero-bg" aria-hidden="true"></div>
+<div class="grid-overlay" aria-hidden="true"></div>
+
+<!-- Navigation -->
+<nav class="nav scrolled" role="navigation" aria-label="Hauptnavigation">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo" aria-label="PeptideLab">
+      <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/><line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/></svg></div>
+      <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">Startseite</a>
+      <a href="shop.html" class="nav-link">Shop</a>
+      <a href="cart.html" class="nav-link">Warenkorb</a>
+    </div>
+    <div class="nav-actions">
+      <button class="cart-btn" onclick="window.location.href='cart.html'">
+        <i class="fa-solid fa-cart-shopping"></i> Warenkorb
+        <span class="cart-count">0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<div class="disclaimer-banner" role="alert">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  Alle Produkte sind ausschließlich für Forschungszwecke bestimmt. Nicht für den menschlichen Konsum geeignet.
+</div>
+
+<main class="page-offset">
+  <div class="container" style="max-width:1100px; padding-top:2rem; padding-bottom:4rem;">
+
+    <!-- Step indicator -->
+    <div class="checkout-step-indicator fade-up">
+      <div class="checkout-step done">
+        <div class="checkout-step-num"><i class="fa-solid fa-check" style="font-size:11px"></i></div>
+        <span>Warenkorb</span>
+      </div>
+      <div class="checkout-step-line"></div>
+      <div class="checkout-step active">
+        <div class="checkout-step-num">2</div>
+        <span>Kasse</span>
+      </div>
+      <div class="checkout-step-line"></div>
+      <div class="checkout-step">
+        <div class="checkout-step-num">3</div>
+        <span>Bestätigung</span>
+      </div>
+    </div>
+
+    <!-- Empty cart guard -->
+    <div id="empty-cart-msg" style="display:none; text-align:center; padding:4rem 2rem;">
+      <div style="font-size:3rem; margin-bottom:1rem;">🛒</div>
+      <h2 style="margin-bottom:0.5rem;">Ihr Warenkorb ist leer</h2>
+      <p style="color:var(--color-text-secondary); margin-bottom:1.5rem;">Fügen Sie zuerst Produkte hinzu, bevor Sie zur Kasse gehen.</p>
+      <a href="shop.html" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i> Zum Shop</a>
+    </div>
+
+    <!-- Checkout layout -->
+    <div id="checkout-layout" class="checkout-layout">
+
+      <!-- LEFT: Form -->
+      <div>
+
+        <!-- Contact -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title"><i class="fa-solid fa-user"></i> Kontaktdaten</h2>
+          <div class="checkout-form-grid">
+            <div class="cform-group">
+              <label class="cform-label" for="co-first-name">Vorname *</label>
+              <input id="co-first-name" name="firstName" type="text" class="cform-input" placeholder="Max" autocomplete="given-name" required />
+              <span class="cform-error">Bitte Vorname angeben.</span>
+            </div>
+            <div class="cform-group">
+              <label class="cform-label" for="co-last-name">Nachname *</label>
+              <input id="co-last-name" name="lastName" type="text" class="cform-input" placeholder="Mustermann" autocomplete="family-name" required />
+              <span class="cform-error">Bitte Nachname angeben.</span>
+            </div>
+            <div class="cform-group full">
+              <label class="cform-label" for="co-email">E-Mail-Adresse *</label>
+              <input id="co-email" name="email" type="email" class="cform-input" placeholder="max.mustermann@example.de" autocomplete="email" required />
+              <span class="cform-error">Bitte gültige E-Mail angeben.</span>
+            </div>
+            <div class="cform-group full">
+              <label class="cform-label" for="co-company">Institution / Firma (optional)</label>
+              <input id="co-company" name="company" type="text" class="cform-input" placeholder="Universität / Forschungsinstitut" autocomplete="organization" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Shipping -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title"><i class="fa-solid fa-truck"></i> Lieferadresse</h2>
+          <div class="checkout-form-grid">
+            <div class="cform-group full">
+              <label class="cform-label" for="co-street">Straße und Hausnummer *</label>
+              <input id="co-street" name="street" type="text" class="cform-input" placeholder="Musterstraße 42" autocomplete="street-address" required />
+              <span class="cform-error">Bitte Adresse angeben.</span>
+            </div>
+            <div class="cform-group">
+              <label class="cform-label" for="co-zip">PLZ *</label>
+              <input id="co-zip" name="zip" type="text" class="cform-input" placeholder="12345" autocomplete="postal-code" required maxlength="10" />
+              <span class="cform-error">Bitte PLZ angeben.</span>
+            </div>
+            <div class="cform-group">
+              <label class="cform-label" for="co-city">Stadt *</label>
+              <input id="co-city" name="city" type="text" class="cform-input" placeholder="München" autocomplete="address-level2" required />
+              <span class="cform-error">Bitte Stadt angeben.</span>
+            </div>
+            <div class="cform-group full">
+              <label class="cform-label" for="co-country">Land *</label>
+              <select id="co-country" name="country" class="cform-select cform-input" required>
+                <option value="DE">Deutschland</option>
+                <option value="AT">Österreich</option>
+                <option value="CH">Schweiz</option>
+                <option value="NL">Niederlande</option>
+                <option value="BE">Belgien</option>
+                <option value="LU">Luxemburg</option>
+              </select>
+            </div>
+            <div class="cform-group full">
+              <label class="cform-label" for="co-notes">Anmerkungen zur Bestellung (optional)</label>
+              <textarea id="co-notes" name="notes" class="cform-input" rows="2" placeholder="Besondere Hinweise für Ihre Bestellung..." style="resize:vertical"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Promo Code -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title"><i class="fa-solid fa-tag"></i> Rabattcode</h2>
+          <div class="promo-row">
+            <input id="co-promo" type="text" class="cform-input" placeholder="Rabattcode eingeben..." style="text-transform:uppercase" />
+            <button type="button" class="btn btn-outline" id="apply-promo-btn" style="white-space:nowrap">Einlösen</button>
+          </div>
+          <div id="promo-feedback" style="margin-top:0.5rem;font-size:0.8125rem;display:none"></div>
+        </div>
+
+        <!-- Payment -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title"><i class="fa-solid fa-credit-card"></i> Zahlungsmethode</h2>
+          <div class="payment-methods" id="payment-methods">
+            <label class="payment-option selected" data-method="bankueberweisung">
+              <input type="radio" name="payment" value="bankueberweisung" checked />
+              <div>
+                <div class="payment-option-label">Banküberweisung</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Zahlungsdetails erhalten Sie per E-Mail nach Bestelleingang</div>
+              </div>
+              <div class="payment-option-icons">🏦</div>
+            </label>
+            <label class="payment-option" data-method="krypto">
+              <input type="radio" name="payment" value="krypto" />
+              <div>
+                <div class="payment-option-label">Kryptowährung (BTC / USDT)</div>
+                <div style="font-size:0.75rem;color:var(--color-text-muted)">Wallet-Adresse erhalten Sie nach Bestelleingang</div>
+              </div>
+              <div class="payment-option-icons">₿</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Research confirmation -->
+        <div class="checkout-card">
+          <h2 class="checkout-card-title"><i class="fa-solid fa-flask"></i> Forschungsbestätigung</h2>
+          <div style="background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.2);border-radius:var(--radius-md);padding:1rem;margin-bottom:1rem;font-size:0.875rem;color:var(--color-text-secondary)">
+            <i class="fa-solid fa-triangle-exclamation" style="color:#f59e0b;margin-right:0.5rem"></i>
+            Alle Produkte sind ausschließlich für wissenschaftliche In-vitro-Forschung bestimmt und nicht für den menschlichen oder tierischen Konsum.
+          </div>
+          <div style="display:flex;flex-direction:column;gap:0.75rem">
+            <label style="display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;font-size:0.875rem;color:var(--color-text-secondary)">
+              <input type="checkbox" id="co-research-confirm" style="margin-top:3px;accent-color:var(--accent);flex-shrink:0" required />
+              <span>Ich bestätige, dass ich mindestens 18 Jahre alt bin und die Produkte ausschließlich für wissenschaftliche Forschungszwecke erwerbe. <a href="disclaimer.html" target="_blank" style="color:var(--accent)">Forschungs-Disclaimer lesen</a></span>
+            </label>
+            <label style="display:flex;align-items:flex-start;gap:0.75rem;cursor:pointer;font-size:0.875rem;color:var(--color-text-secondary)">
+              <input type="checkbox" id="co-agb-confirm" style="margin-top:3px;accent-color:var(--accent);flex-shrink:0" required />
+              <span>Ich habe die <a href="agb.html" target="_blank" style="color:var(--accent)">AGB</a> und die <a href="datenschutz.html" target="_blank" style="color:var(--accent)">Datenschutzerklärung</a> gelesen und bin damit einverstanden.</span>
+            </label>
+          </div>
+        </div>
+
+      </div><!-- /left -->
+
+      <!-- RIGHT: Order summary -->
+      <div>
+        <div class="order-summary-card">
+          <div class="order-summary-title"><i class="fa-solid fa-receipt" style="color:var(--accent);margin-right:0.5rem"></i>Bestellübersicht</div>
+          <div class="order-summary-items" id="co-items-list">
+            <!-- filled by JS -->
+          </div>
+          <div id="co-totals">
+            <div class="order-summary-line">
+              <span>Zwischensumme</span>
+              <span id="co-subtotal">€0.00</span>
+            </div>
+            <div class="order-summary-line" id="co-discount-line" style="display:none">
+              <span id="co-discount-label">Rabatt</span>
+              <span id="co-discount-val" style="color:#10b981">-€0.00</span>
+            </div>
+            <div class="order-summary-line">
+              <span>Versand</span>
+              <span id="co-shipping-val">Wird berechnet</span>
+            </div>
+            <div class="order-summary-line total">
+              <span>Gesamt (inkl. MwSt.)</span>
+              <span id="co-total">€0.00</span>
+            </div>
+          </div>
+
+          <button type="button" id="place-order-btn" class="checkout-submit-btn" disabled>
+            <i class="fa-solid fa-lock"></i>
+            <span id="place-order-label">Bestellung aufgeben</span>
+          </button>
+          <p class="checkout-disclaimer">
+            <i class="fa-solid fa-lock" style="color:#10b981"></i>
+            Sichere SSL-Verschlüsselung · DSGVO-konform
+          </p>
+
+          <!-- Trust badges -->
+          <div style="display:flex;justify-content:center;gap:1.5rem;margin-top:1.25rem;flex-wrap:wrap">
+            <div style="text-align:center;font-size:0.7rem;color:var(--color-text-muted)">
+              <i class="fa-solid fa-shield-halved" style="font-size:1.4rem;color:var(--accent);display:block;margin-bottom:4px"></i>SSL
+            </div>
+            <div style="text-align:center;font-size:0.7rem;color:var(--color-text-muted)">
+              <i class="fa-solid fa-truck" style="font-size:1.4rem;color:var(--accent);display:block;margin-bottom:4px"></i>Diskret
+            </div>
+            <div style="text-align:center;font-size:0.7rem;color:var(--color-text-muted)">
+              <i class="fa-solid fa-vial" style="font-size:1.4rem;color:var(--accent);display:block;margin-bottom:4px"></i>HPLC
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /checkout-layout -->
+  </div>
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bottom">
+      <p class="footer-copyright">&copy; 2026 PeptideLab. <a href="impressum.html" style="color:inherit">Impressum</a> · <a href="datenschutz.html" style="color:inherit">Datenschutz</a> · <a href="agb.html" style="color:inherit">AGB</a></p>
+      <div class="footer-badges">
+        <span class="footer-badge"><i class="fa-solid fa-lock"></i> SSL</span>
+        <span class="footer-badge"><i class="fa-solid fa-shield-halved"></i> DSGVO</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/app.js"></script>
+<script src="js/checkout.js"></script>
+</body>
+</html>

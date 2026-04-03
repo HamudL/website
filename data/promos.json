@@ -1,0 +1,12 @@
+[
+  {
+    "code": "WELCOME10",
+    "type": "percent",
+    "value": 10,
+    "active": true,
+    "description": "Willkommensrabatt 10%",
+    "usageCount": 0,
+    "usageLimit": null,
+    "createdAt": "2026-04-01T00:00:00.000Z"
+  }
+]

@@ -62,11 +62,18 @@
       <a href="#" class="admin-nav-item active" data-section="dashboard">
         <i class="fa-solid fa-chart-line"></i><span>Dashboard</span>
       </a>
+      <a href="#" class="admin-nav-item" data-section="orders">
+        <i class="fa-solid fa-receipt"></i><span>Bestellungen</span>
+        <span id="nav-orders-badge" class="admin-nav-badge" style="display:none"></span>
+      </a>
       <a href="#" class="admin-nav-item" data-section="products">
         <i class="fa-solid fa-box"></i><span>Produkte</span>
       </a>
       <a href="#" class="admin-nav-item" data-section="add-product">
         <i class="fa-solid fa-plus-circle"></i><span>Produkt hinzufügen</span>
+      </a>
+      <a href="#" class="admin-nav-item" data-section="promos">
+        <i class="fa-solid fa-tag"></i><span>Rabattcodes</span>
       </a>
       <div class="admin-nav-label" style="margin-top:24px">System</div>
       <a href="#" class="admin-nav-item" id="export-btn">
@@ -194,7 +201,162 @@
       </div>
     </section>
 
+    <!-- ═══ ORDERS SECTION ═══ -->
+    <section id="section-orders" class="admin-section">
+      <div class="admin-section-header">
+        <h2>Bestellungen</h2>
+        <div style="display:flex;gap:8px;align-items:center">
+          <button class="abtn abtn-sm" id="orders-refresh-btn"><i class="fa-solid fa-rotate"></i> Aktualisieren</button>
+        </div>
+      </div>
+
+      <!-- Order stats -->
+      <div class="admin-stats-grid" id="order-stats-grid"></div>
+
+      <div class="admin-card">
+        <!-- Filter bar -->
+        <div class="admin-table-controls">
+          <div class="admin-search-wrap">
+            <i class="fa-solid fa-search"></i>
+            <input type="text" id="orders-search" placeholder="Suche nach Name, E-Mail, ID..." class="admin-search-input" />
+          </div>
+          <select id="orders-status-filter" class="admin-select">
+            <option value="">Alle Status</option>
+            <option value="Ausstehend">Ausstehend</option>
+            <option value="Bezahlt">Bezahlt</option>
+            <option value="In Bearbeitung">In Bearbeitung</option>
+            <option value="Versendet">Versendet</option>
+            <option value="Geliefert">Geliefert</option>
+            <option value="Storniert">Storniert</option>
+          </select>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="orders-table">
+            <thead>
+              <tr>
+                <th>Bestellnr.</th>
+                <th>Datum</th>
+                <th>Kunde</th>
+                <th>E-Mail</th>
+                <th>Produkte</th>
+                <th>Zahlung</th>
+                <th>Gesamt</th>
+                <th>Status</th>
+                <th style="width:100px">Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="orders-tbody"></tbody>
+          </table>
+        </div>
+        <div class="admin-table-footer"><span id="orders-count-label"></span></div>
+      </div>
+    </section>
+
+    <!-- ═══ PROMOS SECTION ═══ -->
+    <section id="section-promos" class="admin-section">
+      <div class="admin-section-header">
+        <h2>Rabattcodes</h2>
+        <button class="abtn abtn-primary" id="open-add-promo-btn"><i class="fa-solid fa-plus"></i> Neuer Code</button>
+      </div>
+      <div class="admin-card">
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="promos-table">
+            <thead>
+              <tr>
+                <th>Code</th>
+                <th>Typ</th>
+                <th>Wert</th>
+                <th>Beschreibung</th>
+                <th>Verwendet</th>
+                <th>Limit</th>
+                <th>Status</th>
+                <th>Erstellt</th>
+                <th style="width:110px">Aktionen</th>
+              </tr>
+            </thead>
+            <tbody id="promos-tbody"></tbody>
+          </table>
+        </div>
+        <div class="admin-table-footer"><span id="promos-count-label"></span></div>
+      </div>
+    </section>
+
   </div><!-- /admin-main -->
+</div><!-- /admin-app -->
+
+<!-- ═══ ORDER DETAIL MODAL ═══ -->
+<div id="order-modal-overlay" class="admin-modal-overlay" style="display:none">
+  <div class="admin-modal" style="max-width:680px">
+    <div class="admin-modal-header">
+      <h3 id="order-modal-title">Bestellung</h3>
+      <button class="admin-modal-close" id="close-order-modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="admin-modal-body" id="order-modal-body">
+      <!-- filled by JS -->
+    </div>
+    <div class="admin-modal-footer">
+      <button class="abtn" id="close-order-modal-2">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ ADD PROMO MODAL ═══ -->
+<div id="promo-modal-overlay" class="admin-modal-overlay" style="display:none">
+  <div class="admin-modal admin-modal-sm">
+    <div class="admin-modal-header">
+      <h3 id="promo-modal-title">Rabattcode erstellen</h3>
+      <button class="admin-modal-close" id="close-promo-modal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="admin-modal-body">
+      <form id="add-promo-form">
+        <div class="aform-grid" style="grid-template-columns:1fr 1fr;gap:16px">
+          <div class="aform-group" style="grid-column:1/-1">
+            <label class="aform-label">Code *</label>
+            <div class="aform-input-wrap">
+              <input type="text" name="code" class="aform-input" placeholder="z.B. SOMMER20" required style="padding-left:14px;text-transform:uppercase" />
+            </div>
+          </div>
+          <div class="aform-group">
+            <label class="aform-label">Typ *</label>
+            <select name="type" class="aform-select">
+              <option value="percent">Prozent (%)</option>
+              <option value="fixed">Festbetrag (€)</option>
+            </select>
+          </div>
+          <div class="aform-group">
+            <label class="aform-label">Wert *</label>
+            <div class="aform-input-wrap">
+              <input type="number" name="value" class="aform-input" placeholder="10" min="0" step="0.01" required style="padding-left:14px" />
+            </div>
+          </div>
+          <div class="aform-group" style="grid-column:1/-1">
+            <label class="aform-label">Beschreibung</label>
+            <div class="aform-input-wrap">
+              <input type="text" name="description" class="aform-input" placeholder="Willkommensrabatt" style="padding-left:14px" />
+            </div>
+          </div>
+          <div class="aform-group">
+            <label class="aform-label">Max. Verwendungen (leer = unbegrenzt)</label>
+            <div class="aform-input-wrap">
+              <input type="number" name="usageLimit" class="aform-input" placeholder="∞" min="1" style="padding-left:14px" />
+            </div>
+          </div>
+          <div class="aform-group">
+            <label class="aform-label">Status</label>
+            <div class="aform-group-inline">
+              <input type="checkbox" name="active" class="aform-checkbox" id="promo-active-check" checked />
+              <label class="aform-checkbox-label" for="promo-active-check">Aktiv</label>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="admin-modal-footer">
+      <button class="abtn" id="cancel-promo-modal">Abbrechen</button>
+      <button class="abtn abtn-primary" id="save-promo-btn"><i class="fa-solid fa-plus"></i> Code erstellen</button>
+    </div>
+  </div>
+</div>
 </div><!-- /admin-app -->
 
 <!-- ═══════════════════════════════════════════════
