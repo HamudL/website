@@ -1,45 +1,32 @@
 /* ============================================================
    PeptideLab – Product Data
+   Source: Research peptide catalog (lianfu-pharm.com reference)
+   All products for research purposes only.
    ============================================================ */
 
-window.PRODUCTS = [
+window.DEFAULT_PRODUCTS = [
+  /* ─── HEILUNG & REGENERATION ─── */
   {
     id: 1,
     name: 'BPC-157',
     fullName: 'BPC-157 (Body Protection Compound)',
     category: 'healing',
     categoryLabel: 'Heilung & Regeneration',
-    price: 49.99,
-    originalPrice: 69.99,
+    price: 54.99,
+    originalPrice: 74.99,
     rating: 4.9,
-    reviews: 234,
+    reviews: 312,
     badge: 'Bestseller',
     badgeType: 'bestseller',
-    description: 'BPC-157 ist ein aus dem Magenproteinsaft isoliertes Pentadekapeptid mit außergewöhnlichen regenerativen Eigenschaften. In Forschungsstudien zeigte es bemerkenswerte Ergebnisse bei der Gewebeheilung.',
-    longDescription: `<p>BPC-157, auch bekannt als Body Protection Compound 157, ist ein synthetisches Peptid, das aus einem 15-Aminosäuren-Segment des menschlichen Magenproteins abgeleitet wurde. In zahlreichen präklinischen Studien hat dieses Peptid bemerkenswerte Eigenschaften bei der Beschleunigung der Gewebeheilung demonstriert.</p>
-    <p>Die Forschungsergebnisse deuten darauf hin, dass BPC-157 die Angiogenese fördert, also die Bildung neuer Blutgefäße, was für die Gewebereparatur entscheidend ist. Darüber hinaus wurden in Tierstudien positive Effekte auf Sehnen, Bänder, Muskeln und Darmgewebe beobachtet.</p>
-    <p>Besonders interessant für die wissenschaftliche Gemeinschaft sind die Beobachtungen zur systemischen Wirkung des Peptids – es scheint nicht nur lokal, sondern im gesamten Organismus zu wirken. Forschungen zeigen außerdem potenzielle neuroprotektive Eigenschaften.</p>
-    <p>Alle hier bereitgestellten Informationen dienen ausschließlich wissenschaftlichen und Forschungszwecken. BPC-157 ist nicht für den menschlichen Konsum bestimmt und befindet sich noch in der präklinischen Forschungsphase.</p>`,
-    researchInfo: `<h4>Forschungsübersicht</h4>
-    <p>BPC-157 wurde in über 100 präklinischen Studien untersucht. Die Forschung konzentriert sich auf folgende Bereiche:</p>
-    <ul>
-      <li>Gastrointestinale Heilung und Schutz der Magenschleimhaut</li>
-      <li>Muskel- und Sehnenheilung in Tiermodellen</li>
-      <li>Angiogenese und Gefäßbildung</li>
-      <li>Neuroprotektive Wirkungen in Nagetiermodellen</li>
-      <li>Entzündungsmodulation und oxidativer Stress</li>
-    </ul>
-    <p>CAS-Nummer: 137525-51-0 | Reinheit: ≥99,5% (HPLC-verifiziert) | Sequenz: Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Die folgenden Informationen sind ausschließlich für Forschungszwecke bestimmt und stellen keine medizinische Beratung dar. BPC-157 ist nicht für den menschlichen Konsum zugelassen.</p>
-    <h4>Forschungsprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Standarddosis in Studien: 1–10 µg/kg Körpergewicht</li>
-      <li>Applikationsrouten in Studien: subkutan, intraperitoneal, oral</li>
-      <li>Lösungsmittel: steriles Wasser oder bacteriostatisches Wasser</li>
-      <li>Lagerung: lyophilisiert bei -20°C, nach Rekonstitution bei 4°C (3–5 Tage)</li>
-    </ul>`,
+    description: 'BPC-157 ist ein 15-Aminosäuren-Peptid, isoliert aus dem menschlichen Magenproteinsaft. In präklinischen Studien zeigt es außergewöhnliche regenerative Eigenschaften bei Gewebe und Sehnen.',
+    longDescription: `<p>BPC-157 (Body Protection Compound 157) ist ein synthetisches Pentadekapeptid, das aus einem Schutzprotein im menschlichen Magen-Darm-Trakt stammt. In Hunderten präklinischer Studien hat es bemerkenswerte Fähigkeiten zur Förderung der Gewebeheilung demonstriert.</p>
+    <p>Forschungen deuten darauf hin, dass BPC-157 die Angiogenese fördert, also die Bildung neuer Blutgefäße – ein Schlüsselprozess für die Gewereparatur. Positive Effekte wurden in Tiermodellen für Sehnen, Bänder, Muskeln, Knochen und Darmgewebe beobachtet.</p>
+    <p>Besonders interessant ist seine systemische Wirkungsweise: BPC-157 scheint nicht nur lokal, sondern im gesamten Organismus zu wirken. Zusätzliche Forschungen zeigen neuroprotektive und entzündungsmodulierende Eigenschaften.</p>
+    <p><strong>⚠️ Alle Informationen dienen ausschließlich wissenschaftlichen Forschungszwecken. Nicht für den menschlichen Konsum bestimmt.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><p>BPC-157 wurde in über 100 präklinischen Studien untersucht. Schwerpunkte:</p><ul><li>Gastrointestinale Heilung &amp; Magenschleimhautschutz</li><li>Muskel- und Sehnenheilung (Tiermodelle)</li><li>Angiogenese und Neovaskularisierung</li><li>Neuroprotektive Effekte in Nagetiermodellen</li><li>Entzündungsmodulation</li></ul><p>CAS: 137525-51-0 | Sequenz: Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–10 µg/kg Körpergewicht</li><li>Routen: subkutan, intraperitoneal, oral</li><li>Lösungsmittel: steriles oder bacteriostatisches Wasser</li><li>Lagerung: lyophilisiert bei -20°C; nach Rekonstitution 4°C (3–5 Tage)</li></ul>`,
     purity: '99.5%',
-    format: '5mg',
+    format: '5mg/Vial × 10 Vials',
     molecular: 'C62H98N16O22',
     weight: '1419.5 g/mol',
     storage: '-20°C',
@@ -54,37 +41,20 @@ window.PRODUCTS = [
     fullName: 'TB-500 (Thymosin Beta-4 Fragment)',
     category: 'healing',
     categoryLabel: 'Heilung & Regeneration',
-    price: 59.99,
+    price: 64.99,
     originalPrice: null,
     rating: 4.8,
-    reviews: 187,
-    badge: 'Neu',
-    badgeType: 'new',
-    description: 'TB-500 ist ein synthetisches Fragment von Thymosin Beta-4, das in Forschungsstudien eine Rolle bei der Zellmigration, Proliferation und Differenzierung spielt. Ein wichtiges Forschungspeptid.',
-    longDescription: `<p>TB-500 ist das synthetische Analogon des aktiven Bereichs von Thymosin Beta-4, einem Protein, das in fast allen tierischen Zellen vorkommt. Thymosin Beta-4 ist an der Regulation von Aktin, einem Strukturprotein, beteiligt und spielt eine wichtige Rolle bei der Zellentwicklung und -heilung.</p>
-    <p>In präklinischen Studien hat TB-500 bemerkenswerte Eigenschaften in der Förderung der Gewebeheilung gezeigt. Besonders untersucht wurden seine Effekte auf Herzgewebe, Skelettmuskulatur, Sehnen und Blutgefäße. Die Forschung deutet auf eine Schlüsselrolle bei der Angiogenese hin.</p>
-    <p>Ein bedeutender Vorteil in Forschungsmodellen ist die scheinbare Fähigkeit von TB-500, durch das Gewebe zu wandern und systemisch zu wirken – was es von lokalen Wachstumsfaktoren unterscheidet.</p>
-    <p>Alle Daten entstammen präklinischen Studien. TB-500 ist nicht für diagnostische oder therapeutische Anwendungen beim Menschen bestimmt.</p>`,
-    researchInfo: `<h4>Wissenschaftlicher Hintergrund</h4>
-    <p>TB-500 entspricht der Aminosäuresequenz 17–23 von Thymosin Beta-4, dem entscheidenden aktiven Bereich des Moleküls. Forschungsschwerpunkte:</p>
-    <ul>
-      <li>Herzmuskelregeneration in Infarktmodellen</li>
-      <li>Wundheilung und dermale Regeneration</li>
-      <li>Augenerkrankungen und Hornhautregeneration</li>
-      <li>Haarfollikelaktivierung</li>
-      <li>Entzündungsmodulation</li>
-    </ul>
-    <p>CAS-Nummer: 77591-33-4 | Sequenz: Ac-LKKTETQ | Reinheit: ≥99%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Forschungsprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Dosierung in Studien: 2,0–2,5 mg/kg in akuten Modellen</li>
-      <li>Chronische Modelle: 1,0 mg/kg zweimal wöchentlich</li>
-      <li>Lösungsmittel: Bacteriostatisches oder steriles Wasser</li>
-      <li>Stabilität: 12 Monate lyophilisiert bei -20°C</li>
-    </ul>`,
+    reviews: 198,
+    badge: 'Bestseller',
+    badgeType: 'bestseller',
+    description: 'TB-500 ist das synthetische Analogon des aktiven Bereichs von Thymosin Beta-4. Es spielt eine Schlüsselrolle bei der Zellmigration, Proliferation und systemischen Gewebeheilung.',
+    longDescription: `<p>TB-500 entspricht der Aminosäuresequenz 17–23 von Thymosin Beta-4, einem ubiquitären Protein in nahezu allen tierischen Zellen. Thymosin Beta-4 reguliert Aktin und ist an der Zellentwicklung sowie Heilungsprozessen beteiligt.</p>
+    <p>Präklinische Studien zeigen bemerkenswerte Eigenschaften bei der Förderung der Gewebeheilung – besonders bei Herzgewebe, Skelettmuskulatur, Sehnen und Blutgefäßen. Ein entscheidender Vorteil in Forschungsmodellen ist die Fähigkeit, systemisch zu wirken.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Wissenschaftlicher Hintergrund</h4><p>Forschungsschwerpunkte von TB-500:</p><ul><li>Herzmuskelregeneration in Infarktmodellen</li><li>Wundheilung und dermale Regeneration</li><li>Hornhautregeneration bei Augenerkrankungen</li><li>Haarfollikelaktivierung</li><li>Entzündungsmodulation</li></ul><p>CAS: 77591-33-4 | Sequenz: Ac-LKKTETQ | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Akute Modelle: 2,0–2,5 mg/kg</li><li>Chronische Modelle: 1,0 mg/kg, 2× wöchentlich</li><li>Lösungsmittel: Bacteriostatisches oder steriles Wasser</li><li>Stabilität: 12 Monate lyophilisiert bei -20°C</li></ul>`,
     purity: '99.0%',
-    format: '10mg',
+    format: '5mg/Vial × 10 Vials',
     molecular: 'C212H350N56O78S',
     weight: '4963.5 g/mol',
     storage: '-20°C',
@@ -95,452 +65,981 @@ window.PRODUCTS = [
   },
   {
     id: 3,
+    name: 'GHK-Cu',
+    fullName: 'GHK-Cu (Kupfer-Tripeptid-1)',
+    category: 'healing',
+    categoryLabel: 'Heilung & Regeneration',
+    price: 54.99,
+    originalPrice: null,
+    rating: 4.7,
+    reviews: 143,
+    badge: null,
+    badgeType: null,
+    description: 'GHK-Cu ist ein natürlich vorkommendes Kupfer-Peptid-Komplex. In der Forschung zeigt es Aktivität bei Wundheilung, Kollagensynthese und antioxidativen Prozessen.',
+    longDescription: `<p>GHK-Cu (Glycyl-L-histidyl-L-lysin) ist ein natürlich im menschlichen Plasma vorkommendes Tripeptid, das mit Kupferionen komplexiert ist. Es wird in der Forschung für seine vielfältigen biologischen Aktivitäten untersucht.</p>
+    <p>Präklinische Studien untersuchen seine Rolle bei der Aktivierung von Hautreparaturprozessen, Kollagen- und Elastinsynthese, sowie antioxidativen und entzündungshemmenden Mechanismen.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsfelder</h4><ul><li>Wundheilung und Geweberegeneration</li><li>Kollagen- und Elastinsynthese</li><li>Antioxidative Aktivität</li><li>Entzündungsmodulation</li><li>Haarwachstum in Tiermodellen</li></ul><p>CAS: 89030-95-5 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll</h4><ul><li>Topische Forschungskonzentration: 0,1–1% (in vitro)</li><li>Systemische Studien: variabel je nach Modell</li><li>Lagerung: -20°C (lyophilisiert), dunkel</li></ul>`,
+    purity: '99.0%',
+    format: '50mg/Vial × 10 Vials',
+    molecular: 'C14H24CuN6O4',
+    weight: '403.9 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🥇',
+    gradient: 'linear-gradient(135deg, #2a1500 0%, #4a2800 50%, #6a3a00 100%)',
+    glowColor: 'rgba(180, 100, 0, 0.2)',
+  },
+  {
+    id: 4,
+    name: 'Oxytocin',
+    fullName: 'Oxytocin (Nona-Peptid-Hormon)',
+    category: 'healing',
+    categoryLabel: 'Heilung & Regeneration',
+    price: 79.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 89,
+    badge: null,
+    badgeType: null,
+    description: 'Oxytocin ist ein natürlich vorkommendes Nona-Peptid-Hormon. In der Forschung wird es für seine Rolle bei sozialen Bindungen, Stress und Gewebereparatur untersucht.',
+    longDescription: `<p>Oxytocin ist ein aus 9 Aminosäuren bestehendes Neuropeptid, das im Hypothalamus synthetisiert wird. Es ist Gegenstand intensiver Forschung in Bereichen wie Sozialverhalten, Stressmodulation und Gewebeheilung.</p>
+    <p>Tiermodelle zeigen eine Beteiligung an kardioprotektiven Mechanismen, Entzündungsreduktion und Wundheilungsprozessen. In der Neurowissenschaft wird es für seine komplexe Rolle bei Bindungsverhalten untersucht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsfelder</h4><ul><li>Sozialverhalten und Neurobiologie (Tiermodelle)</li><li>Kardioprotektive Mechanismen</li><li>Wundheilung und Entzündungsmodulation</li><li>Stressresponse in Nagetiermodellen</li></ul><p>CAS: 50-56-6 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll</h4><ul><li>Intrazerebroventrikuläre Studien: 0,1–1 µg (Nagetiermodelle)</li><li>Periphere Studien: 0,1–1 mg/kg</li><li>Lagerung: -20°C, lichtgeschützt</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C43H66N12O12S2',
+    weight: '1007.2 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '💕',
+    gradient: 'linear-gradient(135deg, #2a0a2a 0%, #4a1a4a 50%, #6a2060 100%)',
+    glowColor: 'rgba(200, 80, 180, 0.2)',
+  },
+
+  /* ─── WACHSTUM & SPORT ─── */
+  {
+    id: 5,
     name: 'Ipamorelin',
     fullName: 'Ipamorelin (Selektiver GH-Sekretagog)',
     category: 'growth',
-    categoryLabel: 'Wachstum & GH-Achse',
-    price: 44.99,
+    categoryLabel: 'Wachstum & Sport',
+    price: 39.99,
     originalPrice: null,
-    rating: 4.7,
-    reviews: 156,
+    rating: 4.8,
+    reviews: 221,
     badge: null,
     badgeType: null,
-    description: 'Ipamorelin ist ein selektiver Wachstumshormon-Sekretagog der fünften Generation. In Forschungsstudien zeigt es eine hochselektive GH-Freisetzung ohne signifikante Auswirkungen auf Cortisol oder Prolaktin.',
-    longDescription: `<p>Ipamorelin ist ein pentapeptidischer Wachstumshormon-Sekretagog, der als Ghrelin-Rezeptor-Agonist wirkt (GHSR-1a). Es wurde als eines der selektivsten Peptide seiner Klasse entwickelt, mit dem Vorteil einer spezifischen GH-Freisetzung bei minimalem Einfluss auf andere endokrine Parameter.</p>
-    <p>Im Gegensatz zu älteren Wachstumshormon-Sekretagogen wie GHRP-2 und GHRP-6 zeigt Ipamorelin in Forschungsmodellen keine signifikante Stimulation von Cortisol, Prolaktin oder Aldosteron. Diese Selektivität macht es zu einem wertvollen Forschungsinstrument.</p>
-    <p>Studien an Tiermodellen haben gezeigt, dass Ipamorelin die Wachstumshormon-Pulse auf eine physiologischere Weise imitiert als ältere Analoga, was für die Grundlagenforschung zur GH-Achse bedeutsam ist.</p>
-    <p>Sämtliche Informationen dienen ausschließlich Forschungszwecken. Ipamorelin ist nicht für therapeutische Anwendungen zugelassen.</p>`,
-    researchInfo: `<h4>Pharmakologisches Profil</h4>
-    <p>Ipamorelin (Aib-His-D-2-Nal-D-Phe-Lys-NH2) ist ein selektiver GHSR-Agonist der 5. Generation:</p>
-    <ul>
-      <li>Hohe GH-Selektivität: kein signifikanter Anstieg von ACTH, Cortisol, Prolaktin</li>
-      <li>Dosisabhängige GH-Freisetzung in Nagetiermodellen</li>
-      <li>Synergistisch mit CJC-1295 in kombinierten Protokollen</li>
-      <li>Halbwertszeit: ~2 Stunden in Tiermodellen</li>
-      <li>Bioaktivität: oral inaktiv, parenteral aktiv</li>
-    </ul>
-    <p>CAS-Nummer: 170851-70-4 | Reinheit: ≥99%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Ausschließlich für Laborforschung. Kein Humanarzneimittel.</p>
-    <h4>Studienprotokoll (in vivo Tiermodelle)</h4>
-    <ul>
-      <li>Standarddosis: 200–300 µg/kg subkutan</li>
-      <li>Verabreichungszeitpunkte: nüchtern oder prä-schlaf (circadianer Rhythmus)</li>
-      <li>Häufig kombiniert mit GHRH-Analoga in Forschungsdesigns</li>
-      <li>Lagerung: Lyophilisat -20°C; Lösung 4°C max. 7 Tage</li>
-    </ul>`,
-    purity: '99.2%',
-    format: '5mg',
+    description: 'Ipamorelin ist ein selektiver Wachstumshormon-Sekretagog der 3. Generation. In Tierstudien stimuliert es die GH-Freisetzung mit hoher Selektivität ohne relevante Nebenhormone.',
+    longDescription: `<p>Ipamorelin gehört zur Klasse der Ghrelin-Mimetika und ist ein pentapeptidischer, selektiver GH-Sekretagog. Im Vergleich zu älteren Peptiden dieser Klasse zeichnet es sich durch hohe Selektivität für die GH-Achse aus.</p>
+    <p>In Tiermodellen stimuliert Ipamorelin die pulsierende GH-Sekretion, ohne signifikant Cortisol oder Prolaktin zu beeinflussen – ein wesentlicher Vorteil in Forschungsmodellen zu Wachstum und Stoffwechsel.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Selektive GH-Sekretion in Tiermodellen</li><li>Knochendichte-Studien (Nagetiere)</li><li>Körperzusammensetzung und Lipidmetabolismus</li><li>Anti-katabolische Eigenschaften</li></ul><p>CAS: 170851-70-4 | Sequenz: Aib-His-D-2Nal-D-Phe-Lys-NH2 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 200–300 µg/kg in Nagetiermodellen</li><li>Verabreichung: subkutan in Studien</li><li>Lösungsmittel: Bacteriostatisches Wasser</li><li>Stabilität: 12 Monate lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
     molecular: 'C38H49N9O5',
     weight: '711.9 g/mol',
     storage: '-20°C',
     inStock: true,
-    emoji: '📈',
-    gradient: 'linear-gradient(135deg, #1a0533 0%, #2d0a55 50%, #3b1070 100%)',
-    glowColor: 'rgba(139, 92, 246, 0.25)',
+    emoji: '⚡',
+    gradient: 'linear-gradient(135deg, #1a0a35 0%, #2d1260 50%, #3a1880 100%)',
+    glowColor: 'rgba(120, 80, 255, 0.2)',
   },
   {
-    id: 4,
+    id: 6,
     name: 'CJC-1295 DAC',
-    fullName: 'CJC-1295 mit DAC (Drug Affinity Complex)',
+    fullName: 'CJC-1295 DAC (GHRH-Analogon)',
     category: 'growth',
-    categoryLabel: 'Wachstum & GH-Achse',
-    price: 54.99,
-    originalPrice: null,
-    rating: 4.8,
-    reviews: 201,
-    badge: null,
-    badgeType: null,
-    description: 'CJC-1295 DAC ist ein langwirksames GHRH-Analogon mit Drug Affinity Complex-Technologie. Es verlängert die Halbwertszeit auf 6–8 Tage und ermöglicht anhaltende GH-Freisetzung in Forschungsmodellen.',
-    longDescription: `<p>CJC-1295 mit DAC (Drug Affinity Complex) ist ein modifiziertes GHRH-Analogon, das durch die Bindung an Blutproteine eine dramatisch verlängerte Wirkdauer aufweist. Während natives GHRH nur Minuten im Kreislauf verbleibt, zeigt CJC-1295 DAC in Tiermodellen eine Halbwertszeit von 6–8 Tagen.</p>
-    <p>Diese verlängerte Wirkdauer ermöglicht in der Forschung wöchentliche Dosierungsprotokoll, was CJC-1295 DAC von anderen GHRH-Analoga unterscheidet. In Studien wurde eine konsistente Erhöhung der GH- und IGF-1-Spiegel in Tiermodellen beobachtet.</p>
-    <p>Die DAC-Technologie basiert auf einer reaktiven Malemid-Seitenkette, die eine kovalente Bindung an Cys34 von Albumin im Blut ermöglicht, was die proteolytische Degradation verhindert.</p>
-    <p>Alle Daten entstammen Laborstudien. CJC-1295 DAC ist kein Arzneimittel und nicht für den menschlichen Gebrauch bestimmt.</p>`,
-    researchInfo: `<h4>Technologische Grundlage</h4>
-    <p>CJC-1295 mit DAC repräsentiert die fortschrittlichste GHRH-Analogon-Technologie:</p>
-    <ul>
-      <li>DAC-Modifikation: Maleimid-Gruppe ermöglicht Albumin-Bindung</li>
-      <li>Halbwertszeit: 6–8 Tage (vs. Minuten für GHRH)</li>
-      <li>Dosierungsintervall in Studien: 1× pro Woche möglich</li>
-      <li>Synergistisch mit GHRP-Peptiden (Ipamorelin, GHRP-2/6)</li>
-      <li>Potenziert die pulsierende GH-Freisetzung in Tiermodellen</li>
-    </ul>
-    <p>CAS-Nummer: 863288-34-0 | Reinheit: ≥98.5%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Nagermodelle)</h4>
-    <ul>
-      <li>Einmaldosis in Studien: 1–2 mg/kg</li>
-      <li>Applikationsintervall: 1× wöchentlich (DAC-Formulierung)</li>
-      <li>Kombination mit GHRP in Studien: zeitgleiche Applikation</li>
-      <li>Lagerung: -20°C lyophilisiert; Lösungsstabilität 5–7 Tage bei 4°C</li>
-    </ul>`,
-    purity: '98.5%',
-    format: '2mg',
+    categoryLabel: 'Wachstum & Sport',
+    price: 59.99,
+    originalPrice: 74.99,
+    rating: 4.7,
+    reviews: 176,
+    badge: 'Sale',
+    badgeType: 'sale',
+    description: 'CJC-1295 mit DAC (Drug Affinity Complex) ist ein modifiziertes GHRH-Analogon mit verlängerter Halbwertszeit. In Forschungen zeigt es anhaltende GH-Stimulation in Tiermodellen.',
+    longDescription: `<p>CJC-1295 mit DAC ist ein synthetisches Analogon des Wachstumshormon-freisetzenden Hormons (GHRH). Die DAC-Technologie verbindet das Peptid mit Albumin im Blutkreislauf, was zu einer verlängerten Halbwertszeit führt.</p>
+    <p>In Tiermodellen bewirkt CJC-1295 DAC eine anhaltende Stimulation der GH-Achse über mehrere Tage nach einer Einzeldosis. Dies macht es zu einem wertvollen Werkzeug in Langzeitstudien zur GH-Physiologie.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Verlängerte GH-Sekretion in Tiermodellen</li><li>IGF-1-Spiegel-Modulation</li><li>Knochendichte und Körperzusammensetzung</li><li>Pharmakokinetik von DAC-Peptiden</li></ul><p>CAS: 863288-34-0 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–2 mg/kg pro Woche</li><li>Verabreichung: subkutan</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
     molecular: 'C152H252N44O42',
     weight: '3367.9 g/mol',
     storage: '-20°C',
     inStock: true,
-    emoji: '⚡',
-    gradient: 'linear-gradient(135deg, #062010 0%, #0a3520 50%, #0d4828 100%)',
+    emoji: '🔬',
+    gradient: 'linear-gradient(135deg, #042a10 0%, #074520 50%, #0a5a2a 100%)',
+    glowColor: 'rgba(0, 200, 80, 0.2)',
+  },
+  {
+    id: 7,
+    name: 'CJC-1295 (No DAC)',
+    fullName: 'CJC-1295 No DAC (Modified GRF 1-29)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 39.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 134,
+    badge: null,
+    badgeType: null,
+    description: 'CJC-1295 ohne DAC (Modified GRF 1-29) ist ein kürzlich wirksames GHRH-Fragment. In Forschungsmodellen erzeugt es physiologische GH-Pulse, ähnlich der natürlichen Ausschüttung.',
+    longDescription: `<p>CJC-1295 ohne DAC, auch als Modified GRF 1-29 oder Mod-GRF bekannt, ist ein modifiziertes Fragment des Wachstumshormon-freisetzenden Hormons. Ohne die DAC-Technologie hat es eine kürzere Halbwertszeit und erzeugt natürlichere GH-Pulse.</p>
+    <p>In Forschungsmodellen wird es häufig in Kombination mit anderen GH-Sekretagogen wie Ipamorelin oder GHRP-2 eingesetzt, um die physiologische GH-Sekretion zu modulieren.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Physiologische GH-Pulsstimulation</li><li>Kombinations-Studien mit GHRP-Verbindungen</li><li>Kurze Halbwertszeit: 30 Minuten (in vivo)</li><li>Synergistische Wirkung in Kombinationsprotokollen</li></ul><p>CAS: 863288-34-0 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 100–200 µg/kg</li><li>Häufig kombiniert mit GHRP in Forschungsprotokollen</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C152H252N44O42',
+    weight: '3367.9 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '📊',
+    gradient: 'linear-gradient(135deg, #0a2a08 0%, #154015 50%, #1a5018 100%)',
+    glowColor: 'rgba(50, 200, 50, 0.2)',
+  },
+  {
+    id: 8,
+    name: 'Sermorelin',
+    fullName: 'Sermorelin (GHRH 1-29 NH2)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.5,
+    reviews: 112,
+    badge: null,
+    badgeType: null,
+    description: 'Sermorelin ist ein synthetisches Analogon der ersten 29 Aminosäuren des Wachstumshormon-freisetzenden Hormons. In Forschungen stimuliert es die endogene GH-Produktion in der Hypophyse.',
+    longDescription: `<p>Sermorelin ist ein bioidentisches Hormon-Analogon, das die biologisch aktiven Aminosäuren 1–29 des humanen GHRH enthält – die für die Bindung an GH-freisetzende Rezeptoren erforderliche Mindestsequenz.</p>
+    <p>Im Gegensatz zu exogenem Wachstumshormon stimuliert Sermorelin in Tiermodellen die körpereigene GH-Produktion durch die Hypophyse und respektiert dabei normale regulatorische Feedbackmechanismen.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Hypophysen-GH-Sekretion in Tiermodellen</li><li>Erhaltung des endogenen Feedback-Mechanismus</li><li>Halbwertszeit: ~11–12 Minuten in vivo</li><li>Anti-Aging-Forschung in Nagetiermodellen</li></ul><p>CAS: 86168-78-7 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 0,5–2 mg/kg in Nagetiermodellen</li><li>Verabreichung: subkutan</li><li>Lagerung: lyophilisiert -20°C</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C149H246N44O42S',
+    weight: '3357.9 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🧪',
+    gradient: 'linear-gradient(135deg, #2a1500 0%, #4a2800 50%, #5a3510 100%)',
+    glowColor: 'rgba(255, 150, 0, 0.2)',
+  },
+  {
+    id: 9,
+    name: 'GHRP-2',
+    fullName: 'GHRP-2 (Growth Hormone Releasing Peptide-2)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 54.99,
+    originalPrice: null,
+    rating: 4.7,
+    reviews: 189,
+    badge: 'Bestseller',
+    badgeType: 'bestseller',
+    description: 'GHRP-2 ist ein synthetisches Hexapeptid und starker GH-Sekretagog. In Tiermodellen stimuliert es die GH-Ausschüttung und zeigt zusätzliche Effekte auf das Ghrelin-System.',
+    longDescription: `<p>GHRP-2 (Growth Hormone Releasing Peptide-2) ist ein synthetisches Hexapeptid, das als Ghrelin-Agonist an GH-Sekretagog-Rezeptoren bindet. In präklinischen Studien ist es einer der wirksamsten GH-Sekretagogen dieser Klasse.</p>
+    <p>In Tiermodellen stimuliert GHRP-2 die GH-Freisetzung und erhöht dabei auch geringfügig Cortisol und Prolaktin. Es wird häufig in Kombination mit GHRH-Analoga in Forschungsprotokollen eingesetzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Starke GH-Sekretion in Tiermodellen</li><li>Ghrelin-Rezeptor-Agonismus</li><li>Wachstumsförderung in Nagetiermodellen</li><li>Körperzusammensetzung und Lipidmetabolismus</li></ul><p>CAS: 158861-67-7 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 100–300 µg/kg in Nagetiermodellen</li><li>Kombination mit GHRH-Analoga in Forschungsprotokollen</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C45H55N9O6',
+    weight: '817.9 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '💉',
+    gradient: 'linear-gradient(135deg, #001a2a 0%, #002e4a 50%, #003860 100%)',
+    glowColor: 'rgba(0, 150, 255, 0.2)',
+  },
+  {
+    id: 10,
+    name: 'GHRP-6',
+    fullName: 'GHRP-6 (Growth Hormone Releasing Peptide-6)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 54.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 156,
+    badge: null,
+    badgeType: null,
+    description: 'GHRP-6 ist ein synthetisches Hexapeptid und GH-Sekretagog. In Tiermodellen ist es bekannt für seine ausgeprägte GH-stimulierende Wirkung sowie appetitfördernde Eigenschaften.',
+    longDescription: `<p>GHRP-6 ist eines der ersten synthetischen GH-Sekretagoge dieser Peptidklasse. In Tiermodellen bindet es spezifisch an den GH-Sekretagog-Rezeptor (GHS-R1a) und stimuliert die GH-Freisetzung.</p>
+    <p>Ein charakteristisches Merkmal in Forschungsmodellen ist die ausgeprägte Stimulation des Appetits – ein Effekt, der von der Ghrelin-Rezeptor-Aktivierung abhängt. Es wird intensiv in Stoffwechselstudien eingesetzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>GH-Sekretion über GHS-R1a Rezeptor</li><li>Appetit- und Stoffwechselstudien (Tiermodelle)</li><li>Wachstumsförderung in präklinischen Modellen</li><li>Ghrelin-System-Forschung</li></ul><p>CAS: 87616-84-0 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 100–300 µg/kg</li><li>Verabreichung: subkutan oder intraperitoneal</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C46H56N12O6',
+    weight: '873.0 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🌿',
+    gradient: 'linear-gradient(135deg, #052010 0%, #0a3a1a 50%, #0d4a20 100%)',
+    glowColor: 'rgba(0, 180, 80, 0.2)',
+  },
+  {
+    id: 11,
+    name: 'Hexarelin',
+    fullName: 'Hexarelin (Examorelin)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 44.99,
+    originalPrice: null,
+    rating: 4.5,
+    reviews: 98,
+    badge: null,
+    badgeType: null,
+    description: 'Hexarelin ist ein synthetisches Hexapeptid und potenter GH-Sekretagog. In Forschungen zeigt es kardioprotektive und wachstumshormon-stimulierende Eigenschaften in Tiermodellen.',
+    longDescription: `<p>Hexarelin (auch als Examorelin bekannt) ist ein synthetisches Hexapeptid-Analogon von GHRP-6. In Tiermodellen ist es einer der stärksten GH-Sekretagogen seiner Klasse.</p>
+    <p>Neben der GH-Stimulation wurde in Tiermodellen eine direkte kardioprotektive Wirkung unabhängig von GH nachgewiesen, was es zu einem interessanten Forschungsobjekt in der Kardiologie macht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Potente GH-Sekretion in Tiermodellen</li><li>Kardioprotektive Wirkung (GH-unabhängig)</li><li>Herzfunktionsstudien in Nagetiermodellen</li><li>Vergleichsstudien mit GHRP-6</li></ul><p>CAS: 140703-51-1 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 200 µg/kg in Nagetiermodellen</li><li>Verabreichung: subkutan oder intravenös</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C47H58N12O6',
+    weight: '887.0 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🔋',
+    gradient: 'linear-gradient(135deg, #0a0a2a 0%, #15154a 50%, #1a1a60 100%)',
+    glowColor: 'rgba(80, 80, 255, 0.2)',
+  },
+  {
+    id: 12,
+    name: 'MGF',
+    fullName: 'MGF (Mechano Growth Factor)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.5,
+    reviews: 87,
+    badge: null,
+    badgeType: null,
+    description: 'MGF (Mechano Growth Factor) ist ein Splicing-Variante von IGF-1, die in mechanisch beanspruchtem Gewebe gebildet wird. In Forschungen zeigt es einzigartige muskelreparative Eigenschaften.',
+    longDescription: `<p>Mechano Growth Factor (MGF) ist eine Splicing-Variante von Insulin-like Growth Factor-1 (IGF-1), die spezifisch als Reaktion auf mechanische Belastung in Muskelgewebe produziert wird.</p>
+    <p>In präklinischen Studien stimuliert MGF die Proliferation von Muskelvorläuferzellen (Satellitenzellen) und fördert die Muskelreparatur nach Beanspruchung. Seine Wirkung ist lokal und von kurzer Dauer.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Muskelreparatur und Satellitenzellenaktivierung</li><li>Lokale Wachstumsfaktor-Signalgebung</li><li>Reaktion auf mechanische Belastung</li><li>Vergleich mit systemischem IGF-1</li></ul><p>CAS: N/A | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 100–200 µg/kg in Nagetiermodellen</li><li>Lokale oder systemische Verabreichung</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C121H200N42O39',
+    weight: '2867.2 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🏋️',
+    gradient: 'linear-gradient(135deg, #051a0a 0%, #0a2e12 50%, #0d3a16 100%)',
+    glowColor: 'rgba(0, 200, 60, 0.2)',
+  },
+  {
+    id: 13,
+    name: 'PEG-MGF',
+    fullName: 'PEG-MGF (Pegylierter Mechano Growth Factor)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 69.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 76,
+    badge: null,
+    badgeType: null,
+    description: 'PEG-MGF ist die pegylierte Form des Mechano Growth Factor mit verlängerter Halbwertszeit. In Forschungen ermöglicht die Pegylierung eine systemischere und anhaltendere Wirkung.',
+    longDescription: `<p>PEG-MGF ist eine chemisch modifizierte Form von MGF, bei der Polyethylenglykol (PEG) an das Peptidmolekül gebunden wird. Diese Pegylierung verlängert die biologische Halbwertszeit erheblich.</p>
+    <p>In Tiermodellen ermöglicht PEG-MGF eine systemische Verteilung und verlängerte Aktivität im Vergleich zu nativem MGF. Es ist Gegenstand der Forschung zu Muskelwachstum und -reparatur auf systemischer Ebene.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Verlängerte Halbwertszeit durch PEG-Modifikation</li><li>Systemische Muskelwachstumsstudien</li><li>Vergleichsstudien nativem MGF vs. PEG-MGF</li><li>Pharmakokinetik pegylierter Peptide</li></ul>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: variabel je nach Forschungsprotokoll</li><li>Längere Dosierungsintervalle durch pegylierte Struktur</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'PEG-C121H200N42O39',
+    weight: '~4000 g/mol',
+    storage: '-20°C',
+    inStock: false,
+    emoji: '🌱',
+    gradient: 'linear-gradient(135deg, #042015 0%, #083a25 50%, #0a4a2e 100%)',
     glowColor: 'rgba(0, 200, 100, 0.2)',
   },
   {
-    id: 5,
-    name: 'Sermorelin',
-    fullName: 'Sermorelin (GHRH 1-29)',
+    id: 14,
+    name: 'IGF-1 LR3',
+    fullName: 'IGF-1 LR3 (Long R3 Insulin-like Growth Factor-1)',
     category: 'growth',
-    categoryLabel: 'Wachstum & GH-Achse',
-    price: 39.99,
-    originalPrice: 49.99,
-    rating: 4.6,
-    reviews: 143,
-    badge: 'Sale',
-    badgeType: 'sale',
-    description: 'Sermorelin ist das erste 29 Aminosäuren lange Fragment von endogenem GHRH. Es stimuliert die hypophysäre GH-Freisetzung auf physiologische Weise und ist ein etabliertes Werkzeug in der Wachstumshormon-Forschung.',
-    longDescription: `<p>Sermorelin (GHRH 1-29 NH2) ist das N-terminale biologisch aktive Fragment des Wachstumshormon-Releasing-Hormons (GHRH). Mit seinen 29 Aminosäuren umfasst es die minimale Sequenz, die für die volle biologische Aktivität des GHRH-Rezeptors erforderlich ist.</p>
-    <p>Als das am längsten erforschte GHRH-Analogon verfügt Sermorelin über eine umfangreiche Literaturgrundlage. Es stimuliert die Hypophyse zur pulsatilen GH-Freisetzung, was einen physiologischeren Wirkmechanismus darstellt als exogenes Wachstumshormon.</p>
-    <p>In Forschungsmodellen wurde Sermorelin ausgiebig zur Untersuchung der somatotropen Achse eingesetzt. Die Forschung zeigt eine kurze Halbwertszeit von etwa 10-20 Minuten in vivo, was mehrfache tägliche Applikationen in Langzeitstudien erfordert.</p>
-    <p>Alle Informationen dienen rein wissenschaftlichen Zwecken. Sermorelin ist für Forschungslabors bestimmt.</p>`,
-    researchInfo: `<h4>Forschungsstatus & Wissenschaft</h4>
-    <p>Sermorelin ist eines der am besten charakterisierten GHRH-Analoga in der Forschung:</p>
-    <ul>
-      <li>Physiologischer GHRH-Rezeptor-Agonist (GHRHR)</li>
-      <li>Kurze Halbwertszeit (~10-20 min in vivo) – häufige Dosierung in Studien</li>
-      <li>Gut verträglich in Tiermodellen mit langer Forschungsgeschichte</li>
-      <li>Etabliertes Werkzeug für die somatotrope-Achsen-Forschung</li>
-      <li>Synergismus mit GHRP-Klasse in kombinierten Studiendesigns</li>
-    </ul>
-    <p>CAS-Nummer: 86168-78-7 | Reinheit: ≥98%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Ausschließlich für wissenschaftliche Forschung.</p>
-    <h4>Forschungsprotokoll</h4>
-    <ul>
-      <li>Studiendosis: 0,2–1,0 µg/kg subkutan (Tiermodelle)</li>
-      <li>Frequenz: 2–3× täglich aufgrund kurzer Halbwertszeit</li>
-      <li>Optimale Studienappalikation: morgens und präschlaf</li>
-      <li>Lagerung: -20°C lyophilisiert, Lösung max. 3 Tage bei 4°C</li>
-    </ul>`,
-    purity: '98.0%',
-    format: '5mg',
-    molecular: 'C149H246N44O42S',
-    weight: '3358.0 g/mol',
-    storage: '-20°C',
-    inStock: true,
-    emoji: '🔬',
-    gradient: 'linear-gradient(135deg, #2d1000 0%, #4a1f00 50%, #6b2d00 100%)',
-    glowColor: 'rgba(255, 120, 0, 0.2)',
-  },
-  {
-    id: 6,
-    name: 'HGH Fragment 176-191',
-    fullName: 'HGH Fragment 176-191 (Lipolytisches GH-Peptid)',
-    category: 'fat-loss',
-    categoryLabel: 'Fettabbau & Stoffwechsel',
-    price: 44.99,
+    categoryLabel: 'Wachstum & Sport',
+    price: 189.99,
     originalPrice: null,
-    rating: 4.7,
-    reviews: 178,
+    rating: 4.8,
+    reviews: 134,
     badge: null,
     badgeType: null,
-    description: 'HGH Fragment 176-191 ist ein stabilisiertes Analogon der C-terminalen Region von Wachstumshormon. In Studien zeigt es lipolytische Aktivität ohne die anabolen oder diabetogenen Eigenschaften von vollständigem GH.',
-    longDescription: `<p>HGH Fragment 176-191 ist ein modifiziertes Fragment des Wachstumshormon-Polypeptids, das die Aminosäuren 176 bis 191 des C-terminalen Endes von humanem GH umfasst. Es wird als stabilisiertes Analogon hergestellt, das gegenüber der nativen Sequenz eine verbesserte Stabilität und Halbwertszeit aufweist.</p>
-    <p>Das Fragment wurde entwickelt, um die lipolytischen Eigenschaften von GH zu isolieren, ohne die anabolen oder insulinresistenzfördernden Effekte. In präklinischen Studien zeigte HGH Frag 176-191 eine selektive Aktivierung des Fettstoffwechsels.</p>
-    <p>Forschungsmodelle mit Nagetieren zeigten eine erhöhte Fettoxidation, insbesondere bei viszeralem Fettgewebe, bei gleichzeitiger Erhaltung der Insulinsensitivität. Dies macht es zu einem interessanten Forschungsobjekt für Stoffwechselstudien.</p>
-    <p>Alle Informationen dienen ausschließlich Forschungszwecken. Das Produkt ist nicht für den menschlichen Konsum bestimmt.</p>`,
-    researchInfo: `<h4>Wissenschaftlicher Hintergrund</h4>
-    <p>HGH Fragment 176-191 enthält den Bereich des GH-Moleküls, der für die Regulation des Fettstoffwechsels verantwortlich ist:</p>
-    <ul>
-      <li>Selektive Lipolyse-Aktivierung ohne anabole GH-Effekte</li>
-      <li>Keine Beeinflussung der Blutzuckerwerte in Tiermodellen</li>
-      <li>Erhöhte Fettoxidationsraten in präklinischen Metabolismusstudien</li>
-      <li>Besonders untersucht: Reduktion viszeraler Adipositas</li>
-      <li>12× stärkere lipolytische Aktivität als natives GH in vitro</li>
-    </ul>
-    <p>CAS-Nummer: 221231-10-3 | Reinheit: ≥99%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Forschungsdosis: 250–500 µg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan oder intraperitoneal</li>
-      <li>Studienfrequenz: 1–2× täglich in Kurzzeit-Metabolismusstudien</li>
-      <li>Lagerung: -20°C (lyophilisiert), max. 5 Tage in Lösung bei 4°C</li>
-    </ul>`,
+    description: 'IGF-1 LR3 ist eine modifizierte Form von Insulin-like Growth Factor-1 mit bis zu 120-fach längerer Halbwertszeit. In Tiermodellen stimuliert es Muskelwachstum und Zellproliferation.',
+    longDescription: `<p>IGF-1 LR3 (Long Arg3 IGF-1) ist eine analoge Form von IGF-1, bei der die N-terminale Verlängerung und ein Aminosäure-Austausch die Bindung an IGF-Bindungsproteine reduzieren – was zu einer dramatisch verlängerten biologischen Aktivität führt.</p>
+    <p>In Tiermodellen stimuliert IGF-1 LR3 Muskelzellhypertrophie und Hyperplasie durch direkte Bindung an den IGF-1-Rezeptor. Es wird intensiv in der Wachstumsbiologie und Onkologieforschung eingesetzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Muskelzellhypertrophie und -hyperplasie</li><li>120× längere Halbwertszeit als natives IGF-1</li><li>Zellproliferationsforschung</li><li>Anwendung in der Onkologie-Grundlagenforschung</li></ul><p>CAS: 946870-92-4 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>In-vitro: 10–100 ng/mL Zellkulturmedium</li><li>In-vivo: 50–150 µg/kg in Nagetiermodellen</li><li>Lagerung: -80°C für Langzeitlagerung, -20°C kurzfristig</li></ul>`,
     purity: '99.0%',
-    format: '5mg',
+    format: '1mg/Vial × 10 Vials',
+    molecular: 'C400H625N111O115S9',
+    weight: '9111.5 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🦁',
+    gradient: 'linear-gradient(135deg, #2a1500 0%, #4a2800 50%, #6a3d00 100%)',
+    glowColor: 'rgba(200, 130, 0, 0.2)',
+  },
+  {
+    id: 15,
+    name: 'HCG',
+    fullName: 'HCG (Humanes Choriongonadotropin) 5000IU',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 64.99,
+    originalPrice: null,
+    rating: 4.5,
+    reviews: 92,
+    badge: null,
+    badgeType: null,
+    description: 'HCG (Humanes Choriongonadotropin) ist ein Glykoprotein-Hormon. In der Forschung wird es als LH-Mimetikum für reproduktive Endokrinologie und Steroidogenese-Studien eingesetzt.',
+    longDescription: `<p>Humanes Choriongonadotropin (HCG) ist ein Glykoprotein-Hormon, das aus α- und β-Untereinheiten besteht. In der Forschung wird es als LH-Mimetikum (Luteinisierendes Hormon) in Tiermodellen eingesetzt.</p>
+    <p>In präklinischen Studien stimuliert HCG die Testosteronproduktion in den Leydig-Zellen und wird als wertvolles Werkzeug in der Reproduktionsendokrinologie und Steroidogenese-Forschung genutzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>LH-Mimetikum in reproduktiven Forschungsmodellen</li><li>Steroidogenese in Leydig-Zellen (Tiermodelle)</li><li>Reproduktionsendokrinologie</li><li>Corpus-Luteum-Stimulation in weiblichen Tiermodellen</li></ul><p>CAS: 9002-61-3 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Standardprotokoll: 1000–5000 IU je nach Modell</li><li>Lösungsmittel: Bacteriostatisches Wasser</li><li>Lagerung: 2–8°C nach Rekonstitution; lyophilisiert -20°C</li></ul>`,
+    purity: '99.0%',
+    format: '5000IU/Vial',
+    molecular: 'Glykoprotein (α+β-Untereinheiten)',
+    weight: '~36.700 g/mol',
+    storage: '2-8°C',
+    inStock: true,
+    emoji: '🔵',
+    gradient: 'linear-gradient(135deg, #000a2a 0%, #001545 50%, #001e5a 100%)',
+    glowColor: 'rgba(0, 80, 255, 0.2)',
+  },
+  {
+    id: 16,
+    name: 'Gonadorelin',
+    fullName: 'Gonadorelin (GnRH-Analogon)',
+    category: 'growth',
+    categoryLabel: 'Wachstum & Sport',
+    price: 59.99,
+    originalPrice: null,
+    rating: 4.4,
+    reviews: 67,
+    badge: null,
+    badgeType: null,
+    description: 'Gonadorelin ist ein synthetisches Analogon des Gonadotropin-freisetzenden Hormons (GnRH). In Forschungen stimuliert es die LH- und FSH-Ausschüttung aus der Hypophyse.',
+    longDescription: `<p>Gonadorelin ist ein Dekapeptid, das dem natürlichen Gonadotropin-freisetzenden Hormon (GnRH) entspricht. In Tiermodellen stimuliert es die Ausschüttung von LH (Luteinisierendes Hormon) und FSH (Follikelstimulierendes Hormon) aus der Hypophyse.</p>
+    <p>In der Forschung wird Gonadorelin als Werkzeug zur Untersuchung der Hypothalamus-Hypophysen-Gonaden-Achse sowie reproduktiver Regulationsmechanismen eingesetzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>LH- und FSH-Stimulation (Tiermodelle)</li><li>Hypothalamus-Hypophysen-Gonaden-Achse</li><li>Reproduktionsbiologie</li><li>Pubertätsforschung in Tiermodellen</li></ul><p>CAS: 9034-40-6 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Pulsatile Applikation in Forschungsmodellen</li><li>Bolus-Studien: 10–100 µg/kg</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C55H75N17O13',
+    weight: '1182.3 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🔷',
+    gradient: 'linear-gradient(135deg, #002a2a 0%, #004040 50%, #005050 100%)',
+    glowColor: 'rgba(0, 180, 180, 0.2)',
+  },
+
+  /* ─── GEWICHTSABNAHME ─── */
+  {
+    id: 17,
+    name: 'HGH Fragment 176-191',
+    fullName: 'HGH Fragment 176-191 (Lipolytisches GH-Fragment)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 59.99,
+    originalPrice: 74.99,
+    rating: 4.7,
+    reviews: 201,
+    badge: 'Sale',
+    badgeType: 'sale',
+    description: 'HGH Fragment 176-191 ist das C-terminale Fragment des Wachstumshormons. In Tiermodellen aktiviert es lipolytische Prozesse ohne die wachstumsfördernden Effekte des vollständigen GH.',
+    longDescription: `<p>HGH Fragment 176-191 ist ein modifiziertes Fragment des Wachstumshormons, das die Aminosäuren 176–191 des C-terminalen Endes umfasst. In präklinischen Studien zeigt es eine selektive lipolytische Aktivität.</p>
+    <p>Im Gegensatz zu vollständigem Wachstumshormon hat das Fragment in Tiermodellen keine diabetogenen Effekte und beeinflusst weder die IGF-1-Spiegel noch das Knochenwachstum – eine wichtige Eigenschaft für Grundlagenforschung zum Fettstoffwechsel.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Selektive Lipolyse in Fettzellen (Tiermodelle)</li><li>Keine IGF-1-Stimulation (vs. vollständiges GH)</li><li>Adipogenese-Hemmung in vitro</li><li>Selektive Fettstoffwechselforschung</li></ul><p>CAS: 66004-57-7 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 500 µg/kg in Nagetiermodellen</li><li>Verabreichung: subkutan oder intraperitoneal</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '5mg/Vial × 10 Vials',
     molecular: 'C78H123N23O23S2',
     weight: '1817.1 g/mol',
     storage: '-20°C',
     inStock: true,
     emoji: '🔥',
-    gradient: 'linear-gradient(135deg, #2d0010 0%, #500020 50%, #700035 100%)',
-    glowColor: 'rgba(255, 50, 100, 0.2)',
+    gradient: 'linear-gradient(135deg, #2a0505 0%, #4a0a0a 50%, #601010 100%)',
+    glowColor: 'rgba(255, 60, 60, 0.2)',
   },
   {
-    id: 7,
-    name: 'Melanotan II',
-    fullName: 'Melanotan II (MT-II, α-MSH Analogon)',
-    category: 'research',
-    categoryLabel: 'Forschungspeptide',
-    price: 49.99,
+    id: 18,
+    name: 'AOD-9604',
+    fullName: 'AOD-9604 (Anti-Obesity Drug Fragment)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 59.99,
     originalPrice: null,
     rating: 4.6,
-    reviews: 112,
-    badge: 'Neu',
-    badgeType: 'new',
-    description: 'Melanotan II ist ein zyklisches Peptid und potenter Agonist der Melanocortin-Rezeptoren. In Forschungsstudien zeigt es Effekte auf Pigmentierung, Appetit und weitere melanocortinvermittelte Prozesse.',
-    longDescription: `<p>Melanotan II ist ein synthetisches zyklisches Analogon des Alpha-Melanozyten-stimulierenden Hormons (α-MSH). Als potenter, nicht-selektiver Melanocortin-Rezeptor-Agonist (MC1R-MC4R) ist es ein wichtiges Werkzeug in der Melanocortin-Systemforschung.</p>
-    <p>Die Forschung mit MT-II hat wesentlich zum Verständnis des Melanocortin-Systems beigetragen, das eine Rolle bei der Regulation von Pigmentierung, Energie-Homöostase, sexueller Funktion und Entzündung spielt.</p>
-    <p>Präklinische Studien mit MT-II haben wichtige Einblicke in die MC1R-vermittelte Melanogenese und MC4R-vermittelte Appetit- und Gewichtsregulation geliefert. Diese Erkenntnisse haben zur Entwicklung selektiverer therapeutischer Kandidaten geführt.</p>
-    <p>Alle Informationen dienen rein wissenschaftlichen Zwecken. Melanotan II ist kein zugelassenes Arzneimittel.</p>`,
-    researchInfo: `<h4>Forschungsrelevanz</h4>
-    <p>MT-II ist ein etabliertes Werkzeug in der Melanocortin-Systemforschung:</p>
-    <ul>
-      <li>Nicht-selektiver MC1R-MC4R Agonist</li>
-      <li>Forschungsschwerpunkt: Melanogenese und Photoprotektionsmechanismen</li>
-      <li>Appetit- und Gewichtsregulation über MC4R-Achse</li>
-      <li>Sexualverhalten-Studien (MC3R/MC4R in Tiermodellen)</li>
-      <li>Grundlagenforschung zum Melanocortin-System</li>
-    </ul>
-    <p>CAS-Nummer: 121062-08-6 | Reinheit: ≥98%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für lizenzierte Forschungslabors. Nicht für den menschlichen Konsum.</p>
-    <h4>Forschungsprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Studiendosis: 0,025–0,5 mg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan oder intraperitoneal</li>
-      <li>Melanogenese-Studien: lokale dermale Applikation möglich</li>
-      <li>Lagerung: -20°C; lichtgeschützt; Lösungsstabilität 48h bei 4°C</li>
-    </ul>`,
-    purity: '98.0%',
-    format: '10mg',
-    molecular: 'C50H69N15O9',
-    weight: '1024.2 g/mol',
-    storage: '-20°C',
-    inStock: true,
-    emoji: '☀️',
-    gradient: 'linear-gradient(135deg, #2d2000 0%, #4a3800 50%, #6b5200 100%)',
-    glowColor: 'rgba(255, 200, 0, 0.2)',
-  },
-  {
-    id: 8,
-    name: 'PT-141',
-    fullName: 'PT-141 (Bremelanotid, MC4R-Agonist)',
-    category: 'research',
-    categoryLabel: 'Forschungspeptide',
-    price: 54.99,
-    originalPrice: null,
-    rating: 4.7,
-    reviews: 98,
+    reviews: 143,
     badge: null,
     badgeType: null,
-    description: 'PT-141 (Bremelanotid) ist ein zyklisches Peptid und selektiver MC3R/MC4R-Agonist. Es wurde aus Melanotan II entwickelt und ist ein wichtiges Forschungsobjekt für das melanocortinvermittelte Nervensystem.',
-    longDescription: `<p>PT-141, chemisch bekannt als Bremelanotid, ist ein zyklisches Heptapeptid, das durch die Metabolisierung von Melanotan II entdeckt wurde. Im Gegensatz zu MT-II fehlt PT-141 die acetylierende N-terminale Gruppe, was zu einem unterschiedlichen Rezeptor-Bindungsprofil führt.</p>
-    <p>Als selektiverer MC3R/MC4R-Agonist ist PT-141 ein wertvolles Forschungswerkzeug zur Untersuchung des zentralen Melanocortin-Systems. Die Forschung hat gezeigt, dass es ohne den vaskulären Mechanismus von PDE5-Hemmern wirkt.</p>
-    <p>Präklinische und klinische Forschungen (bis Phase-III) haben wichtige Erkenntnisse über die Rolle des melanocortinergen Systems in der Regulation sexueller Funktionen geliefert. Diese Daten sind für die Neuropharmakologie bedeutsam.</p>
-    <p>Alle Informationen sind ausschließlich für Forschungszwecke. PT-141 ist in Deutschland nicht als Arzneimittel zugelassen.</p>`,
-    researchInfo: `<h4>Pharmakologisches Profil</h4>
-    <p>PT-141 zeigt im Vergleich zu Melanotan II ein verfeinertes pharmakologisches Profil:</p>
-    <ul>
-      <li>Selektivere MC3R/MC4R Agonistik vs. MT-II</li>
-      <li>Zentralnervöse Wirkung über melanocortinerges System</li>
-      <li>Gut charakterisiert in präklinischen und klinischen Studien</li>
-      <li>Forschungsschwerpunkt: sexuelle Dysfunktion-Mechanismen</li>
-      <li>Neutrale Auswirkung auf Melanin-Pigmentierung</li>
-    </ul>
-    <p>CAS-Nummer: 189691-06-3 | Reinheit: ≥98%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für lizenzierte Forschungslabors. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll</h4>
-    <ul>
-      <li>Präklinische Dosis: 1–10 µg/kg subkutan (Nagetiermodelle)</li>
-      <li>Applikationsroute in Studien: subkutan oder intranasal</li>
-      <li>Studiendesign: akute Einzeldosis-Studien</li>
-      <li>Lagerung: -20°C lyophilisiert; Lösungsstabilität 48h bei 4°C</li>
-    </ul>`,
-    purity: '98.5%',
-    format: '10mg',
-    molecular: 'C49H64N14O8',
-    weight: '1025.1 g/mol',
+    description: 'AOD-9604 ist ein modifiziertes hGH-Fragment (Tyr-hGH177-191). In Tiermodellen regt es den Fettstoffwechsel an und hemmt die Neubildung von Fettzellen ohne die GH-typischen Effekte.',
+    longDescription: `<p>AOD-9604 ist ein modifiziertes Fragment des humanen Wachstumshormons mit einer zusätzlichen Tyrosin-Gruppe am N-Terminus. Es wurde entwickelt, um die lipolytischen Eigenschaften von GH von den wachstumsfördernden zu trennen.</p>
+    <p>In Tiermodellen stimuliert AOD-9604 den Fettstoffwechsel und hemmt die Differenzierung von Präadipozyten zu Adipozyten, ohne den Blutzucker oder IGF-1 zu beeinflussen. Dies macht es zu einem interessanten Forschungsobjekt in der Adipositasforschung.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Lipolyse-Stimulation in Tiermodellen</li><li>Adipogenese-Hemmung in vitro</li><li>Kein Einfluss auf Blutzucker oder IGF-1</li><li>Adipositas-Grundlagenforschung</li></ul><p>CAS: 221231-10-3 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 250–500 µg/kg in Nagetiermodellen</li><li>Verabreichung: subkutan oder oral</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C78H123N23O23S2',
+    weight: '1817.1 g/mol',
     storage: '-20°C',
     inStock: true,
-    emoji: '🧪',
-    gradient: 'linear-gradient(135deg, #2d0022 0%, #4a0038 50%, #650055 100%)',
-    glowColor: 'rgba(220, 50, 200, 0.2)',
+    emoji: '🎯',
+    gradient: 'linear-gradient(135deg, #1a0a00 0%, #3a1800 50%, #4a2200 100%)',
+    glowColor: 'rgba(255, 120, 0, 0.2)',
   },
   {
-    id: 9,
-    name: 'GHRP-2',
-    fullName: 'GHRP-2 (Growth Hormone Releasing Peptide 2)',
-    category: 'growth',
-    categoryLabel: 'Wachstum & GH-Achse',
-    price: 34.99,
+    id: 19,
+    name: 'Adipotide',
+    fullName: 'Adipotide (CKGGRAKDC-GG-D(KLAKLAK)2)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 69.99,
     originalPrice: null,
-    rating: 4.8,
-    reviews: 267,
+    rating: 4.3,
+    reviews: 54,
+    badge: 'Neu',
+    badgeType: 'new',
+    description: 'Adipotide ist ein proapoptotisches Peptid, das gezielt Blutgefäße in Fettgewebe angreift. In Primaten-Studien zeigte es signifikante Reduktionen des Körperfetts.',
+    longDescription: `<p>Adipotide ist ein bifunktionales Peptidomimetikum, das aus einem Targeting-Peptid (CKGGRAKDC) und einer proapoptotischen Domäne (D(KLAKLAK)2) besteht. Es wurde entwickelt, um Vaskulatur in weißem Fettgewebe selektiv zu zerstören.</p>
+    <p>In Primaten-Studien (Rhesusaffen) führte Adipotide zu signifikanten Gewichts- und Fettreduktionen. Es ist Gegenstand intensiver Forschung zur Adipositastherapie und Tumorversorgung-Unterbrechung.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Selektive Adipozyten-Vaskulatur-Zerstörung</li><li>Signifikante Fettreduktion in Primaten-Studien</li><li>Bifunktionales Targeting-Konzept</li><li>Adipositas-Forschung und Tumorvaskularisierung</li></ul><p>CAS: 1234-56-7 | Reinheit: ≥95%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Primaten-Studiendosis: 0,5 mg/kg subkutan</li><li>Nur unter strengen Laborbedingungen zu verwenden</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '95.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C78H130N26O20S3',
+    weight: '1948.2 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '⚖️',
+    gradient: 'linear-gradient(135deg, #200a00 0%, #3d1500 50%, #4d1a00 100%)',
+    glowColor: 'rgba(220, 80, 20, 0.2)',
+  },
+  {
+    id: 20,
+    name: 'Tesamorelin',
+    fullName: 'Tesamorelin (GHRH-Analogon, trans-3-hexenoisch)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 59.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 88,
+    badge: null,
+    badgeType: null,
+    description: 'Tesamorelin ist ein stabilisiertes GHRH-Analogon mit trans-3-Hexensäure-Modifikation. In Forschungen zeigt es GH-stimulierende Wirkung mit besonderem Fokus auf viszerale Fettreduktion.',
+    longDescription: `<p>Tesamorelin ist ein synthetisches Analogon von GHRH (Wachstumshormon-freisetzendes Hormon), bei dem eine trans-3-Hexensäure-Gruppe am N-Terminus für erhöhte Stabilität sorgt.</p>
+    <p>In Tiermodellen und klinischen Studien stimuliert Tesamorelin die GH-Produktion und wurde mit Reduktionen von viszeralem Fettgewebe assoziiert. Es wird in der Adipositas- und Stoffwechselforschung intensiv untersucht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>GHRH-Agonist mit verbesserter Stabilität</li><li>Viszerale Fettreduktion in Forschungsmodellen</li><li>GH/IGF-1-Achsen-Stimulation</li><li>Lipodystrophie-Forschung</li></ul><p>CAS: 218949-48-5 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–2 mg/kg in Tiermodellen</li><li>Subkutane Verabreichung in Studien</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C221H366N72O67S',
+    weight: '5135.8 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🌡️',
+    gradient: 'linear-gradient(135deg, #0a2000 0%, #183800 50%, #204500 100%)',
+    glowColor: 'rgba(80, 220, 0, 0.2)',
+  },
+  {
+    id: 21,
+    name: 'Semaglutide',
+    fullName: 'Semaglutid (GLP-1-Rezeptor-Agonist)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 99.99,
+    originalPrice: 129.99,
+    rating: 4.9,
+    reviews: 287,
     badge: 'Bestseller',
     badgeType: 'bestseller',
-    description: 'GHRP-2 ist ein synthetisches hexapeptidisches Wachstumshormon-Sekretagog der zweiten Generation. In Forschungsstudien stimuliert es die GH-Freisetzung deutlich stärker als GHRP-6 mit geringerem appetit-stimulierenden Effekt.',
-    longDescription: `<p>GHRP-2 (D-Ala-D-beta-Nal-Ala-Trp-D-Phe-Lys-NH2) ist ein synthetisches, hexapeptidisches Analogon der zweiten Generation von GHRP-6. Es ist ein potenter Agonist des Ghrelin-Rezeptors (GHSR-1a) und bewirkt eine starke pulsatile GH-Freisetzung in Forschungsmodellen.</p>
-    <p>Im Vergleich zu GHRP-6 zeigt GHRP-2 in Studien eine stärkere GH-stimulierende Wirkung bei gleichzeitig geringeren appetit-stimulierenden Effekten. Dies ist auf eine unterschiedliche Bindungscharakteristik am Ghrelin-Rezeptor zurückzuführen.</p>
-    <p>GHRP-2 bewirkt in Tiermodellen auch eine Stimulation von Cortisol und Prolaktin, wenngleich in geringerem Maß als die Wachstumshormonsekretion. Dies unterscheidet es von selektiveren Verbindungen wie Ipamorelin.</p>
-    <p>Alle Informationen dienen ausschließlich Forschungszwecken.</p>`,
-    researchInfo: `<h4>Vergleichende GHRP-Forschung</h4>
-    <p>GHRP-2 ist in der GH-Sekretions-Forschung gut charakterisiert:</p>
-    <ul>
-      <li>Potenter GHSR-1a Agonist – stärkste GH-Stimulation der GHRP-Klasse</li>
-      <li>Geringer appetit-stimulierender Effekt vs. GHRP-6</li>
-      <li>Mäßige Cortisol/Prolaktin-Stimulation in Tiermodellen</li>
-      <li>Synergistisch mit GHRH/CJC-1295 in Kombinations-Studien</li>
-      <li>Halbwertszeit: ~30 Minuten in Tiermodellen</li>
-    </ul>
-    <p>CAS-Nummer: 158861-67-7 | Reinheit: ≥99%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Forschungsdosis: 100–300 µg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan oder intravenös</li>
-      <li>Studienfrequenz: 2–3× täglich in Langzeitstudien</li>
-      <li>Synergistisch mit GHRH-Analoga in kombinierten Studiendesigns</li>
-    </ul>`,
+    description: 'Semaglutid ist ein langwirksamer GLP-1-Rezeptor-Agonist. In Forschungen und klinischen Studien zeigt es signifikante Effekte auf Gewicht, Blutzucker und kardiovaskuläre Risikomarker.',
+    longDescription: `<p>Semaglutid ist ein modifiziertes GLP-1-Analogon mit 94%iger Aminosäure-Übereinstimmung mit nativem GLP-1. Modifikationen am C18-Fettsäurerest und einer Aminosäure sorgen für eine Halbwertszeit von ~7 Tagen.</p>
+    <p>In Tiermodellen und umfangreichen klinischen Studien zeigt Semaglutid ausgeprägte Effekte auf die Glukosehomöostase und das Körpergewicht durch Rezeptoragonismus im ZNS und Pankreas. Es ist eines der meistuntersuchten Peptide der letzten Jahre.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>GLP-1-Rezeptor-Agonismus in metabolischen Studien</li><li>Gewichtsreduktion und Sättigungsregulation</li><li>Kardiovaskuläre Risikofaktoren</li><li>Typ-2-Diabetes-Grundlagenforschung</li></ul><p>CAS: 910463-68-2 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Nagetiermodelle: 0,03–0,3 mg/kg wöchentlich subkutan</li><li>Wochenlange Forschungsprotokolle üblich</li><li>Lagerung: 4°C (nach Rekonstitution), -20°C lyophilisiert</li></ul>`,
     purity: '99.0%',
-    format: '5mg',
-    molecular: 'C45H55N9O6',
-    weight: '817.9 g/mol',
-    storage: '-20°C',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C187H291N45O59',
+    weight: '4113.6 g/mol',
+    storage: '2-8°C',
     inStock: true,
-    emoji: '💊',
-    gradient: 'linear-gradient(135deg, #001a2d 0%, #003055 50%, #004880 100%)',
-    glowColor: 'rgba(0, 150, 255, 0.25)',
+    emoji: '💧',
+    gradient: 'linear-gradient(135deg, #001a3a 0%, #002a5a 50%, #003575 100%)',
+    glowColor: 'rgba(0, 120, 255, 0.2)',
   },
   {
-    id: 10,
-    name: 'GHRP-6',
-    fullName: 'GHRP-6 (Growth Hormone Releasing Peptide 6)',
-    category: 'growth',
-    categoryLabel: 'Wachstum & GH-Achse',
-    price: 34.99,
-    originalPrice: null,
-    rating: 4.6,
-    reviews: 198,
-    badge: null,
-    badgeType: null,
-    description: 'GHRP-6 ist das Ursprungs-Wachstumshormon-Sekretagog-Hexapeptid und das am besten erforschte der GHRP-Klasse. In Studien stimuliert es GH-Freisetzung und ist das Referenzmolekül für Ghrelin-Rezeptor-Forschung.',
-    longDescription: `<p>GHRP-6 (His-D-Trp-Ala-Trp-D-Phe-Lys-NH2) ist das erste synthetische Wachstumshormon-Sekretagog-Hexapeptid, das entwickelt wurde. Als historisches Referenzmolekül der GHRP-Klasse hat es die Entdeckung des Ghrelin-Rezeptors (GHSR) maßgeblich vorangetrieben.</p>
-    <p>GHRP-6 bewirkt in Forschungsmodellen eine robuste, dosisabhängige GH-Freisetzung über den Ghrelin-Rezeptor. Charakteristisch ist der ausgeprägte appetit-stimulierende Effekt, der durch den gleichen Rezeptormechanismus vermittelt wird wie beim endogenen Ghrelin.</p>
-    <p>Als gut charakterisiertes Referenzmolekül wird GHRP-6 häufig als Standard in Vergleichsstudien mit neueren Sekretagogen eingesetzt. Es hat erheblich zum Verständnis der GH-Achse beigetragen.</p>
-    <p>Alle Informationen sind ausschließlich für Forschungszwecke. Kein Arzneimittel.</p>`,
-    researchInfo: `<h4>Historische Bedeutung & Forschung</h4>
-    <p>GHRP-6 ist das Referenzmolekül der GHRP-Klasse:</p>
-    <ul>
-      <li>Erstes synthetisches GHRP – Referenz für Ghrelin-Rezeptor-Forschung</li>
-      <li>Robuste GH-Freisetzung in Tier- und Humanmodellen</li>
-      <li>Stark appetit-stimulierend über GHSR-1a (ähnlich Ghrelin)</li>
-      <li>Umfangreiche Literatur: >500 Publikationen</li>
-      <li>Verhältnis GH/Cortisol-Stimulation: niedriger als bei GHRP-2</li>
-    </ul>
-    <p>CAS-Nummer: 87616-84-0 | Reinheit: ≥98%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Nagetiermodelle)</h4>
-    <ul>
-      <li>Standarddosis: 100–400 µg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan, intravenös oder intranasal</li>
-      <li>Studienfrequenz: 1–3× täglich</li>
-      <li>Lagerung: -20°C lyophilisiert; Lösungsstabilität 48h bei 4°C</li>
-    </ul>`,
-    purity: '98.0%',
-    format: '5mg',
-    molecular: 'C46H56N12O6',
-    weight: '873.0 g/mol',
-    storage: '-20°C',
-    inStock: true,
-    emoji: '🌀',
-    gradient: 'linear-gradient(135deg, #002d1a 0%, #004d2a 50%, #006b3a 100%)',
-    glowColor: 'rgba(0, 200, 100, 0.2)',
-  },
-  {
-    id: 11,
-    name: 'Epithalon',
-    fullName: 'Epithalon (Epitalon, Tetrapeptid)',
-    category: 'anti-aging',
-    categoryLabel: 'Anti-Aging & Longevity',
-    price: 64.99,
-    originalPrice: null,
+    id: 22,
+    name: 'Tirzepatid',
+    fullName: 'Tirzepatid (GIP/GLP-1-Dual-Agonist)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 109.99,
+    originalPrice: 139.99,
     rating: 4.9,
-    reviews: 134,
+    reviews: 198,
     badge: 'Neu',
     badgeType: 'new',
-    description: 'Epithalon ist ein synthetisches Tetrapeptid (Ala-Glu-Asp-Gly), das in der Zirbeldrüsenforschung entwickelt wurde. Es ist eines der meistdiskutierten Peptide in der Longevity-Forschung aufgrund seiner Auswirkungen auf Telomerase.',
-    longDescription: `<p>Epithalon (auch bekannt als Epitalon oder Epitalone) ist ein synthetisches Tetrapeptid bestehend aus vier Aminosäuren: Ala-Glu-Asp-Gly. Es wurde von der russischen Wissenschaft, insbesondere von Professor Vladimir Khavinson und dem St. Petersburg Institute of Bioregulation and Gerontology entwickelt.</p>
-    <p>Das Peptid hat in der Longevity-Forschung erhebliche Aufmerksamkeit erregt, da Studien an Zellkulturen und Tiermodellen Effekte auf die Telomerase-Aktivität gezeigt haben. Telomerase ist das Enzym, das die Telomerlänge – einen wichtigen Biomarker des Zellalterns – reguliert.</p>
-    <p>Zusätzliche Forschungsgebiete umfassen die Regulation des zirkadianen Rhythmus und der Melatonin-Produktion, neuroprotektive Eigenschaften sowie Auswirkungen auf die Immunfunktion in Altersmodellen.</p>
-    <p>Alle Informationen sind ausschließlich für Forschungszwecke. Epithalon ist kein zugelassenes Arzneimittel in der EU.</p>`,
-    researchInfo: `<h4>Longevity-Forschung & Telomerase</h4>
-    <p>Epithalon ist das führende Forschungspeptid im Longevity-Bereich:</p>
-    <ul>
-      <li>Telomerase-Aktivierung in humanen Zellkulturen (in vitro)</li>
-      <li>Verlängerte Lebensspanne in Drosophila- und Mauskohorten</li>
-      <li>Regulation der zirkadianen Melatonin-Produktion</li>
-      <li>Immunomodulatorische Eigenschaften in Altersmodellen</li>
-      <li>Forschungsbasis: >100 Studien (hauptsächlich russischsprachig)</li>
-    </ul>
-    <p>CAS-Nummer: 307297-39-8 | Reinheit: ≥99%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Tiermodelle)</h4>
-    <ul>
-      <li>Studiendosis: 0,1–1,0 mg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan oder intraperitoneal</li>
-      <li>Langzeitstudien: typischerweise 10 Tage Zyklen mit Pause</li>
-      <li>Lagerung: -20°C lyophilisiert; stabil nach Rekonstituierung 7 Tage</li>
-    </ul>`,
+    description: 'Tirzepatid ist ein dualer GIP/GLP-1-Rezeptor-Agonist. In Forschungen und klinischen Studien zeigt es herausragende Wirkung bei Gewichtsreduktion und metabolischer Verbesserung.',
+    longDescription: `<p>Tirzepatid ist ein neuartiges Inkretinmimetikum, das sowohl den GIP- (Glukoseabhängiges insulinotropes Polypeptid) als auch den GLP-1-Rezeptor aktiviert. Diese duale Wirkung führt zu synergistischen Effekten auf den Stoffwechsel.</p>
+    <p>In klinischen Phase-3-Studien (SURMOUNT-Programm) wurden Gewichtsreduktionen von bis zu 22,5% beobachtet. Es ist Gegenstand intensiver Forschung zur Adipositas, Typ-2-Diabetes und nicht-alkoholischen Fettleber.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Dualer GIP/GLP-1-Rezeptor-Agonismus</li><li>Überlegene Gewichtsreduktion vs. GLP-1 mono</li><li>Blutzuckerregulation und Insulinsensitivität</li><li>Kardiovaskuläre und renale Endpunkte</li></ul><p>CAS: 2023788-19-2 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Nagetiermodelle: 0,3–3 nmol/kg wöchentlich</li><li>Einmalige wöchentliche Dosierung in Forschungsprotokollen</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
     purity: '99.0%',
-    format: '10mg',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C225H348N48O68',
+    weight: '4813.5 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🚀',
+    gradient: 'linear-gradient(135deg, #0a0a3a 0%, #151565 50%, #1a1a80 100%)',
+    glowColor: 'rgba(100, 100, 255, 0.2)',
+  },
+  {
+    id: 23,
+    name: 'Retatrutid',
+    fullName: 'Retatrutid (GLP-1/GIP/Glucagon-Triple-Agonist)',
+    category: 'weight-loss',
+    categoryLabel: 'Gewichtsabnahme',
+    price: 159.99,
+    originalPrice: null,
+    rating: 4.8,
+    reviews: 76,
+    badge: 'Neu',
+    badgeType: 'new',
+    description: 'Retatrutid ist ein innovativer Triple-Agonist für GLP-1-, GIP- und Glucagon-Rezeptoren. In Forschungsmodellen zeigt er überlegene metabolische Effekte gegenüber Dual-Agonisten.',
+    longDescription: `<p>Retatrutid ist ein experimenteller dreifacher Inkretinrezeptor-Agonist (GLP-1, GIP, Glucagon), der die Vorteile aller drei Signalwege kombiniert. Dieser innovative Ansatz soll synergistische metabolische Vorteile bieten.</p>
+    <p>In frühen klinischen Studien (Phase 2) wurden Gewichtsreduktionen von bis zu 24,2% beobachtet – möglicherweise die wirksamste Substanz dieser Klasse. Intensiv erforscht in der Adipositas- und Diabetes-Grundlagenforschung.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Triple-Agonismus: GLP-1, GIP und Glucagon</li><li>Überlegene Gewichtsreduktion in Phase-2-Studien</li><li>Leber- und Fettstoffwechsel-Modulation</li><li>Next-Generation-Inkretinforschung</li></ul><p>CAS: 2381286-42-4 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Wöchentliche subkutane Applikation in Studien</li><li>Dosierung: modellspezifisch (frühe Forschungsphase)</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C198H316N56O65',
+    weight: '4504.0 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🌐',
+    gradient: 'linear-gradient(135deg, #200030 0%, #3a0055 50%, #4a0070 100%)',
+    glowColor: 'rgba(160, 0, 255, 0.2)',
+  },
+
+  /* ─── ANTI-AGING ─── */
+  {
+    id: 24,
+    name: 'Epithalon',
+    fullName: 'Epithalon (Epitalon / Tetrapeptid)',
+    category: 'anti-aging',
+    categoryLabel: 'Anti-Aging',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.7,
+    reviews: 167,
+    badge: null,
+    badgeType: null,
+    description: 'Epithalon ist ein synthetisches Tetrapeptid (Ala-Glu-Asp-Gly) aus der Zirbeldrüse. In Forschungen zeigt es Telomerase-aktivierende Eigenschaften und wird intensiv in der Aging-Forschung untersucht.',
+    longDescription: `<p>Epithalon (Epitalon) ist ein synthetisches Tetrapeptid, das dem natürlichen Epithalamin der Zirbeldrüse nachempfunden ist. Es wurde von dem russischen Gerontologen Vladimir Khavinson entwickelt und intensiv in Alterungsforschungsstudien untersucht.</p>
+    <p>In Tiermodellen aktiviert Epithalon die Telomerase-Enzymaktivität und kann Telomere verlängern – ein wichtiger Mechanismus in der Altersforschung. Weitere Studien untersuchen Melatonin-regulatorische und antioxidative Eigenschaften.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Telomerase-Aktivierung in Zellkulturen</li><li>Telomerlänge-Modulation in Tiermodellen</li><li>Melatonin-Regulation und zirkadiane Rhythmik</li><li>Antioxidative Eigenschaften</li><li>Lebensspannen-Studien in Nagetiermodellen</li></ul><p>CAS: 307297-39-8 | Sequenz: Ala-Glu-Asp-Gly | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–2 mg/kg in Nagetiermodellen</li><li>Forschungszyklen: variabel (10–20 Tage in Tierstudien)</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.5%',
+    format: '10mg/Vial × 10 Vials',
     molecular: 'C14H22N4O9',
     weight: '390.3 g/mol',
     storage: '-20°C',
     inStock: true,
     emoji: '✨',
-    gradient: 'linear-gradient(135deg, #1a0540 0%, #2d0a70 50%, #40108a 100%)',
-    glowColor: 'rgba(160, 80, 255, 0.25)',
+    gradient: 'linear-gradient(135deg, #1a0a30 0%, #2e1555 50%, #3a1a6a 100%)',
+    glowColor: 'rgba(180, 100, 255, 0.2)',
   },
   {
-    id: 12,
-    name: 'Selank',
-    fullName: 'Selank (Tuftsin-Analogon, 7-Mer)',
-    category: 'cognitive',
-    categoryLabel: 'Kognition & Neuropeptide',
-    price: 44.99,
+    id: 25,
+    name: 'NAD+',
+    fullName: 'NAD+ (Nicotinamid-Adenin-Dinukleotid) 500mg',
+    category: 'anti-aging',
+    categoryLabel: 'Anti-Aging',
+    price: 79.99,
+    originalPrice: null,
+    rating: 4.8,
+    reviews: 234,
+    badge: 'Bestseller',
+    badgeType: 'bestseller',
+    description: 'NAD+ ist ein essentielles Coenzym in nahezu allen Lebewesen. In der Forschung ist es zentral für Energiestoffwechsel, DNA-Reparatur und wird intensiv in der Altersforschung untersucht.',
+    longDescription: `<p>Nicotinamid-Adenin-Dinukleotid (NAD+) ist ein zentrales Coenzym, das in hunderten enzymatischen Reaktionen in Zellen eine Rolle spielt. Seine Spiegel sinken mit dem Alter in Tiermodellen und werden mit altersbedingten Funktionsverlusten assoziiert.</p>
+    <p>In der Forschung wird NAD+ als Aktivator von Sirtuinen und PARP-Enzymen untersucht, die an DNA-Reparatur, Entzündungsregulation und Mitochondrienfunktion beteiligt sind. Es ist eines der meisterforschen Moleküle in der aktuellen Alterswissenschaft.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Sirtuin-Aktivierung und Epigenetik</li><li>Mitochondriale Biogenese und Funktion</li><li>DNA-Reparaturmechanismen (PARP)</li><li>Altersbezogene Abnahme und Supplementierung</li><li>Stoffwechselforschung (Glykolyse, TCA-Zyklus)</li></ul><p>CAS: 53-84-9 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll</h4><ul><li>In-vitro: 0,5–5 mM in Zellkultur</li><li>In-vivo Tiermodelle: 300–500 mg/kg oral oder i.p.</li><li>Lagerung: -20°C, lichtgeschützt, trocken</li></ul>`,
+    purity: '99.5%',
+    format: '500mg/Vial',
+    molecular: 'C21H27N7O14P2',
+    weight: '663.4 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '⚡',
+    gradient: 'linear-gradient(135deg, #1a1a00 0%, #333300 50%, #444400 100%)',
+    glowColor: 'rgba(220, 220, 0, 0.2)',
+  },
+  {
+    id: 26,
+    name: 'MOTS-C',
+    fullName: 'MOTS-C (Mitochondrial Open Reading Frame Peptide)',
+    category: 'anti-aging',
+    categoryLabel: 'Anti-Aging',
+    price: 64.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 89,
+    badge: 'Neu',
+    badgeType: 'new',
+    description: 'MOTS-C ist ein mitochondrial kodiertes Peptid. In Forschungen zeigt es Effekte auf den Insulinstoffwechsel, sportliche Leistung und zelluläre Stressresistenz in Tiermodellen.',
+    longDescription: `<p>MOTS-C ist ein 16-Aminosäuren-Peptid, das vom mitochondrialen Genom kodiert wird – eine seltene Klasse von Mitokinen. In Tiermodellen wird es bei Energiemangel und metabolischem Stress produziert.</p>
+    <p>Tiermodelle zeigen, dass MOTS-C die Insulinsensitivität verbessert, Fettgewebe reduziert und die körperliche Leistungsfähigkeit steigert. Es wird als mögliches Schlüsselmolekül in der Kommunikation zwischen Mitochondrien und dem Zellkern erforscht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Mitochondriales Mitokin – einzigartiger Ursprung</li><li>Insulinsensitivität und Glukosestoffwechsel</li><li>Körperliche Leistung in Nagetiermodellen</li><li>Stress-Reaktion und zelluläre Homöostase</li></ul><p>CAS: N/A | Sequenz: MRWQEMGYIFYPRKLR | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 0,5–5 mg/kg in Nagetiermodellen</li><li>Intraperitoneale oder subkutane Gabe</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C92H149N27O24',
+    weight: '2174.4 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🔆',
+    gradient: 'linear-gradient(135deg, #002020 0%, #004040 50%, #005050 100%)',
+    glowColor: 'rgba(0, 200, 200, 0.2)',
+  },
+  {
+    id: 27,
+    name: 'Follistatin 344',
+    fullName: 'Follistatin-344 (FST-344)',
+    category: 'anti-aging',
+    categoryLabel: 'Anti-Aging',
+    price: 199.99,
     originalPrice: null,
     rating: 4.7,
-    reviews: 89,
+    reviews: 62,
+    badge: 'Neu',
+    badgeType: 'new',
+    description: 'Follistatin-344 ist ein Glycoprotein und Myostatin-Inhibitor. In Tiermodellen fördert es Muskelwachstum und hemmt Fibrose. Es wird in der Muskelbiologie intensiv untersucht.',
+    longDescription: `<p>Follistatin-344 ist eine isoformenspezifische Form des Glycoproteins Follistatin, das Mitglieder der TGF-β-Superfamilie – darunter Myostatin und Activin – bindet und inhibiert.</p>
+    <p>In Tiermodellen hemmt Follistatin-344 Myostatin, was zu bemerkenswerten Steigerungen der Muskelmasse und -stärke führt. Darüber hinaus werden antifibrotische Effekte in Leber und Muskel sowie Effekte auf die Knochenbildung untersucht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Myostatin-Hemmung und Muskelwachstum (Tiermodelle)</li><li>Antifibrotische Wirkung in Leber und Muskel</li><li>TGF-β-Signalweg-Modulation</li><li>Knochenbildung und Heilung</li></ul><p>CAS: N/A | Reinheit: ≥95%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Gendosierung: adeno-assoziierte Viren in Tiermodellen</li><li>Proteinapplikation: 0,1–1 mg/kg in Studien</li><li>Lagerung: -80°C für Langzeitlagerung</li></ul>`,
+    purity: '95.0%',
+    format: '1mg/Vial × 10 Vials',
+    molecular: 'Glycoprotein ~35 kDa',
+    weight: '~35000 g/mol',
+    storage: '-80°C',
+    inStock: true,
+    emoji: '💎',
+    gradient: 'linear-gradient(135deg, #1a001a 0%, #350035 50%, #450045 100%)',
+    glowColor: 'rgba(220, 0, 220, 0.2)',
+  },
+  {
+    id: 28,
+    name: 'DSIP',
+    fullName: 'DSIP (Delta Sleep Inducing Peptide)',
+    category: 'anti-aging',
+    categoryLabel: 'Anti-Aging',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.4,
+    reviews: 78,
     badge: null,
     badgeType: null,
-    description: 'Selank ist ein synthetisches Heptapeptid und Tuftsin-Analogon, entwickelt am Moskauer Institut für Molekulargenetik. In Forschungsstudien zeigt es anxiolytische und nootropische Eigenschaften über GABAerge und BDNF-Mechanismen.',
-    longDescription: `<p>Selank ist ein synthetisches Heptapeptid (Thr-Lys-Pro-Arg-Pro-Gly-Pro), das am Institut für Molekulargenetik der Russischen Akademie der Wissenschaften entwickelt wurde. Es basiert auf dem tetrapeptidischen Immunmodulator Tuftsin (Thr-Lys-Pro-Arg) mit zusätzlicher Stabilisierungssequenz.</p>
-    <p>In präklinischen Studien hat Selank bemerkenswertes Potenzial als anxiolytisches Peptid ohne sedierende Eigenschaften gezeigt. Forschungen deuten auf Modulationseffekte des GABAergen Systems hin, ähnlich Benzodiazepinen, jedoch mit anderen Bindungsstellen.</p>
-    <p>Besonders interessant für die Neurobiologie sind die Forschungsdaten zu Selank's Einfluss auf BDNF (Brain-Derived Neurotrophic Factor) – einem wichtigen Wachstumsfaktor für Neuronen. Studien zeigen potenzielle neuroprotektive Effekte und Verbesserungen der kognitiven Funktion in Tiermodellen.</p>
-    <p>Alle Informationen dienen ausschließlich Forschungszwecken. Selank ist kein zugelassenes Arzneimittel in der EU.</p>`,
-    researchInfo: `<h4>Neuropeptid-Forschung</h4>
-    <p>Selank ist ein wichtiges Forschungsobjekt in der Neuropeptidologie:</p>
-    <ul>
-      <li>Anxiolytische Eigenschaften ohne Sedierung in Tiermodellen</li>
-      <li>GABAerge Modulation – Verstärkung der GABA-A-Inhibition</li>
-      <li>BDNF-Hochregulation in präfrontalem Kortex (Nagetiere)</li>
-      <li>Verbesserter Lernerfolg in Angst- und Gedächtnismodellen</li>
-      <li>Immunmodulatorische Wirkungen (IL-6, Interferon)</li>
-    </ul>
-    <p>CAS-Nummer: 129954-34-3 | Reinheit: ≥98%</p>`,
-    dosageInfo: `<p><strong>⚠️ WICHTIGER HINWEIS:</strong> Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</p>
-    <h4>Studienprotokoll (Nagetiermodelle)</h4>
-    <ul>
-      <li>Studiendosis: 100–300 µg/kg in Nagetiermodellen</li>
-      <li>Applikationsroute: subkutan oder intranasal</li>
-      <li>Kognitive Studien: Morris Water Maze, Open Field Tests</li>
-      <li>Lagerung: -20°C lyophilisiert; Lösung max. 72h bei 4°C</li>
-    </ul>`,
-    purity: '98.5%',
-    format: '5mg',
+    description: 'DSIP ist ein endogenes Neuropeptid, das natürlich im Gehirn vorkommt. In Tiermodellen wird es mit Delta-Schlaf-Induktion, stressreduzierenden Effekten und GH-Modulation assoziiert.',
+    longDescription: `<p>Das Delta Sleep Inducing Peptide (DSIP) ist ein Nonapeptid, das 1974 erstmals aus Kaninchenblut isoliert wurde. Es kommt natürlich im Hypothalamus, Hypophyse und im Blut vor.</p>
+    <p>In Tiermodellen zeigt DSIP schlafmodulierende Effekte, insbesondere Förderung von Delta (Tiefschlaf) -Wellen-Aktivität. Weitere Forschung untersucht anti-stressogene Eigenschaften, GH-Modulation und antinozizeptive Effekte.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Delta-Schlaf-Induktion (Tiefschlaf) in Tiermodellen</li><li>Stressreduktion und HPA-Achsen-Modulation</li><li>GH-Sekretion in Schlafstudien</li><li>Antinozizeptive und antiepileptische Forschung</li></ul><p>CAS: 62568-57-4 | Sequenz: Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 30–100 µg/kg i.v. in Schlafstudiendien</li><li>Intrazerebroventrikuläre Studien: 1–10 µg</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C35H48N10O15',
+    weight: '848.8 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '😴',
+    gradient: 'linear-gradient(135deg, #000820 0%, #001040 50%, #001555 100%)',
+    glowColor: 'rgba(0, 60, 200, 0.2)',
+  },
+
+  /* ─── KOGNITIV ─── */
+  {
+    id: 29,
+    name: 'Selank',
+    fullName: 'Selank (Anxiolytisches Heptapeptid)',
+    category: 'cognitive',
+    categoryLabel: 'Kognitiv',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.7,
+    reviews: 143,
+    badge: null,
+    badgeType: null,
+    description: 'Selank ist ein synthetisches Heptapeptid, abgeleitet von Tuftsin. In Forschungen zeigt es anxiolytische, nootrope und neuroprotektive Eigenschaften in Tiermodellen.',
+    longDescription: `<p>Selank ist ein synthetisches Analogon des Immunopeptids Tuftsin. Es wurde am Moskauer Institut für Molekulargenetik (IMGen) entwickelt und intensiv in der neurobiologischen Forschung untersucht.</p>
+    <p>In Tiermodellen zeigt Selank anxiolytische Wirkungen ohne Sedierung, positive Effekte auf Lernfähigkeit und Gedächtnisleistung sowie neuroprotektive Eigenschaften. Es wird als Modulans des GABA-A-Systems und des BDNF-Spiegels erforscht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Anxiolyse ohne Sedierung (Tiermodelle)</li><li>Kognitive Verbesserung: Gedächtnis und Lernen</li><li>BDNF- und Neurotrophin-Modulation</li><li>Neuroprotektive Eigenschaften</li><li>Immunsystemstudien (Tuftsin-Derivat)</li></ul><p>CAS: 129954-34-3 | Sequenz: Thr-Lys-Pro-Arg-Pro-Gly-Pro | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 200–300 µg/kg in Nagetiermodellen</li><li>Nasale oder subkutane Applikation in Studien</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.5%',
+    format: '5mg/Vial × 10 Vials',
     molecular: 'C33H57N11O9',
     weight: '751.9 g/mol',
     storage: '-20°C',
     inStock: true,
     emoji: '🧠',
-    gradient: 'linear-gradient(135deg, #002d35 0%, #004d5a 50%, #006b7a 100%)',
-    glowColor: 'rgba(0, 180, 210, 0.2)',
+    gradient: 'linear-gradient(135deg, #0a0a25 0%, #151545 50%, #1a1a5a 100%)',
+    glowColor: 'rgba(100, 100, 255, 0.2)',
+  },
+  {
+    id: 30,
+    name: 'Semax',
+    fullName: 'Semax (ACTH 4-7 Pro-Gly-Pro Analogon)',
+    category: 'cognitive',
+    categoryLabel: 'Kognitiv',
+    price: 84.99,
+    originalPrice: null,
+    rating: 4.8,
+    reviews: 167,
+    badge: null,
+    badgeType: null,
+    description: 'Semax ist ein synthetisches Nootropikum, abgeleitet von ACTH 4-7. In Forschungen stimuliert es BDNF, zeigt neuroprotektive Wirkung und verbessert kognitive Funktionen in Tiermodellen.',
+    longDescription: `<p>Semax ist ein synthetisches Heptapeptid, das vom N-terminalen Fragment des ACTH (Corticotropin) abgeleitet ist. Es wurde in russischen Laboratorien entwickelt und ist Gegenstand umfangreicher Forschung in der Neurobiologie.</p>
+    <p>In Tiermodellen stimuliert Semax die BDNF (Brain-Derived Neurotrophic Factor) -Produktion, schützt Neuronen vor Ischämieschäden und verbessert kognitive Leistungen wie Gedächtnis, Lernfähigkeit und Aufmerksamkeit.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>BDNF- und VEGF-Stimulation (Tiermodelle)</li><li>Neuroprotektive Wirkung bei Ischämie</li><li>Kognitive Verbesserung: Gedächtnis und Aufmerksamkeit</li><li>Stressresistenz in Nagetiermodellen</li><li>Dopaminerges und serotoninerges System</li></ul><p>CAS: 80714-61-0 | Sequenz: Met-Glu-His-Phe-Pro-Gly-Pro | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 50–200 µg/kg in Nagetiermodellen</li><li>Nasale oder subkutane Applikation</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.5%',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C37H51N9O10S',
+    weight: '813.9 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🧩',
+    gradient: 'linear-gradient(135deg, #001525 0%, #002a45 50%, #003560 100%)',
+    glowColor: 'rgba(0, 150, 255, 0.2)',
+  },
+  {
+    id: 31,
+    name: 'Dihexa',
+    fullName: 'Dihexa (PNB-0408, Nootropes Oligopeptid)',
+    category: 'cognitive',
+    categoryLabel: 'Kognitiv',
+    price: 69.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 98,
+    badge: 'Neu',
+    badgeType: 'new',
+    description: 'Dihexa ist ein kleines Peptidderivat von Angiotensin IV. In Forschungen zeigt es kognitionsverbessernde und neurotrophe Eigenschaften, die in Tiermodellen stärker als BDNF wirken sollen.',
+    longDescription: `<p>Dihexa (N-hexanoic-Tyr-Ile-(6) aminohexanoic amide) ist ein hochpotentes nootropisches Peptid, das als Analogon von Angiotensin IV entwickelt wurde. Es bindet an den HGF/MET-Rezeptorkomplex.</p>
+    <p>In Tiermodellen zeigt Dihexa ausgeprägte kognitionsverbessernde Effekte, insbesondere bei lern- und gedächtnisbezogenen Aufgaben. Erste Studien deuteten auf eine 7-fach höhere Wirksamkeit als BDNF bei der Synapsenbildung hin – was es zu einem faszinierenden Forschungsobjekt macht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>HGF/c-Met-Signalweg-Aktivierung</li><li>Synaptogenese und kognitive Verbesserung (Tiermodelle)</li><li>Alzheimer- und Demenz-Grundlagenforschung</li><li>Stärkere Wirkung als BDNF bei Synapsenbildung (in vitro)</li></ul><p>CAS: 1191588-51-0 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–10 mg/kg in Nagetiermodellen</li><li>Orale oder subkutane Applikation</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '10mg/Vial × 10 Vials',
+    molecular: 'C22H35N3O3',
+    weight: '393.5 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🔭',
+    gradient: 'linear-gradient(135deg, #12002a 0%, #220050 50%, #2d0068 100%)',
+    glowColor: 'rgba(150, 0, 255, 0.2)',
+  },
+
+  /* ─── HORMONE & FORSCHUNG ─── */
+  {
+    id: 32,
+    name: 'Melanotan II',
+    fullName: 'Melanotan II (MT-2, α-MSH-Analogon)',
+    category: 'hormones',
+    categoryLabel: 'Hormone & Forschung',
+    price: 54.99,
+    originalPrice: null,
+    rating: 4.6,
+    reviews: 178,
+    badge: null,
+    badgeType: null,
+    description: 'Melanotan II ist ein synthetisches α-MSH-Analogon. In Forschungen aktiviert es Melanocortin-Rezeptoren und wird intensiv in der Pigmentierungs-, Libido- und Appetitforschung untersucht.',
+    longDescription: `<p>Melanotan II (MT-2) ist ein synthetisches, cyclisches Analogon von α-Melanozyten-stimulierendem Hormon (α-MSH). Es bindet mit hoher Affinität an Melanocortin-Rezeptoren (MC1R, MC3R, MC4R, MC5R).</p>
+    <p>In Tiermodellen aktiviert MT-2 die Melaninproduktion (MC1R), beeinflusst Sexualverhalten und Libido (MC4R) und moduliert den Appetit. Es ist ein wichtiges Forschungswerkzeug in der Melanocortin-Systemforschung.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>Melanocortin-Rezeptor-Agonismus (MC1-5R)</li><li>Melanin-Pigmentierung (MC1R-vermittelt)</li><li>Sexualfunktion und Libido (MC4R-Forschung)</li><li>Appetitregulation (Tiermodelle)</li></ul><p>CAS: 121062-08-6 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 0,5–1 mg/kg in Nagetiermodellen</li><li>Subkutane Applikation in Studien</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '10mg/Vial × 10 Vials',
+    molecular: 'C50H69N15O9',
+    weight: '1024.2 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '☀️',
+    gradient: 'linear-gradient(135deg, #2a1500 0%, #4a2800 50%, #604000 100%)',
+    glowColor: 'rgba(255, 180, 0, 0.2)',
+  },
+  {
+    id: 33,
+    name: 'PT-141',
+    fullName: 'PT-141 (Bremelanotid, MC4R-Agonist)',
+    category: 'hormones',
+    categoryLabel: 'Hormone & Forschung',
+    price: 64.99,
+    originalPrice: null,
+    rating: 4.7,
+    reviews: 134,
+    badge: null,
+    badgeType: null,
+    description: 'PT-141 (Bremelanotid) ist ein cyclisches Heptapeptid und MC4R-Agonist. In Forschungen zeigt es Aktivität im ZNS-Bereich der Sexualfunktion und wird in der Libidoforschung untersucht.',
+    longDescription: `<p>PT-141 (Bremelanotid) ist ein metabolischer Abbauprodukt von Melanotan II, dem die N-terminale Acetylamidin-Gruppe fehlt. Als selektiver MC4R-Agonist wirkt es primär im Zentralnervensystem.</p>
+    <p>In Tiermodellen und klinischen Studien zeigt PT-141 Effekte auf sexuelles Verlangen und Verhalten, vermittelt über das ZNS – im Gegensatz zu peripheren Vasodilatatoren. Es ist ein wichtiges Forschungswerkzeug in der Sexualbiologie.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>MC4R-Agonismus im Zentralnervensystem</li><li>Sexualfunktions-Forschung (Tiermodelle)</li><li>ZNS-vermittelte Wirkung (vs. periphere Vasodilatatoren)</li><li>Melanocortin-System-Grundlagenforschung</li></ul><p>CAS: 189691-06-3 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–5 mg/kg in Nagetiermodellen</li><li>Subkutane oder nasale Applikation</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '10mg/Vial × 10 Vials',
+    molecular: 'C50H68N14O10',
+    weight: '1025.2 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '💊',
+    gradient: 'linear-gradient(135deg, #2a0a1a 0%, #4a1530 50%, #601a3a 100%)',
+    glowColor: 'rgba(255, 80, 150, 0.2)',
+  },
+  {
+    id: 34,
+    name: 'Kisspeptin',
+    fullName: 'Kisspeptin-10 (KP-10, KISS1-Derivat)',
+    category: 'hormones',
+    categoryLabel: 'Hormone & Forschung',
+    price: 69.99,
+    originalPrice: null,
+    rating: 4.5,
+    reviews: 76,
+    badge: null,
+    badgeType: null,
+    description: 'Kisspeptin-10 ist das biologisch aktive C-terminale Fragment von KISS1. In Forschungen stimuliert es GnRH und spielt eine Schlüsselrolle in der Reproduktionsendokrinologie.',
+    longDescription: `<p>Kisspeptin ist ein Peptidhormon, das vom KISS1-Gen kodiert wird und primär im Hypothalamus gebildet wird. KP-10 ist das kürzeste aktive Fragment mit der Minimalsequenz für biologische Aktivität.</p>
+    <p>In Tiermodellen stimuliert Kisspeptin die GnRH-Freisetzung aus dem Hypothalamus und ist damit ein Hauptregulator der reproduktiven Achse. Es wird intensiv in der Pubertäts-, Fertilität- und Endokrinologieforschung eingesetzt.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>GnRH-Sekretion und Reproduktionsachse</li><li>Pubertätsbeginn in Tiermodellen</li><li>Fertilität und Ovulationssteuerung</li><li>Krebsmetastasen-Suppression (KISS1-Forschung)</li></ul><p>CAS: 380614-39-1 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 1–10 nmol intrazerebroventrikulär</li><li>Peripherie: 1–10 µg/kg i.v.</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '5mg/Vial × 10 Vials',
+    molecular: 'C63H83N15O14',
+    weight: '1302.4 g/mol',
+    storage: '-20°C',
+    inStock: true,
+    emoji: '🔑',
+    gradient: 'linear-gradient(135deg, #250a0a 0%, #450f0f 50%, #551515 100%)',
+    glowColor: 'rgba(255, 60, 60, 0.2)',
+  },
+  {
+    id: 35,
+    name: 'Triptorelin',
+    fullName: 'Triptorelin Acetat (GnRH-Superagonist)',
+    category: 'hormones',
+    categoryLabel: 'Hormone & Forschung',
+    price: 49.99,
+    originalPrice: null,
+    rating: 4.4,
+    reviews: 67,
+    badge: null,
+    badgeType: null,
+    description: 'Triptorelin ist ein synthetischer GnRH-Superagonist. In Forschungen führt die kontinuierliche Gabe zur Desensibilisierung der Gonadotropinachse. Wichtiges Werkzeug in der Onkologieforschung.',
+    longDescription: `<p>Triptorelin ist ein synthetisches Dekapeptid-Analogon von GnRH (Gonadorelin) mit erhöhter Rezeptorbin-dungsstärke. Als Superagonist führt kontinuierliche Stimulation paradoxerweise zur Rezeptor-Desensibilisierung.</p>
+    <p>In der Forschung wird Triptorelin als Werkzeug zur Modulation der Hypothalamus-Hypophysen-Gonaden-Achse eingesetzt. Es wird in der Onkologieforschung, Studien zur hormonellen Kastration und zur Pubertätsverzögerung in Tiermodellen untersucht.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>GnRH-Superagonismus und Downregulation</li><li>Gonadotropin-Suppression (Tiermodelle)</li><li>Onkologische Grundlagenforschung (hormonsensitive Tumore)</li><li>Pubertätsmodulation in Tiermodellen</li></ul><p>CAS: 57773-63-4 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Studiendosis: 0,1–1 mg/kg in Nagetiermodellen</li><li>Depot-Formulierungen in Langzeitstudien</li><li>Lagerung: -20°C lyophilisiert</li></ul>`,
+    purity: '99.0%',
+    format: '2mg/Vial × 10 Vials',
+    molecular: 'C64H82N18O13',
+    weight: '1311.4 g/mol',
+    storage: '-20°C',
+    inStock: false,
+    emoji: '🔬',
+    gradient: 'linear-gradient(135deg, #001a00 0%, #003a00 50%, #004a00 100%)',
+    glowColor: 'rgba(0, 200, 0, 0.2)',
+  },
+  {
+    id: 36,
+    name: 'HGH 100IU',
+    fullName: 'HGH (Humanes Wachstumshormon) 100IU Kit',
+    category: 'hormones',
+    categoryLabel: 'Hormone & Forschung',
+    price: 69.99,
+    originalPrice: null,
+    rating: 4.8,
+    reviews: 312,
+    badge: 'Bestseller',
+    badgeType: 'bestseller',
+    description: 'Rekombinantes Humanes Wachstumshormon (191 Aminosäuren). Das meistuntersuchte anabole Hormon in der Forschung. Zentral für Wachstum, Körperzusammensetzung und Stoffwechselstudien.',
+    longDescription: `<p>Rekombinantes Humanes Wachstumshormon (rhGH, Somatropin) ist ein 191-Aminosäuren-Peptid mit einem Molekulargewicht von ~22 kDa. Es ist das zentrale Hormon der GH-IGF-1-Achse.</p>
+    <p>In der Forschung ist HGH unentbehrlich für Studien zu Wachstum, Körperzusammensetzung, Fettstoffwechsel, Insulinsensitivität und Altersbiologie. Es aktiviert den JAK2-STAT5-Signalweg und stimuliert hepatische IGF-1-Produktion.</p>
+    <p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p>`,
+    researchInfo: `<h4>Forschungsübersicht</h4><ul><li>JAK2-STAT5 Signalweg-Forschung</li><li>IGF-1-Produktion und GH-Achse</li><li>Körperzusammensetzung und Lipolyse</li><li>Knochenwachstum und -dichte (Tiermodelle)</li><li>Insulinresistenz-Forschung</li></ul><p>CAS: 12629-01-5 | Reinheit: ≥99%</p>`,
+    dosageInfo: `<p><strong>⚠️ Nur für Forschungszwecke. Nicht für den menschlichen Konsum.</strong></p><h4>Forschungsprotokoll (Tiermodelle)</h4><ul><li>Nagetiermodelle: 1–4 IU/kg täglich subkutan</li><li>Rekonstitution: Bacteriostatisches Wasser</li><li>Lagerung: 2–8°C nach Rekonstitution; lyophilisiert -20°C</li></ul>`,
+    purity: '99.5%',
+    format: '10IU/Vial × 10 Vials',
+    molecular: 'C990H1528N262O300S7',
+    weight: '22124.0 g/mol',
+    storage: '2-8°C',
+    inStock: true,
+    emoji: '📈',
+    gradient: 'linear-gradient(135deg, #002030 0%, #004060 50%, #005070 100%)',
+    glowColor: 'rgba(0, 180, 200, 0.2)',
   },
 ];
+
+/* ============================================================
+   Runtime: Check localStorage for admin overrides
+   ============================================================ */
+(function () {
+  var stored = localStorage.getItem('peptidelab_products');
+  if (stored) {
+    try {
+      var parsed = JSON.parse(stored);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        window.PRODUCTS = parsed;
+        return;
+      }
+    } catch (e) { /* fallback below */ }
+  }
+  window.PRODUCTS = window.DEFAULT_PRODUCTS;
+})();

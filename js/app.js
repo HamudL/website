@@ -294,7 +294,8 @@ function initCartEvents() {
 function initIndexFeatured() {
   var grid = document.getElementById('featured-products-grid');
   if (!grid || !window.PRODUCTS) return;
-  var featured = [1, 2, 4, 11];
+  // IDs: BPC-157, TB-500, Semaglutid, Epithalon (repräsentative Auswahl)
+  var featured = [1, 2, 21, 24];
   var products = window.PRODUCTS.filter(function (p) { return featured.includes(p.id); });
   renderProducts(products, grid);
 }
