@@ -54,7 +54,15 @@ const UPLOADS_DIR   = path.join(__dirname, 'uploads');
 });
 
 /* ── Middleware ── */
-app.use(cors({ origin: true, credentials: true }));
+const ALLOWED_ORIGIN = process.env.ALLOWED_ORIGIN || 'https://peptidelab-ev4j.onrender.com';
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (server-to-server, Postman) and same-origin
+    if (!origin || origin === ALLOWED_ORIGIN) return callback(null, true);
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+}));
 app.use(helmet({
   contentSecurityPolicy: false,
   crossOriginEmbedderPolicy: false,
@@ -85,14 +93,47 @@ function writeJSON(file, data) {
 }
 
 /* ── Admin session store ── */
-const ADMIN_PASSWORD = process.env.ADMIN_TOKEN || 'PeptideLab2024';
-const SESSION_TTL_MS = 8 * 60 * 60 * 1000;  // 8 hours
-const adminSessions  = new Map(); // token -> expiry timestamp
+const ADMIN_PASSWORD = process.env.ADMIN_TOKEN;
+if (!ADMIN_PASSWORD) {
+  console.error('FEHLER: Umgebungsvariable ADMIN_TOKEN ist nicht gesetzt!');
+  console.error('Setze sie in einer .env-Datei oder als Render-Umgebungsvariable.');
+  process.exit(1);
+}
+
+const SESSION_TTL_MS  = 8 * 60 * 60 * 1000;  // 8 hours
+const SESSIONS_FILE   = path.join(DATA_DIR, 'sessions.json');
+const MAX_ATTEMPTS    = 10;
+const LOCKOUT_MS      = 15 * 60 * 1000; // 15 minutes
 
 // Brute-force tracker: ip -> { count, resetAt }
 const loginAttempts = new Map();
-const MAX_ATTEMPTS  = 10;
-const LOCKOUT_MS    = 15 * 60 * 1000; // 15 minutes
+
+// Order rate limiter: ip -> { count, resetAt }
+const orderAttempts   = new Map();
+const MAX_ORDERS_PER_HOUR = 10;
+const ORDER_WINDOW_MS     = 60 * 60 * 1000;
+
+// Load persisted sessions from file
+var adminSessions = new Map();
+(function loadSessions() {
+  try {
+    if (fs.existsSync(SESSIONS_FILE)) {
+      var raw = JSON.parse(fs.readFileSync(SESSIONS_FILE, 'utf8'));
+      var now = Date.now();
+      Object.keys(raw).forEach(function (token) {
+        if (raw[token] > now) adminSessions.set(token, raw[token]);
+      });
+    }
+  } catch (e) { /* start fresh */ }
+})();
+
+function persistSessions() {
+  try {
+    var obj = {};
+    adminSessions.forEach(function (expiry, token) { obj[token] = expiry; });
+    fs.writeFileSync(SESSIONS_FILE, JSON.stringify(obj), 'utf8');
+  } catch (e) { /* non-fatal */ }
+}
 
 /* ── Admin auth middleware ── */
 function requireAdmin(req, res, next) {
@@ -106,6 +147,7 @@ function requireAdmin(req, res, next) {
   }
   // Sliding expiry
   adminSessions.set(token, Date.now() + SESSION_TTL_MS);
+  persistSessions();
   next();
 }
 
@@ -139,6 +181,7 @@ app.post('/api/admin/login', function (req, res) {
   loginAttempts.delete(ip);
   var token = crypto.randomBytes(32).toString('hex');
   adminSessions.set(token, Date.now() + SESSION_TTL_MS);
+  persistSessions();
   console.log('[AUTH] Admin login from', ip);
   res.json({ success: true, token: token });
 });
@@ -146,7 +189,7 @@ app.post('/api/admin/login', function (req, res) {
 /** POST /api/admin/logout */
 app.post('/api/admin/logout', function (req, res) {
   var token = req.headers['x-admin-token'];
-  if (token) adminSessions.delete(token);
+  if (token) { adminSessions.delete(token); persistSessions(); }
   res.json({ success: true });
 });
 
@@ -176,9 +219,44 @@ app.post('/api/products', requireAdmin, function (req, res) {
 
 /** POST /api/orders – Place order (public) */
 app.post('/api/orders', function (req, res) {
+  // Rate limiting
+  var ip  = req.ip || req.connection.remoteAddress || 'unknown';
+  var now = Date.now();
+  var oe  = orderAttempts.get(ip) || { count: 0, resetAt: now + ORDER_WINDOW_MS };
+  if (now > oe.resetAt) oe = { count: 0, resetAt: now + ORDER_WINDOW_MS };
+  if (oe.count >= MAX_ORDERS_PER_HOUR) {
+    return res.status(429).json({ error: 'Zu viele Bestellungen. Bitte später erneut versuchen.' });
+  }
+  oe.count++;
+  orderAttempts.set(ip, oe);
+
   var body = req.body;
-  if (!body || !body.items || !body.customer) {
+  if (!body || !Array.isArray(body.items) || body.items.length === 0 || !body.customer) {
     return res.status(400).json({ error: 'Ungültige Bestelldaten.' });
+  }
+
+  // Server-side price recalculation
+  var products = readJSON(PRODUCTS_FILE);
+  var FREE_SHIPPING_THRESHOLD = 150;
+  var SHIPPING_COST = 6.90;
+
+  var calculatedSubtotal = 0;
+  var validatedItems = [];
+
+  for (var i = 0; i < body.items.length; i++) {
+    var item = body.items[i];
+    var productId = item.productId || item.id;
+    var qty = Math.max(1, parseInt(item.qty || item.quantity) || 1);
+
+    var product = products.find(function (p) { return p.id === productId; });
+    if (!product) {
+      // Product not in server DB — accept client price but flag it
+      validatedItems.push({ productId: productId, name: item.name || ('Produkt #' + productId), price: parseFloat(item.price) || 0, qty: qty });
+      calculatedSubtotal += (parseFloat(item.price) || 0) * qty;
+    } else {
+      validatedItems.push({ productId: product.id, name: product.name, price: product.price, qty: qty });
+      calculatedSubtotal += product.price * qty;
+    }
   }
 
   // Validate promo if provided
@@ -188,15 +266,24 @@ app.post('/api/orders', function (req, res) {
     var promos = readJSON(PROMOS_FILE);
     var promo = promos.find(function (p) { return p.code === body.promo && p.active; });
     if (promo) {
-      var sub = body.subtotal || 0;
-      discount = promo.type === 'percent' ? sub * (promo.value / 100) : Math.min(promo.value, sub);
+      discount = promo.type === 'percent'
+        ? calculatedSubtotal * (promo.value / 100)
+        : Math.min(promo.value, calculatedSubtotal);
       appliedPromo = promo.code;
       promo.usageCount = (promo.usageCount || 0) + 1;
-      if (promo.usageLimit && promo.usageCount >= promo.usageLimit) {
-        promo.active = false;
-      }
+      if (promo.usageLimit && promo.usageCount >= promo.usageLimit) promo.active = false;
       writeJSON(PROMOS_FILE, promos);
     }
+  }
+
+  var shippingCost  = calculatedSubtotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_COST;
+  var calculatedTotal = Math.max(0, calculatedSubtotal - discount + shippingCost);
+
+  // Reject if client total deviates by more than 1%
+  var clientTotal = parseFloat(body.total) || 0;
+  if (clientTotal > 0 && Math.abs(clientTotal - calculatedTotal) > calculatedTotal * 0.01 + 0.02) {
+    console.warn('[ORDER FRAUD?] client total:', clientTotal, 'calculated:', calculatedTotal);
+    return res.status(400).json({ error: 'Preisabweichung festgestellt. Bitte Seite neu laden.' });
   }
 
   var order = {
@@ -207,11 +294,11 @@ app.post('/api/orders', function (req, res) {
     shipping:     body.shipping  || {},
     payment:      body.payment   || 'bankueberweisung',
     promo:        appliedPromo,
-    items:        body.items     || [],
-    subtotal:     body.subtotal  || 0,
+    items:        validatedItems,
+    subtotal:     calculatedSubtotal,
     discount:     discount,
-    shippingCost: body.shippingCost || 0,
-    total:        body.total     || 0,
+    shippingCost: shippingCost,
+    total:        calculatedTotal,
   };
 
   var orders = readJSON(ORDERS_FILE);
@@ -363,9 +450,10 @@ const imageStorage = multer.diskStorage({
 });
 
 function imageFileFilter(req, file, cb) {
-  var allowed = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+  var allowedExts  = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+  var allowedMimes = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
   var ext = path.extname(file.originalname).toLowerCase();
-  if (allowed.includes(ext)) {
+  if (allowedExts.includes(ext) && allowedMimes.includes(file.mimetype)) {
     cb(null, true);
   } else {
     cb(new Error('Nur Bilddateien erlaubt (jpg, png, webp, gif)'));
@@ -403,6 +491,11 @@ app.delete('/api/upload/:filename', requireAdmin, function (req, res) {
 /* ════════════════════════════════════════
    CONTACT FORM
 ════════════════════════════════════════ */
+
+/** GET /api/contacts – List all messages (admin) */
+app.get('/api/contacts', requireAdmin, function (req, res) {
+  res.json({ contacts: readJSON(CONTACTS_FILE) });
+});
 
 /** POST /api/contact – Save contact message */
 app.post('/api/contact', function (req, res) {

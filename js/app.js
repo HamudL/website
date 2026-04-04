@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
   initAgeVerification();
   initToasts();
   initCartEvents();
+  initBackToTop();
 
   // Page-specific init based on filename
   var path = window.location.pathname;
@@ -689,6 +690,7 @@ function initProductPage() {
    ============================================================ */
 function initCartPage() {
   initCartPageRender();
+  initCartPromoCode();
 }
 
 function initCartPageRender() {
@@ -751,6 +753,65 @@ function initCartPageRender() {
   if (subtotalEl) subtotalEl.textContent = '€' + subtotal.toFixed(2);
   if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Kostenlos' : '€' + shipping.toFixed(2);
   if (totalEl)    totalEl.textContent    = '€' + total.toFixed(2);
+}
+
+/* ============================================================
+   CART PROMO CODE
+   ============================================================ */
+function initCartPromoCode() {
+  var form     = document.getElementById('cart-promo-form');
+  var input    = document.getElementById('cart-promo-input');
+  var feedback = document.getElementById('cart-promo-feedback');
+  if (!form || !input) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var code = (input.value || '').trim().toUpperCase();
+    if (!code) return;
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = '...'; }
+
+    fetch('/api/promo/validate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ code: code }),
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        feedback.style.display = 'block';
+        if (data && data.valid) {
+          feedback.style.color = '#10b981';
+          var disc = data.promo.type === 'percent'
+            ? data.promo.value + '% Rabatt'
+            : '€' + parseFloat(data.promo.value).toFixed(2) + ' Rabatt';
+          feedback.innerHTML = '<i class="fa-solid fa-check"></i> Code "' + code + '" gültig – ' + disc;
+          window.showToast('Rabattcode angewendet: ' + disc, 'success');
+        } else {
+          feedback.style.color = '#ef4444';
+          feedback.innerHTML = '<i class="fa-solid fa-times"></i> ' + (data.error || 'Ungültiger oder abgelaufener Code.');
+        }
+      })
+      .catch(function () {
+        // Fallback: check localStorage promos
+        var stored = [];
+        try { stored = JSON.parse(localStorage.getItem('peptidelab_promos') || '[]'); } catch (e2) {}
+        var found = stored.find(function (p) { return p.code === code && p.active; });
+        feedback.style.display = 'block';
+        if (found) {
+          feedback.style.color = '#10b981';
+          var d = found.type === 'percent' ? found.value + '% Rabatt' : '€' + parseFloat(found.value).toFixed(2) + ' Rabatt';
+          feedback.innerHTML = '<i class="fa-solid fa-check"></i> Code "' + code + '" gültig – ' + d;
+          window.showToast('Rabattcode angewendet: ' + d, 'success');
+        } else {
+          feedback.style.color = '#ef4444';
+          feedback.innerHTML = '<i class="fa-solid fa-times"></i> Ungültiger oder abgelaufener Code.';
+        }
+      })
+      .finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = 'Einlösen'; }
+      });
+  });
 }
 
 /* ============================================================
@@ -818,6 +879,29 @@ function initContactForm() {
     field.addEventListener('input', function () {
       field.style.borderColor = '';
     });
+  });
+}
+
+/* ============================================================
+   BACK TO TOP
+   ============================================================ */
+function initBackToTop() {
+  var btn = document.createElement('button');
+  btn.className = 'back-to-top';
+  btn.setAttribute('aria-label', 'Nach oben scrollen');
+  btn.innerHTML = '<i class="fa-solid fa-chevron-up"></i>';
+  document.body.appendChild(btn);
+
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 300) {
+      btn.classList.add('visible');
+    } else {
+      btn.classList.remove('visible');
+    }
+  }, { passive: true });
+
+  btn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
 

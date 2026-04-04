@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Warenkorb – PeptideLab. Ihre ausgewählten Research-Peptide sicher bestellen." />
   <title>Warenkorb – PeptideLab</title>
@@ -138,7 +139,7 @@
               <div class="order-line">
                 <span class="order-line-label">
                   Versand
-                  <span style="display:block;font-size:0.8rem;color:var(--color-text-dim)">Kostenlos ab €100</span>
+                  <span style="display:block;font-size:0.8rem;color:var(--color-text-dim)">Kostenlos ab €150</span>
                 </span>
                 <span class="order-line-value order-line-shipping-free" id="page-shipping">€4.99</span>
               </div>
@@ -151,10 +152,11 @@
               </div>
 
               <!-- Promo code -->
-              <form class="promo-code-form" aria-label="Gutscheincode eingeben" onsubmit="event.preventDefault();window.showToast('Gutscheincode ungültig oder bereits verwendet.','error')">
+              <form class="promo-code-form" id="cart-promo-form" aria-label="Gutscheincode eingeben">
                 <input
                   type="text"
                   class="promo-input"
+                  id="cart-promo-input"
                   placeholder="Gutscheincode"
                   aria-label="Gutscheincode"
                 />
@@ -162,6 +164,7 @@
                   Einlösen
                 </button>
               </form>
+              <div id="cart-promo-feedback" style="display:none;font-size:0.8rem;margin-top:6px"></div>
 
               <!-- Checkout button -->
               <button class="checkout-btn" onclick="window.location.href='checkout.html'" aria-label="Zur Kasse gehen">
@@ -273,7 +276,7 @@
       <span>Gesamt</span>
       <span class="cart-total-value" id="cart-total-val">€0.00</span>
     </div>
-    <a href="cart.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
+    <a href="checkout.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
     <button class="cart-continue-btn" onclick="Cart.close()">Weiter einkaufen</button>
   </div>
 </aside>

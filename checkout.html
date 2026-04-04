@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="robots" content="noindex" />
   <title>Kasse – PeptideLab</title>
@@ -16,25 +17,34 @@
 <div class="grid-overlay" aria-hidden="true"></div>
 
 <!-- Navigation -->
-<nav class="nav scrolled" role="navigation" aria-label="Hauptnavigation">
+<nav class="nav" role="navigation" aria-label="Hauptnavigation">
   <div class="nav-inner">
-    <a href="index.html" class="nav-logo" aria-label="PeptideLab">
+    <a href="index.html" class="nav-logo" aria-label="PeptideLab Startseite">
       <div class="logo-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="4" r="2.5" fill="white"/><circle cx="4" cy="18" r="2.5" fill="white"/><circle cx="20" cy="18" r="2.5" fill="white"/><line x1="12" y1="6.5" x2="4" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="12" y1="6.5" x2="20" y2="15.5" stroke="white" stroke-width="1.5"/><line x1="6" y1="18" x2="18" y2="18" stroke="white" stroke-width="1.5"/></svg></div>
       <span class="logo-name">Peptide<span class="logo-accent">Lab</span></span>
     </a>
-    <div class="nav-links">
-      <a href="index.html" class="nav-link">Startseite</a>
-      <a href="shop.html" class="nav-link">Shop</a>
-      <a href="cart.html" class="nav-link">Warenkorb</a>
+    <div class="nav-links" role="list">
+      <a href="index.html" class="nav-link" role="listitem">Startseite</a>
+      <a href="shop.html" class="nav-link" role="listitem">Shop</a>
+      <a href="about.html" class="nav-link" role="listitem">Über uns</a>
+      <a href="contact.html" class="nav-link" role="listitem">Kontakt</a>
     </div>
     <div class="nav-actions">
-      <button class="cart-btn" onclick="window.location.href='cart.html'">
+      <button class="cart-btn" aria-label="Warenkorb öffnen">
         <i class="fa-solid fa-cart-shopping"></i> Warenkorb
         <span class="cart-count">0</span>
       </button>
+      <button class="hamburger" aria-label="Menü öffnen" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </nav>
+
+<div id="mobile-menu" class="mobile-menu" role="navigation" aria-label="Mobile Navigation">
+  <a href="index.html" class="nav-link">Startseite</a>
+  <a href="shop.html" class="nav-link">Shop</a>
+  <a href="about.html" class="nav-link">Über uns</a>
+  <a href="contact.html" class="nav-link">Kontakt</a>
+</div>
 
 <div class="disclaimer-banner" role="alert">
   <i class="fa-solid fa-triangle-exclamation"></i>
@@ -258,6 +268,22 @@
     </div>
   </div>
 </footer>
+
+<div id="cart-overlay" class="cart-overlay" role="presentation"></div>
+<aside id="cart-drawer" class="cart-drawer" role="complementary" aria-label="Warenkorb">
+  <div class="cart-drawer-header">
+    <div class="cart-drawer-title"><i class="fa-solid fa-cart-shopping"></i> Warenkorb <span class="cart-count">0</span></div>
+    <button id="cart-close-btn" class="cart-close-btn" aria-label="Warenkorb schließen"><i class="fa-solid fa-xmark"></i></button>
+  </div>
+  <div id="cart-drawer-body" class="cart-drawer-body"></div>
+  <div class="cart-drawer-footer">
+    <div class="cart-subtotal"><span>Zwischensumme</span><span id="cart-subtotal-val">€0.00</span></div>
+    <div class="cart-subtotal"><span>Versand</span><span id="cart-shipping-val">€6.90</span></div>
+    <div class="cart-total"><span>Gesamt</span><span class="cart-total-value" id="cart-total-val">€0.00</span></div>
+    <a href="checkout.html" class="cart-checkout-btn"><i class="fa-solid fa-credit-card"></i> Zur Kasse</a>
+    <button class="cart-continue-btn" onclick="Cart.close()">Weiter einkaufen</button>
+  </div>
+</aside>
 
 <script src="js/data.js"></script>
 <script src="js/cart.js"></script>
