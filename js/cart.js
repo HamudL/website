@@ -155,7 +155,7 @@ window.Cart = (function () {
     if (!footer) return;
 
     var subtotal = getSubtotal();
-    var shipping = subtotal >= 100 ? 0 : 4.99;
+    var shipping = subtotal >= 150 ? 0 : 6.90;
     var total = subtotal + shipping;
 
     if (subtotalEl) subtotalEl.textContent = formatPrice(subtotal);

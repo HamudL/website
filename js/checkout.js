@@ -42,8 +42,8 @@
 
     var subtotal = 0;
     itemsEl.innerHTML = items.map(function (it) {
-      var product = (window.PRODUCTS || []).find(function (p) { return p.id === it.id; });
-      var name    = product ? product.name : ('Produkt #' + it.id);
+      var product = (window.PRODUCTS || []).find(function (p) { return p.id === it.productId; });
+      var name    = product ? product.name : ('Produkt #' + it.productId);
       var emoji   = product ? product.emoji : '🧪';
       var gradient = product ? product.gradient : '#0a1628';
       var price   = product ? product.price : 0;
@@ -63,7 +63,7 @@
   function updateTotals(subtotal) {
     if (subtotal === undefined) {
       subtotal = Cart.state.items.reduce(function (acc, it) {
-        var p = (window.PRODUCTS || []).find(function (p) { return p.id === it.id; });
+        var p = (window.PRODUCTS || []).find(function (p) { return p.id === it.productId; });
         return acc + (p ? p.price * it.qty : 0);
       }, 0);
     }
@@ -212,10 +212,10 @@
 
   function buildOrder() {
     var items = Cart.state.items.map(function (it) {
-      var p = (window.PRODUCTS || []).find(function (pr) { return pr.id === it.id; });
+      var p = (window.PRODUCTS || []).find(function (pr) { return pr.id === it.productId; });
       return {
-        id: it.id,
-        name: p ? p.name : 'Produkt #' + it.id,
+        productId: it.productId,
+        name: p ? p.name : 'Produkt #' + it.productId,
         emoji: p ? p.emoji : '🧪',
         price: p ? p.price : 0,
         qty: it.qty,
@@ -229,8 +229,8 @@
         ? subtotal * (appliedPromo.value / 100)
         : Math.min(appliedPromo.value, subtotal);
     }
-    var shipping = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 6.90;
-    var total    = Math.max(0, subtotal - discount + shipping);
+    var shippingCost = subtotal >= FREE_SHIPPING_THRESHOLD ? 0 : 6.90;
+    var total        = Math.max(0, subtotal - discount + shippingCost);
 
     return {
       id:        generateOrderId(),
@@ -249,13 +249,13 @@
         country: val('co-country'),
         notes:   val('co-notes'),
       },
-      payment:  selectedPayment(),
-      promo:    appliedPromo ? appliedPromo.code : null,
-      items:    items,
-      subtotal: subtotal,
-      discount: discount,
-      shipping: shipping,
-      total:    total,
+      payment:      selectedPayment(),
+      promo:        appliedPromo ? appliedPromo.code : null,
+      items:        items,
+      subtotal:     subtotal,
+      discount:     discount,
+      shippingCost: shippingCost,
+      total:        total,
     };
   }
 
@@ -275,7 +275,7 @@
   /* ── Form validation ── */
   function validateForm() {
     var valid = true;
-    var requiredIds = ['co-first-name', 'co-last-name', 'co-email', 'co-street', 'co-zip', 'co-city'];
+    var requiredIds = ['co-first-name', 'co-last-name', 'co-email', 'co-street', 'co-zip', 'co-city', 'co-country'];
     requiredIds.forEach(function (id) {
       var el = document.getElementById(id);
       if (!el) return;

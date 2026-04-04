@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function () {
   } else if (page === 'product.html') {
     initProductPage();
   } else if (page === 'cart.html') {
-    initCartPage();
     window.CartPage = { render: initCartPageRender };
     initCartPage();
   } else if (page === 'about.html') {
@@ -331,9 +330,9 @@ function initShopPage() {
       var q = state.search.trim().toLowerCase();
       products = products.filter(function (p) {
         return p.name.toLowerCase().includes(q) ||
-               p.fullName.toLowerCase().includes(q) ||
-               p.description.toLowerCase().includes(q) ||
-               p.categoryLabel.toLowerCase().includes(q);
+               (p.fullName || '').toLowerCase().includes(q) ||
+               (p.description || '').toLowerCase().includes(q) ||
+               (p.categoryLabel || '').toLowerCase().includes(q);
       });
     }
 
@@ -621,13 +620,27 @@ function initProductPage() {
     });
   }
 
-  // Wishlist
+  // Wishlist (with localStorage persistence)
   var wishBtn = document.getElementById('wishlist-btn');
   if (wishBtn) {
+    var wishlist = [];
+    try { wishlist = JSON.parse(localStorage.getItem('peptidelab_wishlist') || '[]'); } catch (e) {}
+    if (wishlist.indexOf(product.id) !== -1) wishBtn.classList.add('active');
+
     wishBtn.addEventListener('click', function () {
-      wishBtn.classList.toggle('active');
-      var isActive = wishBtn.classList.contains('active');
-      window.showToast(isActive ? product.name + ' zur Wunschliste hinzugefügt' : product.name + ' von Wunschliste entfernt', isActive ? 'success' : 'info');
+      var stored = [];
+      try { stored = JSON.parse(localStorage.getItem('peptidelab_wishlist') || '[]'); } catch (e) {}
+      var idx = stored.indexOf(product.id);
+      if (idx === -1) {
+        stored.push(product.id);
+        wishBtn.classList.add('active');
+        window.showToast(product.name + ' zur Wunschliste hinzugefügt', 'success');
+      } else {
+        stored.splice(idx, 1);
+        wishBtn.classList.remove('active');
+        window.showToast(product.name + ' von Wunschliste entfernt', 'info');
+      }
+      localStorage.setItem('peptidelab_wishlist', JSON.stringify(stored));
     });
   }
 
@@ -728,7 +741,7 @@ function initCartPageRender() {
 
   // Update summary
   var subtotal = Cart.getSubtotal();
-  var shipping = subtotal >= 100 ? 0 : 4.99;
+  var shipping = subtotal >= 150 ? 0 : 6.90;
   var total = subtotal + shipping;
 
   var subtotalEl = document.getElementById('page-subtotal');
@@ -739,8 +752,6 @@ function initCartPageRender() {
   if (shippingEl) shippingEl.textContent = shipping === 0 ? 'Kostenlos' : '€' + shipping.toFixed(2);
   if (totalEl)    totalEl.textContent    = '€' + total.toFixed(2);
 }
-
-window.CartPage = { render: initCartPageRender };
 
 /* ============================================================
    CONTACT FORM
@@ -775,10 +786,31 @@ function initContactForm() {
       return;
     }
 
-    // Success
-    form.style.display = 'none';
-    if (successEl) successEl.style.display = 'block';
-    window.showToast('Ihre Nachricht wurde erfolgreich gesendet!', 'success');
+    var submitBtn = form.querySelector('button[type="submit"]');
+    if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '...'; }
+
+    var nameField    = form.querySelector('[name="name"], #contact-name');
+    var emailField2  = form.querySelector('input[type="email"]');
+    var subjectField = form.querySelector('[name="subject"], #contact-subject');
+    var msgField     = form.querySelector('[name="message"], textarea');
+
+    fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        name:    nameField    ? nameField.value.trim()    : '',
+        email:   emailField2  ? emailField2.value.trim()  : '',
+        subject: subjectField ? subjectField.value.trim() : '',
+        message: msgField     ? msgField.value.trim()     : '',
+      }),
+    })
+      .catch(function () { return { ok: true }; }) // show success even if server unavailable
+      .finally(function () {
+        form.style.display = 'none';
+        if (successEl) successEl.style.display = 'block';
+        window.showToast('Ihre Nachricht wurde erfolgreich gesendet!', 'success');
+        if (submitBtn) { submitBtn.disabled = false; }
+      });
   });
 
   // Reset field error on input

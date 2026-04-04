@@ -7,9 +7,9 @@
   'use strict';
 
   /* ── Config ── */
-  var ADMIN_PASSWORD = 'PeptideLab2024';
-  var SESSION_KEY    = 'peptidelab_admin_auth';
-  var STORAGE_KEY    = 'peptidelab_products';
+  var SESSION_KEY   = 'peptidelab_admin_auth';
+  var SESSION_TOKEN = 'peptidelab_admin_token';
+  var STORAGE_KEY   = 'peptidelab_products';
 
   var CATEGORY_LABELS = {
     healing:    'Heilung & Regeneration',
@@ -51,11 +51,16 @@
   /* ══════════════════════════════════════════
      AUTH
   ══════════════════════════════════════════ */
+  function getAdminToken() {
+    return sessionStorage.getItem(SESSION_TOKEN) || '';
+  }
+
   function initLoginForm() {
-    var form   = document.getElementById('login-form');
-    var pwInput = document.getElementById('login-password');
-    var errBox  = document.getElementById('login-error');
+    var form     = document.getElementById('login-form');
+    var pwInput  = document.getElementById('login-password');
+    var errBox   = document.getElementById('login-error');
     var togglePw = document.getElementById('toggle-pw');
+    var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
 
     if (togglePw) {
       togglePw.addEventListener('click', function () {
@@ -69,15 +74,37 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         var pw = pwInput.value.trim();
-        if (pw === ADMIN_PASSWORD) {
-          sessionStorage.setItem(SESSION_KEY, 'true');
-          errBox.style.display = 'none';
-          showApp();
-        } else {
-          errBox.style.display = 'block';
-          pwInput.value = '';
-          pwInput.focus();
-        }
+        if (!pw) return;
+
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = '...'; }
+        errBox.style.display = 'none';
+
+        fetch('/api/admin/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pw }),
+        })
+          .then(function (r) { return r.json(); })
+          .then(function (data) {
+            if (data.success && data.token) {
+              sessionStorage.setItem(SESSION_KEY, 'true');
+              sessionStorage.setItem(SESSION_TOKEN, data.token);
+              showApp();
+            } else {
+              errBox.textContent = data.error || 'Falsches Passwort. Bitte erneut versuchen.';
+              errBox.style.display = 'block';
+              pwInput.value = '';
+              pwInput.focus();
+            }
+          })
+          .catch(function () {
+            errBox.textContent = 'Server nicht erreichbar. Ist der Server gestartet?';
+            errBox.style.display = 'block';
+          })
+          .finally(function () {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.innerHTML = '<i class="fa-solid fa-arrow-right-to-bracket"></i> Anmelden'; }
+            pwInput.value = '';
+          });
       });
     }
   }
@@ -111,6 +138,7 @@
     updatePendingOrdersBadge();
 
     navigateTo('dashboard');
+    syncProductsFromServer();
   }
 
   /* ── Sidebar collapse ── */
@@ -161,7 +189,12 @@
     var logoutBtn = document.getElementById('logout-btn');
     if (logoutBtn) {
       logoutBtn.addEventListener('click', function () {
+        fetch('/api/admin/logout', {
+          method: 'POST',
+          headers: { 'X-Admin-Token': getAdminToken() },
+        }).catch(function () {});
         sessionStorage.removeItem(SESSION_KEY);
+        sessionStorage.removeItem(SESSION_TOKEN);
         showLogin();
       });
     }
@@ -209,9 +242,33 @@
 
   function saveProducts() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(currentProducts));
-    // also update live window.PRODUCTS
     window.PRODUCTS = currentProducts;
+
+    // Persist to server
+    fetch('/api/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': getAdminToken() },
+      body: JSON.stringify({ products: currentProducts }),
+    }).catch(function () {
+      // Server unavailable — localStorage was already saved as fallback
+    });
+
     showAdminToast('Änderungen gespeichert!', 'success');
+  }
+
+  // On init, try to load from server (server is authoritative)
+  function syncProductsFromServer() {
+    fetch('/api/products')
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (Array.isArray(data.products) && data.products.length > 0) {
+          currentProducts = data.products;
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(currentProducts));
+          window.PRODUCTS = currentProducts;
+          navigateTo(currentSection);
+        }
+      })
+      .catch(function () { /* server unavailable, use localStorage version */ });
   }
 
   function generateId() {
@@ -387,7 +444,8 @@
     form.innerHTML = buildProductFormHtml(null);
     initImageUploadField();
 
-    form.addEventListener('submit', function (e) {
+    // Use onsubmit (not addEventListener) to prevent duplicate listeners on repeated navigation
+    form.onsubmit = function (e) {
       e.preventDefault();
       var data = collectFormData(form);
       if (!data.name) { showAdminToast('Bitte Produktname eingeben.', 'error'); return; }
@@ -395,9 +453,8 @@
       currentProducts.push(data);
       saveProducts();
       showAdminToast('Produkt "' + data.name + '" wurde hinzugefügt!', 'success');
-      form.reset();
       navigateTo('products');
-    });
+    };
   }
 
   /* ══════════════════════════════════════════
@@ -715,14 +772,22 @@
       if (!confirm('Bestellung ' + id + ' wirklich löschen?')) return;
       fetch('/api/orders/' + encodeURIComponent(id), {
         method: 'DELETE',
-        headers: { 'X-Admin-Token': ADMIN_PASSWORD },
-      }).catch(function () {}).finally(function () {
-        allOrders = allOrders.filter(function (o) { return o.id !== id; });
-        renderOrderRows(allOrders);
-        renderOrderStats(allOrders);
-        updatePendingOrdersBadge();
-        showAdminToast('Bestellung gelöscht.', 'info');
-      });
+        headers: { 'X-Admin-Token': getAdminToken() },
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Server error ' + r.status);
+          return r.json();
+        })
+        .then(function () {
+          allOrders = allOrders.filter(function (o) { return o.id !== id; });
+          renderOrderRows(allOrders);
+          renderOrderStats(allOrders);
+          updatePendingOrdersBadge();
+          showAdminToast('Bestellung gelöscht.', 'info');
+        })
+        .catch(function () {
+          showAdminToast('Fehler: Bestellung konnte nicht gelöscht werden.', 'error');
+        });
     },
     togglePromo: function (code) {
       var promo = allPromos.find(function (p) { return p.code === code; });
@@ -730,24 +795,40 @@
       var newActive = !promo.active;
       fetch('/api/promos/' + encodeURIComponent(code), {
         method: 'PATCH',
-        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Token': getAdminToken() },
         body: JSON.stringify({ active: newActive }),
-      }).catch(function () {}).finally(function () {
-        promo.active = newActive;
-        renderPromoRows(allPromos);
-        showAdminToast('Code "' + code + '" ' + (newActive ? 'aktiviert' : 'deaktiviert') + '.', 'success');
-      });
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Server error ' + r.status);
+          return r.json();
+        })
+        .then(function () {
+          promo.active = newActive;
+          renderPromoRows(allPromos);
+          showAdminToast('Code "' + code + '" ' + (newActive ? 'aktiviert' : 'deaktiviert') + '.', 'success');
+        })
+        .catch(function () {
+          showAdminToast('Fehler: Status konnte nicht geändert werden.', 'error');
+        });
     },
     deletePromo: function (code) {
       if (!confirm('Code "' + code + '" wirklich löschen?')) return;
       fetch('/api/promos/' + encodeURIComponent(code), {
         method: 'DELETE',
-        headers: { 'X-Admin-Token': ADMIN_PASSWORD },
-      }).catch(function () {}).finally(function () {
-        allPromos = allPromos.filter(function (p) { return p.code !== code; });
-        renderPromoRows(allPromos);
-        showAdminToast('Code "' + code + '" gelöscht.', 'info');
-      });
+        headers: { 'X-Admin-Token': getAdminToken() },
+      })
+        .then(function (r) {
+          if (!r.ok) throw new Error('Server error ' + r.status);
+          return r.json();
+        })
+        .then(function () {
+          allPromos = allPromos.filter(function (p) { return p.code !== code; });
+          renderPromoRows(allPromos);
+          showAdminToast('Code "' + code + '" gelöscht.', 'info');
+        })
+        .catch(function () {
+          showAdminToast('Fehler: Code konnte nicht gelöscht werden.', 'error');
+        });
     },
   };
 
@@ -820,7 +901,7 @@
 
         fetch('/api/upload/product', {
           method: 'POST',
-          headers: { 'X-Admin-Token': ADMIN_PASSWORD },
+          headers: { 'X-Admin-Token': getAdminToken() },
           body: fd,
         })
           .then(function (r) { return r.json(); })
@@ -855,7 +936,7 @@
      ORDERS
   ══════════════════════════════════════════ */
   function loadOrdersData(callback) {
-    fetch('/api/orders', { headers: { 'X-Admin-Token': ADMIN_PASSWORD } })
+    fetch('/api/orders', { headers: { 'X-Admin-Token': getAdminToken() } })
       .then(function (res) { if (!res.ok) throw new Error(); return res.json(); })
       .then(function (data) { callback(data.orders || []); })
       .catch(function () {
@@ -1049,11 +1130,14 @@
   function updateOrderStatus(orderId, newStatus) {
     fetch('/api/orders/' + encodeURIComponent(orderId) + '/status', {
       method: 'PATCH',
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': getAdminToken() },
       body: JSON.stringify({ status: newStatus }),
     })
-      .catch(function () {})
-      .finally(function () {
+      .then(function (r) {
+        if (!r.ok) throw new Error('Server error ' + r.status);
+        return r.json();
+      })
+      .then(function () {
         var order = allOrders.find(function (o) { return o.id === orderId; });
         if (order) order.status = newStatus;
         closeOrderModal();
@@ -1061,6 +1145,9 @@
         renderOrderStats(allOrders);
         updatePendingOrdersBadge();
         showAdminToast('Status auf "' + newStatus + '" aktualisiert.', 'success');
+      })
+      .catch(function () {
+        showAdminToast('Fehler: Status konnte nicht gespeichert werden.', 'error');
       });
   }
 
@@ -1068,7 +1155,7 @@
      PROMOS
   ══════════════════════════════════════════ */
   function loadPromosData(callback) {
-    fetch('/api/promos', { headers: { 'X-Admin-Token': ADMIN_PASSWORD } })
+    fetch('/api/promos', { headers: { 'X-Admin-Token': getAdminToken() } })
       .then(function (res) { if (!res.ok) throw new Error(); return res.json(); })
       .then(function (data) { callback(data.promos || []); })
       .catch(function () {
@@ -1123,7 +1210,7 @@
 
     fetch('/api/promos', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': ADMIN_PASSWORD },
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Token': getAdminToken() },
       body: JSON.stringify(payload),
     })
       .then(function (r) { return r.json(); })
